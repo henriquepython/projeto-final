@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
   name: 'jwt',
 })
 export class Auth {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column()
   email: string;

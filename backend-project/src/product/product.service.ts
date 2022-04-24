@@ -1,4 +1,4 @@
-import { Injectable, Logger, Scope } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductRepository } from './product.repository';
@@ -12,39 +12,66 @@ export class ProductService {
     this.logger = new Logger(ProductService.name);
   }
 
-  create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto) {
     this.logger.log('create product');
-    this.repository.create(createProductDto);
-    return 'This action adds a new product';
+    return await this.repository.create(createProductDto);
   }
 
-  findAll() {
-    this.logger.log('create product');
-    this.repository.findAll();
-    return `This action returns all product`;
+  async findAll(): Promise<CreateProductDto[]> {
+    this.logger.log('Looking for all products');
+    const product = await this.repository.findAll();
+
+    if (!product) {
+      this.logger.error('Error fetching products');
+      throw new BadRequestException('products not found');
+    }
+
+    this.logger.log('products found');
+    return product;
   }
 
-  findProductByName(name: string) {
-    this.logger.log('create product');
-    this.repository.findByName(name);
-    return `This action returns a #${name} product`;
+  async findProductByName(name: string) {
+    this.logger.log(`looking for products with name: ${name}`);
+    const product = await this.repository.findByName(name);
+
+    if (!product) {
+      this.logger.error(`there is no product with the name: ${name}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    return product;
   }
 
-  findProductByDetils() {
-    this.logger.log('create product');
-    this.repository.findByDetails();
-    return 'This action adds a new product';
-  }
+  async edit(id: string, updateProductDto: UpdateProductDto) {
+    this.logger.log(`looking for products with id: ${id}`);
+    const product = await this.repository.findById(id);
 
-  edit(id: number, updateProductDto: UpdateProductDto) {
-    this.logger.log('create product');
+    if (!product) {
+      this.logger.error(`there is no product with the id: ${id}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    this.logger.log('updated product ');
     this.repository.update(id, updateProductDto);
-    return `This action updates a #${id} product`;
+
+    return updateProductDto;
   }
 
-  remove(id: number) {
-    this.logger.log('create product');
+  async remove(id: string) {
+    this.logger.log(`looking for products with id: ${id}`);
+    const product = await this.repository.findById(id);
+
+    if (!product) {
+      this.logger.error(`there is no product with the id: ${id}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    this.logger.log('product removed');
     this.repository.remove(id);
-    return `This action removes a #${id} product`;
+
+    return `product with id: ${id} successfully removed `;
   }
 }

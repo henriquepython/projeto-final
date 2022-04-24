@@ -18,7 +18,7 @@ export class Order {
   @Column()
   total: number;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()

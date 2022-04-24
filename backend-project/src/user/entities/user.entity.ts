@@ -1,10 +1,13 @@
 import Product from 'src/product/entities/product.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
   name: 'member',
 })
 export class User {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
   @Column()
   name: string;
 

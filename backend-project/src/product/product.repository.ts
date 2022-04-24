@@ -1,6 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Order } from 'src/order/entities/order.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -19,6 +18,10 @@ export class ProductRepository {
 
   async findAll(): Promise<CreateProductDto[]> {
     return await this.repository.find();
+  }
+
+  async findById(id: string) {
+    return await this.repository.find({ where: { id: id } });
   }
 
   async findByName(name: string) {
