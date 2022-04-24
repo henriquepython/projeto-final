@@ -21,19 +21,19 @@ export class ProductRepository {
     return await this.repository.find();
   }
 
-  async findByName(id: number) {
-    return `This action returns a #${id} product`;
+  async findByName(name: string) {
+    return await this.repository.find({ where: { name: name } });
   }
 
-  async findByDetails() {
-    return 'This action adds a new product';
+  async update(
+    id: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<UpdateProductDto> {
+    await this.repository.update(id, updateProductDto);
+    return updateProductDto;
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
-  }
-
-  async remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
