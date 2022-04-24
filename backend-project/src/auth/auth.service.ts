@@ -1,5 +1,6 @@
 import { Injectable, Logger, Scope } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserRepository } from 'src/user/user.repository';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -7,20 +8,23 @@ export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly logger: Logger,
+    private readonly repository: UserRepository,
   ) {
     this.logger = new Logger(AuthService.name);
   }
-  async login(login: LoginDto) {
-    const auth = {
-      email: 'joao@gmail.com',
-      password: '123',
-    };
+  async login(loginDto: LoginDto): Promise<any> {
+    // const auth = {
+    //   email: 'joao@gmail.com',
+    //   password: '123',
+    // };
 
-    if (auth && auth.password === login.password) {
+    const user = await this.repository.findByEmail(loginDto.email);
+
+    if (user && user.password === loginDto.password) {
       this.logger.log('Login successfully');
       const payload = {
-        name: auth.email,
-        sub: auth.email,
+        name: user.email,
+        sub: user.email,
       };
       return { accessToken: await this.jwtService.signAsync(payload) };
     }

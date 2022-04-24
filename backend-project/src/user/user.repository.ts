@@ -23,8 +23,8 @@ export class UserRepository {
     return await this.repository.find({ where: { id: id } });
   }
 
-  async findByEmail(email: string): Promise<User[]> {
-    return await this.repository.find({ where: { email: email } });
+  async findByEmail(email: string): Promise<User> {
+    return await this.repository.findOne({ where: { email: email } });
   }
 
   async update(
