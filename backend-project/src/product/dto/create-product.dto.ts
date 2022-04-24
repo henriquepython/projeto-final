@@ -1,5 +1,4 @@
-import { IsArray, IsInt, IsNotEmpty, IsString } from 'class-validator';
-import { InputProductDetail } from './InputProductDetail';
+import { IsInt, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -14,6 +13,12 @@ export class CreateProductDto {
   @IsNotEmpty()
   stock: number;
 
-  @IsArray()
-  details: InputProductDetail[];
+  @MaxLength(255)
+  @IsString()
+  @IsNotEmpty()
+  image_url: string;
+
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 }

@@ -1,26 +1,32 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, Logger, Scope } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { AuthRepository } from './auth.repository';
+import { LoginDto } from './dto/login.dto';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly logger: Logger,
+    private readonly authRepository: AuthRepository,
+  ) {
+    this.logger = new Logger(AuthService.name);
   }
+  async login(login: LoginDto) {
+    const auth = {
+      email: 'joao@gmail.com',
+      password: '123',
+    };
 
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    if (auth.email === login.email && auth.password === login.password) {
+      this.logger.log('Login realizado com sucesso');
+      const payload = {
+        name: auth.email,
+        sub: auth.email,
+      };
+      return { accessToken: await this.jwtService.signAsync(payload) };
+    }
+    this.logger.error('email ou senha são invalidos');
+    return null;
   }
 }

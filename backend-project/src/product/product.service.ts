@@ -24,10 +24,10 @@ export class ProductService {
     return `This action returns all product`;
   }
 
-  findProductByName(id: number) {
+  findProductByName(name: string) {
     this.logger.log('create product');
-    this.repository.findByName(id);
-    return `This action returns a #${id} product`;
+    this.repository.findByName(name);
+    return `This action returns a #${name} product`;
   }
 
   findProductByDetils() {
