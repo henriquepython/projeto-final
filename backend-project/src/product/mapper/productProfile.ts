@@ -6,7 +6,7 @@ import {
 } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
-import Product from '../entities/product.entity';
+import { Product } from '../entities/product.entity';
 import { CreateProductDto } from '../dto/create-product.dto';
 
 @Injectable()

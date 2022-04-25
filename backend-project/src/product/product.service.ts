@@ -1,9 +1,10 @@
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
+import { User } from 'src/user/entities/user.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import Product from './entities/product.entity';
+import { Product } from './entities/product.entity';
 import { ProductRepository } from './product.repository';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -16,14 +17,17 @@ export class ProductService {
     this.logger = new Logger(ProductService.name);
   }
 
-  async create(createProductDto: CreateProductDto) {
-    this.logger.log('create product');
+  async create(
+    createProductDto: CreateProductDto,
+    user: User,
+  ): Promise<Product> {
     const productMapper = this.mapper.map(
       createProductDto,
       CreateProductDto,
       Product,
     );
-    return await this.repository.create(productMapper);
+
+    return this.repository.create(productMapper, user);
   }
 
   async findAll(): Promise<CreateProductDto[]> {

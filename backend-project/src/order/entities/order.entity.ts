@@ -1,59 +1,23 @@
 import { AutoMap } from '@automapper/classes';
-import {
-  BeforeInsert,
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { OrderItem } from './order-item.entity';
+import { Product } from 'src/product/entities/product.entity';
+import { User } from 'src/user/entities/user.entity';
 import { OrderStatus } from './OrderStatus.enum';
-import { v4 as uuidv4 } from 'uuid';
 
-@Entity({ name: 'orders' })
-export class Order {
+class ProductOrder {
   @AutoMap()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+  product: Product;
   @AutoMap()
-  @Column()
-  total: number;
+  quantity: number;
+}
 
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  UpdatedDate: Date;
-
-  @DeleteDateColumn()
-  CancelledDate: Date;
-
+export class Order extends Document {
   @AutoMap()
-  @Column('simple-enum')
-  Status: OrderStatus = OrderStatus.Pending;
-
-  @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
-  items: OrderItem[];
-
-  @BeforeInsert() beforeInsertActions() {
-    this.generateId();
-    this.calculateTotal();
-  }
-
-  generateId() {
-    if (this.id) {
-      return;
-    }
-    this.id = uuidv4();
-  }
-
-  calculateTotal() {
-    return (this.total = this.items.reduce((sum, item) => {
-      return sum + item.quantity * item.price;
-    }, 0));
-  }
+  owner: User;
+  @AutoMap()
+  totalPrice: number;
+  @AutoMap()
+  products: ProductOrder[];
+  @AutoMap()
+  status: OrderStatus = OrderStatus.Pending;
+  created: Date;
 }

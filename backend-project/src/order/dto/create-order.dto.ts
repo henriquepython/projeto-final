@@ -1,3 +1,4 @@
+import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
@@ -10,25 +11,11 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-class OrderItem {
-  @Min(1)
-  @IsInt()
-  @IsNotEmpty()
-  @ApiProperty()
-  quantity: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  product_id: string;
-}
-
 export class CreateOrderDto {
-  @ValidateNested({ each: true })
-  @Type(() => OrderItem)
-  @ArrayMinSize(1)
-  @IsArray()
-  @IsNotEmpty()
+  @AutoMap()
   @ApiProperty()
-  items: OrderItem[];
+  products: {
+    product: string;
+    quantity: number;
+  }[];
 }

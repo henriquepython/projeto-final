@@ -8,7 +8,7 @@ export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly logger: Logger,
-    private readonly repository: UserRepository,
+    private readonly repositoryUser: UserRepository,
   ) {
     this.logger = new Logger(AuthService.name);
   }
@@ -18,7 +18,7 @@ export class AuthService {
     //   password: '123',
     // };
 
-    const user = await this.repository.findByEmail(loginDto.email);
+    const user = await this.repositoryUser.findByEmail(loginDto.email);
 
     if (user && user.password === loginDto.password) {
       this.logger.log('Login successfully');

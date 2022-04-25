@@ -1,37 +1,43 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import Product from './entities/product.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User } from 'src/user/entities/user.entity';
+import { Product } from './entities/product.entity';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ProductRepository {
-  constructor(
-    @InjectRepository(Product)
-    private readonly repository: Repository<Product>,
-  ) {}
+  constructor(@InjectModel('Product') private productModel: Model<Product>) {}
 
-  async create(product: Product): Promise<Product> {
-    return await this.repository.save(product);
+  async create(product: Product, user: User): Promise<Product> {
+    const products = await this.productModel.create({
+      ...product,
+      owner: user,
+    });
+    await products.save();
+    return products.populate('owner');
   }
 
   async findAll(): Promise<Product[]> {
-    return await this.repository.find();
+    return await this.productModel.find().populate('owner');
   }
 
-  async findById(id: string) {
-    return await this.repository.findOne({ where: { id: id } });
+  async findById(id: string): Promise<Product> {
+    return await this.productModel.findById(id).populate('owner');
   }
 
-  async findByName(name: string) {
-    return await this.repository.findOne({ where: { name: name } });
+  async findByName(name: string): Promise<Product> {
+    return await this.productModel.findById({ title: name }).populate('owner');
   }
 
-  async update(id: string, product: Product): Promise<Product> {
-    await this.repository.update(id, product);
-    return product;
+  async update(id: string, Product: Product): Promise<Product> {
+    return this.productModel.findByIdAndUpdate(
+      { _id: id },
+      { $set: Product },
+      { new: true },
+    );
   }
 
   async remove(id: string): Promise<void> {
-    await this.repository.delete(id);
+    await this.productModel.deleteOne({ _id: id }).exec();
   }
 }

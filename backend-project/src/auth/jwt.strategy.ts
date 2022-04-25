@@ -10,18 +10,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, `jwt`) {
     });
   }
   async validate(payload: any) {
-    /*
-    const foundJwt = await this.authRepository.findByEmail(payload.email);
-    if (!foundJwt) {
-      throw new HttpException(
-        {
-          status: HttpStatus.UNAUTHORIZED,
-          error: 'Not found jwt',
-        },
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
-    */
     return { email: payload.email };
   }
 }

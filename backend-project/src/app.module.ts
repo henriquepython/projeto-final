@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -10,12 +10,8 @@ import { classes } from '@automapper/classes';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'orders',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    MongooseModule.forRoot('mongodb://localhost/order'),
+    ,
     AutomapperModule.forRoot({
       strategyInitializer: classes(),
       namingConventions: new CamelCaseNamingConvention(),
