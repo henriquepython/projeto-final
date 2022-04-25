@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { AutoMap } from '@automapper/classes';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -12,21 +12,27 @@ import {
   name: 'product',
 })
 export default class Product {
+  @AutoMap()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @AutoMap()
   @Column()
   name: string;
 
+  @AutoMap()
   @Column()
   price: number;
 
+  @AutoMap()
   @Column()
   stock: number;
 
+  @AutoMap()
   @Column()
   image_url: string;
 
+  @AutoMap()
   @Column()
   description: string;
 

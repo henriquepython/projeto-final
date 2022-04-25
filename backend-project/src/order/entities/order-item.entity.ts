@@ -1,5 +1,6 @@
 import Product from 'src/product/entities/product.entity';
 import {
+  BeforeInsert,
   Column,
   Entity,
   JoinColumn,
@@ -7,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Order } from './order.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity({ name: 'order_items' })
 export class OrderItem {
@@ -35,4 +37,11 @@ export class OrderItem {
     name: 'order_id',
   })
   order: Order;
+
+  @BeforeInsert() generateId() {
+    if (this.id) {
+      return;
+    }
+    this.id = uuidv4();
+  }
 }

@@ -40,7 +40,7 @@ export class OrderService {
     const order = await this.repository.findByName(id);
 
     if (!order) {
-      this.logger.error(`there is no order with the name: ${name}`);
+      this.logger.error(`there is no order with the id: ${id}`);
       throw new BadRequestException('order not found');
     }
 

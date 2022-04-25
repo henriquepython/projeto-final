@@ -3,7 +3,7 @@ import Product from 'src/product/entities/product.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
-  name: 'member',
+  name: 'user',
 })
 export class User {
   @AutoMap()

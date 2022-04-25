@@ -6,7 +6,6 @@ import { AuthModule } from './auth/auth.module';
 import { OrderModule } from './order/order.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { CamelCaseNamingConvention } from '@automapper/core';
-import { UserProfile } from './user/mapper/userProfile';
 import { classes } from '@automapper/classes';
 
 @Module({

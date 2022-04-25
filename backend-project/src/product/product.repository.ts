@@ -19,11 +19,11 @@ export class ProductRepository {
   }
 
   async findById(id: string) {
-    return await this.repository.find({ where: { id: id } });
+    return await this.repository.findOne({ where: { id: id } });
   }
 
   async findByName(name: string) {
-    return await this.repository.find({ where: { name: name } });
+    return await this.repository.findOne({ where: { name: name } });
   }
 
   async update(id: string, product: Product): Promise<Product> {

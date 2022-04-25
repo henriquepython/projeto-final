@@ -70,7 +70,7 @@ export class ProductService {
     this.logger.log('updated product ');
     this.repository.update(id, productMapper);
 
-    return updateProductDto;
+    return productMapper;
   }
 
   async remove(id: string) {
