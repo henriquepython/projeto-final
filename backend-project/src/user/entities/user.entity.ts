@@ -12,4 +12,6 @@ export class User {
 
   @AutoMap()
   password: string;
+
+  created: Date;
 }

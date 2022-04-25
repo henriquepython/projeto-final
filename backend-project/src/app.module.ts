@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { CamelCaseNamingConvention } from '@automapper/core';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { CamelCaseNamingConvention } from '@automapper/core';
       namingConventions: new CamelCaseNamingConvention(),
     }),
     UserModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],
