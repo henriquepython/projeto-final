@@ -1,5 +1,3 @@
-import { Mapper } from '@automapper/core';
-import { InjectMapper } from '@automapper/nestjs';
 import {
   HttpException,
   HttpStatus,
@@ -8,8 +6,10 @@ import {
   Scope,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './entities/user.entity';
 import { UserRepository } from './user.repository';
+import { Mapper } from '@automapper/core';
+import { InjectMapper } from '@automapper/nestjs';
+import { User } from './entities/user.entity';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
@@ -22,6 +22,7 @@ export class UserService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<CreateUserDto> {
+    const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
     const user = await this.repository.findByEmail(createUserDto.email);
 
     if (user) {
@@ -29,7 +30,6 @@ export class UserService {
     }
 
     this.logger.log('created user');
-    const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
     return await this.repository.create(userMapper);
   }
 }
