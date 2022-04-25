@@ -1,11 +1,15 @@
+import { Mapper } from '@automapper/core';
+import { InjectMapper } from '@automapper/nestjs';
 import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import Product from './entities/product.entity';
 import { ProductRepository } from './product.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ProductService {
   constructor(
+    @InjectMapper() private mapper: Mapper,
     private readonly logger: Logger,
     private readonly repository: ProductRepository,
   ) {
@@ -14,7 +18,12 @@ export class ProductService {
 
   async create(createProductDto: CreateProductDto) {
     this.logger.log('create product');
-    return await this.repository.create(createProductDto);
+    const productMapper = this.mapper.map(
+      createProductDto,
+      CreateProductDto,
+      Product,
+    );
+    return await this.repository.create(productMapper);
   }
 
   async findAll(): Promise<CreateProductDto[]> {
@@ -45,6 +54,11 @@ export class ProductService {
 
   async edit(id: string, updateProductDto: UpdateProductDto) {
     this.logger.log(`looking for products with id: ${id}`);
+    const productMapper = this.mapper.map(
+      updateProductDto,
+      UpdateProductDto,
+      Product,
+    );
     const product = await this.repository.findById(id);
 
     if (!product) {
@@ -54,7 +68,7 @@ export class ProductService {
 
     this.logger.log('product found');
     this.logger.log('updated product ');
-    this.repository.update(id, updateProductDto);
+    this.repository.update(id, productMapper);
 
     return updateProductDto;
   }

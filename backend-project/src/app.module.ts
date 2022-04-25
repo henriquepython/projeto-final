@@ -4,6 +4,10 @@ import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { OrderModule } from './order/order.module';
+import { AutomapperModule } from '@automapper/nestjs';
+import { CamelCaseNamingConvention } from '@automapper/core';
+import { UserProfile } from './user/mapper/userProfile';
+import { classes } from '@automapper/classes';
 
 @Module({
   imports: [
@@ -12,6 +16,10 @@ import { OrderModule } from './order/order.module';
       database: 'orders',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+    }),
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
+      namingConventions: new CamelCaseNamingConvention(),
     }),
     ProductModule,
     UserModule,

@@ -1,3 +1,4 @@
+import { AutoMap } from '@automapper/classes';
 import Product from 'src/product/entities/product.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -5,18 +6,23 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
   name: 'member',
 })
 export class User {
+  @AutoMap()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @AutoMap()
   @Column()
   name: string;
 
+  @AutoMap()
   @Column()
   email: string;
 
+  @AutoMap()
   @Column()
   phoneNumber: string;
 
+  @AutoMap()
   @Column()
   password: string;
 
