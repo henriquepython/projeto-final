@@ -4,7 +4,7 @@ import { ProductController } from './product.controller';
 import { ProductRepository } from './product.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductProfile } from './mapper/productProfile';
-import { ProductSchema } from 'src/schemas/product.schema';
+import { ProductSchema } from 'src/product/entities/product.entity';
 import { Product } from './entities/product.entity';
 
 @Module({
