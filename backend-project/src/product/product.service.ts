@@ -40,8 +40,21 @@ export class ProductService {
   }
 
   async findById(id: string) {
-    this.logger.log(`looking for products with name: ${id}`);
+    this.logger.log(`looking for products with id: ${id}`);
     const product = await this.repository.findById(id);
+
+    if (!product) {
+      this.logger.error(`there is no product with the id: ${id}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    return product;
+  }
+
+  async findByTitle(name: string) {
+    this.logger.log(`looking for products with name: ${name}`);
+    const product = await this.repository.findByName(name);
 
     if (!product) {
       this.logger.error(`there is no product with the name: ${name}`);

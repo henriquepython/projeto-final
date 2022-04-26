@@ -1,17 +1,13 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
 import { Schema as MongooseSchema } from 'mongoose';
-import { OrderItem } from '../entities/order-item.entity';
+
 import { OrderStatus } from '../entities/OrderStatus.enum';
 
 export class CreateOrderDto {
   @AutoMap()
   @ApiProperty()
-  user: MongooseSchema.Types.ObjectId;
-
-  @AutoMap()
-  @ApiProperty()
-  products: OrderItem[];
+  products: string;
 
   @AutoMap()
   @ApiProperty()
@@ -24,4 +20,8 @@ export class CreateOrderDto {
   @AutoMap()
   @ApiProperty()
   status: OrderStatus;
+
+  userId: MongooseSchema.Types.ObjectId;
+
+  productId: MongooseSchema.Types.ObjectId;
 }

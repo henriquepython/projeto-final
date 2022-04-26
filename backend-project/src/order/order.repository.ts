@@ -13,33 +13,26 @@ export class OrderRepository {
   ) {}
 
   async createOrder(orders: Order, user: any) {
+    // orders.total = 0;
+
+    // orders.status = OrderStatus.Pending;
+
+    // const totalPrice = orders.products.forEach((e) => {
+    //   const product = await this.productRepository.findById(e);
+    //   e.price = product.price;
+    //   e.quantity = product.quantity;
+
+    //   e.total = e.quantity * e.price;
+    //   orders.total += e.total;
+    // });
+
     const createOrder = {
       user: user,
-      products: [...orders.products],
+      products: products,
     };
-    const orderc = new this.orderModel(createOrder);
+    const order = new this.orderModel(createOrder);
 
-    const { _id } = orderc;
-    const order = await this.orderModel
-      .findById(_id)
-      .populate('products.product');
-
-    const product = await this.productRepository.findById(user);
-    orders.total = 0;
-
-    orders.status = OrderStatus.Pending;
-
-    const totalPrice = orders.products.forEach((e) => {
-      e.price = product.price;
-      e.quantity = product.quantity;
-
-      e.total = e.quantity * e.price;
-      order.total += e.total;
-    });
-
-    await order.update({ totalPrice });
-
-    return await orderc.save();
+    return await order.save();
   }
 
   async listOrdersByUser(user: string) {

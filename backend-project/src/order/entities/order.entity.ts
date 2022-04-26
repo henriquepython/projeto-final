@@ -1,25 +1,19 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
-import { OrderItem } from './order-item.entity';
 import { OrderStatus } from './OrderStatus.enum';
 
 export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
-  @AutoMap()
-  @Prop({
-    type: MongooseSchema.Types.ObjectId,
-    required: false,
-    ref: User.name,
-  })
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: User.name })
   user: MongooseSchema.Types.ObjectId;
 
-  @AutoMap()
-  @Prop()
-  products: OrderItem[];
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: Product.name })
+  product: MongooseSchema.Types.ObjectId;
 
   @AutoMap()
   @Prop({ default: OrderStatus.Pending })

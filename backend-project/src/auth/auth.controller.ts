@@ -18,7 +18,7 @@ export class AuthController {
 
   @Post()
   async login(@Body() loginDto: LoginDto) {
-    this.logger.log(`Buscando usuario por username: ${loginDto?.email}`);
+    this.logger.log(`Buscando usuario por email: ${loginDto.email}`);
     const user = await this.userService.findByEmail(loginDto.email);
     if (user && user.password === loginDto.password) {
       this.logger.log('Login realizado com sucesso');

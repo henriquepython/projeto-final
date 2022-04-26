@@ -18,7 +18,21 @@ export class OrderService {
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const orderMapper = this.mapper.map(createOrderDto, CreateOrderDto, Order);
 
-    return this.repository.createOrder(orderMapper, orderMapper.user);
+    const { userId, productId } = createOrderDto;
+    const getUser: any = await this.userService.getUserById(userId);
+
+    const product = await this.productService.getProductById(productId);
+    
+    const createdOrder = await this.OrderRepository.createOrder(createOrderDto, product, userId);
+
+    const updateProductDto: UpdateProductDto = {
+        id: product._id,
+        status: 'SOLD',
+        clientId: clientId,
+    };
+    await this.productService.updateProduct(updateProductDto, session);
+
+    return createdSale;
   }
 
   async listOrdersByUser(user: string) {
