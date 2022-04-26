@@ -7,11 +7,20 @@ import { OrderStatus } from '../entities/OrderStatus.enum';
 export class CreateOrderDto {
   @AutoMap()
   @ApiProperty()
-  products: string;
+  total: number;
 
   @AutoMap()
   @ApiProperty()
-  total: number;
+  products: {
+    product: {
+      type: MongooseSchema.Types.ObjectId;
+      ref: 'Product';
+    };
+    quantity: {
+      type: number;
+      default: 1;
+    };
+  }[];
 
   @AutoMap()
   @ApiProperty()
@@ -24,8 +33,4 @@ export class CreateOrderDto {
   @AutoMap()
   @ApiProperty()
   userId: MongooseSchema.Types.ObjectId;
-
-  @AutoMap()
-  @ApiProperty()
-  productId: MongooseSchema.Types.ObjectId;
 }

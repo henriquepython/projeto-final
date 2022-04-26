@@ -1,6 +1,7 @@
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { Injectable, Logger, Scope } from '@nestjs/common';
+import { CreateOrderDto } from './dto/create-order.dto';
 import { CreateOrderDTO } from './dto/order.dto';
 import { OrderRepository } from './order.repository';
 
@@ -14,7 +15,7 @@ export class OrderService {
     this.logger = new Logger(OrderService.name);
   }
 
-  async createOrder(orderModel: CreateOrderDTO, userId: string) {
+  async createOrder(orderModel: CreateOrderDto, userId: string) {
     return this.repository.createOrder(orderModel, userId);
   }
 

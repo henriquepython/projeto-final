@@ -24,8 +24,14 @@ export class Order {
   @AutoMap()
   @Prop()
   products: {
-    product: Product;
-    quantity: number;
+    products: {
+      type: MongooseSchema.Types.ObjectId;
+      ref: 'Product';
+    };
+    quantity: {
+      type: number;
+      default: 1;
+    };
   }[];
 
   @AutoMap()
