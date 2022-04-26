@@ -9,11 +9,11 @@ export class CreateOrderDto {
 
   @AutoMap()
   @ApiProperty()
-  product: MongooseSchema.Types.ObjectId;
-
-  @AutoMap()
-  @ApiProperty()
-  total: number;
+  products: {
+    product: MongooseSchema.Types.ObjectId;
+    quantity: number;
+    price: number;
+  }[];
 
   @AutoMap()
   @ApiProperty()

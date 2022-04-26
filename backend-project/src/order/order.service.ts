@@ -16,68 +16,17 @@ export class OrderService {
     this.logger = new Logger(OrderService.name);
   }
 
-  async create(createOrderDto: CreateOrderDto): Promise<Order> {
+  async create(createOrderDto: CreateOrderDto, user: string): Promise<Order> {
     const orderMapper = this.mapper.map(createOrderDto, CreateOrderDto, Order);
 
-    return this.repository.create(orderMapper);
+    return this.repository.createOrder(orderMapper, user);
   }
 
-  async findAll(): Promise<CreateOrderDto[]> {
-    this.logger.log('Looking for all orders');
-    const order = await this.repository.findAll();
-
-    if (!order) {
-      this.logger.error('Error fetching orders');
-      throw new BadRequestException('orders not found');
-    }
-
-    this.logger.log('orders found');
-    return order;
+  async listOrdersByUser(user: string) {
+    return await this.repository.listOrdersByUser(user);
   }
 
-  async findorderByName(name: string) {
-    this.logger.log(`looking for orders with name: ${name}`);
-    const order = await this.repository.findByName(name);
-
-    if (!order) {
-      this.logger.error(`there is no order with the name: ${name}`);
-      throw new BadRequestException('order not found');
-    }
-
-    this.logger.log('order found');
-    return order;
-  }
-
-  async edit(id: string, updateOrderDto: UpdateOrderDto) {
-    this.logger.log(`looking for orders with id: ${id}`);
-    const orderMapper = this.mapper.map(updateOrderDto, UpdateOrderDto, Order);
-    const order = await this.repository.findById(id);
-
-    if (!order) {
-      this.logger.error(`there is no order with the id: ${id}`);
-      throw new BadRequestException('order not found');
-    }
-
-    this.logger.log('order found');
-    this.logger.log('updated order ');
-    this.repository.update(id, orderMapper);
-
-    return orderMapper;
-  }
-
-  async remove(id: string) {
-    this.logger.log(`looking for orders with id: ${id}`);
-    const order = await this.repository.findById(id);
-
-    if (!order) {
-      this.logger.error(`there is no order with the id: ${id}`);
-      throw new BadRequestException('order not found');
-    }
-
-    this.logger.log('order found');
-    this.logger.log('order removed');
-    this.repository.remove(id);
-
-    return `order with id: ${id} successfully removed `;
+  async findAll() {
+    return await this.repository.findAll();
   }
 }

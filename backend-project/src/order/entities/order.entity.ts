@@ -14,12 +14,15 @@ export class Order {
   })
   user: MongooseSchema.Types.ObjectId;
 
-  @Prop({
-    type: MongooseSchema.Types.ObjectId,
-    required: false,
-    ref: Product.name,
-  })
-  product: MongooseSchema.Types.ObjectId;
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Product' }] })
+  products: {
+    product: {
+      type: MongooseSchema.Types.ObjectId;
+      ref: 'Product';
+    };
+    quantity: number;
+    price: number;
+  }[];
 
   @Prop({ type: Number })
   total: number;
