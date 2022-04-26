@@ -15,7 +15,6 @@ import { ProductModule } from 'src/product/product.module';
         schema: OrderSchema,
       },
     ]),
-    ProductModule,
   ],
   controllers: [OrderController],
   providers: [OrderService, OrderRepository, Logger, OrderProfile],

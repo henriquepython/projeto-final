@@ -26,6 +26,14 @@ export class ProductService {
     return this.repository.create(productMapper);
   }
 
+  async addCar(id: string, user: string) {
+    return await this.repository.addCar(id, user);
+  }
+
+  // async removeCar(id: any) {
+  //   return await this.repository.removeCar(id);
+  // }
+
   async findAll(): Promise<CreateProductDto[]> {
     this.logger.log('Looking for all products');
     const product = await this.repository.findAll();

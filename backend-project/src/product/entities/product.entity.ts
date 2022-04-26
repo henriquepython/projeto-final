@@ -8,7 +8,7 @@ export type ProductDocument = Product & Document;
 export class Product {
   @AutoMap()
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: User.name })
-  user: MongooseSchema.Types.ObjectId;
+  userId: MongooseSchema.Types.ObjectId | '';
 
   @AutoMap()
   @Prop()

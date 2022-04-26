@@ -8,8 +8,8 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserRepository } from './user.repository';
 import { Mapper } from '@automapper/core';
-import { InjectMapper } from '@automapper/nestjs';
 import { User } from './entities/user.entity';
+import { InjectMapper } from '@automapper/nestjs';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {

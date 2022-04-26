@@ -12,6 +12,16 @@ export class ProductRepository {
     return await products.save();
   }
 
+  async addCar(idProduct: string, userId: string) {
+    const product = await this.productModel.findById({ _id: idProduct });
+    return product.updateOne({ userId: userId });
+  }
+
+  // async removeCar(idProduct: string) {
+  //   const product = await this.productModel.findOne({ _id: idProduct });
+  //   return product.updateOne({ userId: '_id: ' });
+  // }
+
   async findAll(): Promise<Product[]> {
     return await this.productModel.find();
   }

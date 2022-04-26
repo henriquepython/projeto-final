@@ -21,7 +21,11 @@ export class CreateOrderDto {
   @ApiProperty()
   status: OrderStatus;
 
+  @AutoMap()
+  @ApiProperty()
   userId: MongooseSchema.Types.ObjectId;
 
+  @AutoMap()
+  @ApiProperty()
   productId: MongooseSchema.Types.ObjectId;
 }

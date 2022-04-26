@@ -9,11 +9,13 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
+  @AutoMap()
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: User.name })
-  user: MongooseSchema.Types.ObjectId;
+  userId: MongooseSchema.Types.ObjectId;
 
+  @AutoMap()
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: Product.name })
-  product: MongooseSchema.Types.ObjectId;
+  productId: MongooseSchema.Types.ObjectId;
 
   @AutoMap()
   @Prop({ default: OrderStatus.Pending })

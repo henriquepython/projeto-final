@@ -1,6 +1,5 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 
 export class CreateProductDto {
@@ -17,8 +16,9 @@ export class CreateProductDto {
   @ApiProperty()
   price: number;
 
-  @IsOptional()
-  userId: MongooseSchema.Types.ObjectId;
+  @AutoMap()
+  @ApiProperty()
+  userId: MongooseSchema.Types.ObjectId | '';
 
   @AutoMap()
   @ApiProperty()

@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/user/entities/user.entity';
 import { UserRepository } from './user.repository';
 import { UserProfile } from './mapper/userProfile';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { UserProfile } from './mapper/userProfile';
         schema: UserSchema,
       },
     ]),
+    ProductModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, Logger, UserProfile],
