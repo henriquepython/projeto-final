@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { User } from 'src/user/entities/user.entity';
 
-export type UserDocument = Product & Document;
+export type ProductDocument = Product & Document;
 
 @Schema()
 export class Product {

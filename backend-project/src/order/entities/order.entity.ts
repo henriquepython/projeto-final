@@ -1,11 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { Product } from 'src/product/entities/product.entity';
+import { User } from 'src/user/entities/user.entity';
 
-import { Product } from '../product/entities/product.entity';
-import { User } from '../user/entities/user.entity';
+export type OrderDocument = Order & Document;
 
 @Schema()
-export class OrderModel {
+export class Order {
   @Prop({
     type: MongooseSchema.Types.ObjectId,
     required: false,
@@ -24,7 +25,7 @@ export class OrderModel {
   total: number;
 
   @Prop({ type: String })
-  products: string;
+  productName: string;
 
   @Prop({ type: Date, default: Date.now })
   updatedAt: Date;
@@ -33,4 +34,4 @@ export class OrderModel {
   createdAt: Date;
 }
 
-export const OrderSchema = SchemaFactory.createForClass(OrderModel);
+export const OrderSchema = SchemaFactory.createForClass(Order);

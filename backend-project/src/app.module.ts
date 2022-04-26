@@ -5,6 +5,7 @@ import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { CamelCaseNamingConvention } from '@automapper/core';
 import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ProductModule } from './product/product.module';
     }),
     UserModule,
     ProductModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [],
