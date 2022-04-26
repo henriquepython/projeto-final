@@ -24,8 +24,8 @@ export class Order {
   @Prop({ type: Number })
   total: number;
 
-  @Prop({ type: String })
-  productName: string;
+  @Prop({ type: Number, default: 1 })
+  quantity: number;
 
   @Prop({ type: Date, default: Date.now })
   updatedAt: Date;
