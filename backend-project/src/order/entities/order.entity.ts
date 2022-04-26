@@ -22,6 +22,13 @@ export class Order {
   status: OrderStatus;
 
   @AutoMap()
+  @Prop()
+  products: {
+    product: Product;
+    quantity: number;
+  }[];
+
+  @AutoMap()
   @Prop({ type: Number })
   total: number;
 
