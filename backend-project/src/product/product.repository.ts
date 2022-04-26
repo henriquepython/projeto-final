@@ -8,24 +8,16 @@ export class ProductRepository {
   constructor(@InjectModel('Product') private productModel: Model<Product>) {}
 
   async create(product: Product): Promise<Product> {
-    const products = await this.productModel.create({
-      ...product,
-      user: product.user,
-    });
-    await products.save();
-    return products.populate('user');
+    const products = new this.productModel(product);
+    return await products.save();
   }
 
   async findAll(): Promise<Product[]> {
     return await this.productModel.find();
   }
 
-  async findById(id: any): Promise<Product> {
-    return await this.productModel.findById(id).populate('user');
-  }
-
-  async findByName(name: string): Promise<Product> {
-    return await this.productModel.findById({ title: name }).populate('user');
+  async findById(id: string): Promise<Product> {
+    return await this.productModel.findById(id);
   }
 
   async update(id: string, Product: Product): Promise<Product> {

@@ -1,12 +1,15 @@
+import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { User } from 'src/user/entities/user.entity';
 import { OrderItem } from './order-item.entity';
+import { OrderStatus } from './OrderStatus.enum';
 
 export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
+  @AutoMap()
   @Prop({
     type: MongooseSchema.Types.ObjectId,
     required: false,
@@ -14,15 +17,19 @@ export class Order {
   })
   user: MongooseSchema.Types.ObjectId;
 
+  @AutoMap()
   @Prop()
   products: OrderItem[];
 
-  @Prop()
+  @AutoMap()
+  @Prop({ default: OrderStatus.Pending })
   status: OrderStatus;
 
+  @AutoMap()
   @Prop({ type: Number })
   total: number;
 
+  @AutoMap()
   @Prop({ type: Number, default: 1 })
   quantity: number;
 

@@ -17,11 +17,11 @@ export class User {
   @Prop()
   phoneNumber: string;
 
-  @Prop({ required: true, enum: ['ADMIN', 'USER'], default: 'USER' })
+  @Prop()
   role: string;
 
   @AutoMap()
-  @Prop({ type: String, select: false })
+  @Prop({ type: String })
   password: string;
 
   @Prop({ type: Date, default: Date.now })

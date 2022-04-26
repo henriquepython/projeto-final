@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProductRepository } from 'src/product/product.repository';
 import { Order } from './entities/order.entity';
+import { OrderStatus } from './entities/OrderStatus.enum';
 
 @Injectable({ scope: Scope.REQUEST })
 export class OrderRepository {
@@ -12,33 +13,33 @@ export class OrderRepository {
   ) {}
 
   async createOrder(orders: Order, user: any) {
+    const createOrder = {
+      user: user,
+      products: [...orders.products],
+    };
+    const orderc = new this.orderModel(createOrder);
+
+    const { _id } = orderc;
+    const order = await this.orderModel
+      .findById(_id)
+      .populate('products.product');
+
     const product = await this.productRepository.findById(user);
     orders.total = 0;
 
-    orders.
+    orders.status = OrderStatus.Pending;
 
-    orders.products.forEach((e) => {
+    const totalPrice = orders.products.forEach((e) => {
       e.price = product.price;
       e.quantity = product.quantity;
 
       e.total = e.quantity * e.price;
       order.total += e.total;
     });
-    const createOrder = {
-      user: user,
-      products: [...orders.products],
-    };
 
-    const { _id } = await this.orderModel.create(createOrder);
-    let order = await this.orderModel
-      .findById(_id)
-      .populate('products.product');
+    await order.update({ totalPrice });
 
-    order = await this.orderModel
-      .findById(_id)
-      .populate('user')
-      .populate('products.product');
-    return order;
+    return await orderc.save();
   }
 
   async listOrdersByUser(user: string) {

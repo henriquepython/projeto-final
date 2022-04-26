@@ -30,6 +30,24 @@ export class UserService {
     }
 
     this.logger.log('created user');
+    userMapper.role = 'USER';
     return await this.repository.create(userMapper);
+  }
+
+  async createAdmin(createUserDto: CreateUserDto): Promise<CreateUserDto> {
+    const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
+    const user = await this.repository.findByEmail(createUserDto.email);
+
+    if (user) {
+      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+    }
+
+    this.logger.log('created user');
+    userMapper.role = 'ADMIN';
+    return await this.repository.create(userMapper);
+  }
+
+  async findByEmail(email: string) {
+    return await this.repository.findByEmail(email);
   }
 }

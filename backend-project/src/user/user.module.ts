@@ -18,6 +18,6 @@ import { UserProfile } from './mapper/userProfile';
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, Logger, UserProfile],
-  exports: [Logger],
+  exports: [UserService, Logger],
 })
 export class UserModule {}

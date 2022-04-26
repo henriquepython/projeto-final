@@ -1,6 +1,5 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
-import { Schema as MongooseSchema } from 'mongoose';
 
 export class CreateProductDto {
   @AutoMap()
@@ -19,8 +18,4 @@ export class CreateProductDto {
   @AutoMap()
   @ApiProperty()
   quantity: number;
-
-  @AutoMap()
-  @ApiProperty()
-  user: MongooseSchema.Types.ObjectId;
 }

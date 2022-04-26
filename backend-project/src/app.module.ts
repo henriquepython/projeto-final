@@ -6,6 +6,7 @@ import { classes } from '@automapper/classes';
 import { CamelCaseNamingConvention } from '@automapper/core';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,9 +15,10 @@ import { OrderModule } from './order/order.module';
       strategyInitializer: classes(),
       namingConventions: new CamelCaseNamingConvention(),
     }),
+    AuthModule,
+    OrderModule,
     UserModule,
     ProductModule,
-    OrderModule,
   ],
   controllers: [],
   providers: [],

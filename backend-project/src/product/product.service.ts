@@ -39,9 +39,9 @@ export class ProductService {
     return product;
   }
 
-  async findProductByName(name: string) {
-    this.logger.log(`looking for products with name: ${name}`);
-    const product = await this.repository.findByName(name);
+  async findById(id: string) {
+    this.logger.log(`looking for products with name: ${id}`);
+    const product = await this.repository.findById(id);
 
     if (!product) {
       this.logger.error(`there is no product with the name: ${name}`);
@@ -56,7 +56,7 @@ export class ProductService {
     this.logger.log(`looking for products with id: ${id}`);
     const productMapper = this.mapper.map(
       updateProductDto,
-      UpdateProductDto,
+      CreateProductDto,
       Product,
     );
     const product = await this.repository.findById(id);
