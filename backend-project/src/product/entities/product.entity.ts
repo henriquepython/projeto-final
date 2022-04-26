@@ -25,6 +25,10 @@ export class Product {
 
   @AutoMap()
   @Prop()
+  quantity: number;
+
+  @AutoMap()
+  @Prop()
   price: number;
 
   @Prop({ type: Date, default: Date.now })

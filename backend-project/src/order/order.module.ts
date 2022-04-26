@@ -5,6 +5,7 @@ import { Order, OrderSchema } from './entities/order.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OrderRepository } from './order.repository';
 import { OrderProfile } from './mapper/orderProfile';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { OrderProfile } from './mapper/orderProfile';
         schema: OrderSchema,
       },
     ]),
+    ProductModule,
   ],
   controllers: [OrderController],
   providers: [OrderService, OrderRepository, Logger, OrderProfile],

@@ -17,10 +17,10 @@ export class ProductRepository {
   }
 
   async findAll(): Promise<Product[]> {
-    return await this.productModel.find().populate('user');
+    return await this.productModel.find();
   }
 
-  async findById(id: string): Promise<Product> {
+  async findById(id: any): Promise<Product> {
     return await this.productModel.findById(id).populate('user');
   }
 

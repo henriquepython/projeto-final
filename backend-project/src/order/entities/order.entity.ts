@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
-import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
+import { OrderItem } from './order-item.entity';
 
 export type OrderDocument = Order & Document;
 
@@ -14,15 +14,11 @@ export class Order {
   })
   user: MongooseSchema.Types.ObjectId;
 
-  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Product' }] })
-  products: {
-    product: {
-      type: MongooseSchema.Types.ObjectId;
-      ref: 'Product';
-    };
-    quantity: number;
-    price: number;
-  }[];
+  @Prop()
+  products: OrderItem[];
+
+  @Prop()
+  status: OrderStatus;
 
   @Prop({ type: Number })
   total: number;

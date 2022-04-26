@@ -1,8 +1,7 @@
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
-import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
+import { Injectable, Logger, Scope } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './entities/order.entity';
 import { OrderRepository } from './order.repository';
 
@@ -16,10 +15,10 @@ export class OrderService {
     this.logger = new Logger(OrderService.name);
   }
 
-  async create(createOrderDto: CreateOrderDto, user: string): Promise<Order> {
+  async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const orderMapper = this.mapper.map(createOrderDto, CreateOrderDto, Order);
 
-    return this.repository.createOrder(orderMapper, user);
+    return this.repository.createOrder(orderMapper, orderMapper.user);
   }
 
   async listOrdersByUser(user: string) {
