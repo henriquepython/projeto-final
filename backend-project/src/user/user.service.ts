@@ -11,6 +11,7 @@ import { UserRepository } from './user.repository';
 import { Mapper } from '@automapper/core';
 import { User } from './entities/user.entity';
 import { InjectMapper } from '@automapper/nestjs';
+import { Roles } from './dto/roles.enum';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
@@ -31,20 +32,6 @@ export class UserService {
     }
 
     this.logger.log('created user');
-    userMapper.role = 'USER';
-    return await this.repository.create(userMapper);
-  }
-
-  async createAdmin(createUserDto: CreateUserDto): Promise<CreateUserDto> {
-    const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
-    const user = await this.repository.findByEmail(userMapper.email);
-
-    if (user) {
-      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
-    }
-
-    this.logger.log('created user');
-    userMapper.role = 'ADMIN';
     return await this.repository.create(userMapper);
   }
 

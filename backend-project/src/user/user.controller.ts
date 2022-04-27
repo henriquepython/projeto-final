@@ -13,11 +13,6 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
-  @Post('/Admin')
-  createAdmin(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createAdmin(createUserDto);
-  }
-
   @Get(':email')
   findByEmail(@Param('email') email: string) {
     return this.userService.findByEmail(email);

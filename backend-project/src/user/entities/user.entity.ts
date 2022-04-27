@@ -1,5 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Roles } from '../dto/roles.enum';
 
 export type UserDocument = User & Document;
 
@@ -17,8 +18,9 @@ export class User {
   @Prop()
   phoneNumber: string;
 
+  @AutoMap()
   @Prop()
-  role: string;
+  roles: Roles;
 
   @AutoMap()
   @Prop({ type: String })

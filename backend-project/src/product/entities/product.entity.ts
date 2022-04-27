@@ -1,7 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Schema as MongooseSchema } from 'mongoose';
-import { User } from 'src/user/entities/user.entity';
+import { Category } from '../dto/category.enum';
 
 export type ProductDocument = Product & Document;
 
@@ -18,6 +17,10 @@ export class Product {
   @AutoMap()
   @Prop()
   description: string;
+
+  @AutoMap()
+  @Prop()
+  category: Category;
 
   @AutoMap()
   @Prop()
