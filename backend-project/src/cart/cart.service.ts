@@ -19,7 +19,7 @@ export class CartService {
     return 'removed one';
   }
 
-  async removeAllCart(userId: string) {
+  async removeAllCart(userId: any) {
     await this.repository.removeMany(userId);
     return 'removed all';
   }

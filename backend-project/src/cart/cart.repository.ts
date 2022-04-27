@@ -22,7 +22,7 @@ export class CartRepository {
     return await this.cartModel.deleteOne({ _id: id }).exec();
   }
 
-  async removeMany(userId: string) {
+  async removeMany(userId: any) {
     return await this.cartModel.deleteMany({ userId: userId }).exec();
   }
 

@@ -46,7 +46,10 @@ export class OrderRepository {
       .populate('userId')
       .populate('products');
 
-    return await order.save();
+    await order.save();
+    await this.cartService.removeAllCart(orderModel.userId);
+
+    return order;
   }
 
   async findAll() {
