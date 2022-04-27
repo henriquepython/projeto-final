@@ -1,12 +1,16 @@
 import { HttpException, HttpStatus, Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ProductService } from 'src/product/product.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './entities/order.entity';
 
 @Injectable({ scope: Scope.REQUEST })
 export class OrderRepository {
-  constructor(@InjectModel('Order') private orderModel: Model<Order>) {}
+  constructor(
+    @InjectModel('Order') private orderModel: Model<Order>,
+    private readonly productService: ProductService,
+  ) {}
 
   async listOrdersByUser(userId: string) {
     const orders = await this.orderModel
@@ -20,21 +24,23 @@ export class OrderRepository {
     return orders;
   }
 
-  async createOrder(orderModel: CreateOrderDto, userId: string) {
-    const createOrder = {
-      user: userId,
-      products: orderModel.products,
-    };
-    const { _id } = await this.orderModel.create(createOrder);
-    let order = await this.orderModel
-      .findById(_id)
-      .populate('products.product');
+  async createOrder(orderModel: CreateOrderDto) {
+    const createOrder = new this.orderModel(orderModel);
+    await createOrder.save();
 
-    order = await this.orderModel
-      .findById(_id)
-      .populate('userId')
-      .populate('products.product');
-    return order;
+    // const orders = await this.orderModel
+    //   .find({ userId: createOrder.userId })
+    //   .populate('userId')
+    //   .populate('products.products');
+
+    // const totalPrice = orders.map(async (item) => {
+    //   const produto = await this.productService.findById(item);
+    //   let price = produto.price * item.quantity;
+    //   return (price += 0);
+    // });
+
+    // await createOrder.updateOne({ totalPrice: totalPrice });
+    return createOrder;
   }
 
   async findAll() {

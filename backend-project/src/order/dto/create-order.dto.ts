@@ -7,12 +7,12 @@ import { OrderStatus } from '../entities/OrderStatus.enum';
 export class CreateOrderDto {
   @AutoMap()
   @ApiProperty()
-  total: number;
+  totalPrice: number;
 
   @AutoMap()
   @ApiProperty()
   products: {
-    product: {
+    products: {
       type: MongooseSchema.Types.ObjectId;
       ref: 'Product';
     };
