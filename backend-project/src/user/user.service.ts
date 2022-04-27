@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -23,7 +24,7 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
-    const user = await this.repository.findByEmail(createUserDto.email);
+    const user = await this.repository.findByEmail(userMapper.email);
 
     if (user) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
@@ -47,7 +48,16 @@ export class UserService {
     return await this.repository.create(userMapper);
   }
 
-  async findByEmail(email: string) {
-    return await this.repository.findByEmail(email);
+  async findByEmail(userEmail: string) {
+    this.logger.log(`looking for user with email: ${userEmail}`);
+    const user = await this.repository.findByEmail(userEmail);
+
+    if (!user) {
+      this.logger.error(`there is no user with the email: ${userEmail}`);
+      throw new BadRequestException('user not found');
+    }
+
+    this.logger.log('user found');
+    return user;
   }
 }

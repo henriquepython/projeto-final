@@ -16,23 +16,23 @@ export class UserRepository {
     return await this.userModel.find();
   }
 
-  async findById(id: string): Promise<User> {
-    return await this.userModel.findById(id);
+  async findById(userId: string): Promise<User> {
+    return await this.userModel.findById(userId);
   }
 
-  async findByEmail(email: string): Promise<User> {
-    return await this.userModel.findOne({ email: email });
+  async findByEmail(userEmail: string): Promise<User> {
+    return await this.userModel.findOne({ email: userEmail });
   }
 
-  async update(id: string, user: User): Promise<User> {
+  async update(userId: string, user: User): Promise<User> {
     return this.userModel.findByIdAndUpdate(
-      { _id: id },
+      { _id: userId },
       { $set: user },
       { new: true },
     );
   }
 
-  async remove(id: string): Promise<void> {
-    await this.userModel.deleteOne({ _id: id }).exec();
+  async remove(userId: string): Promise<void> {
+    await this.userModel.deleteOne({ _id: userId }).exec();
   }
 }
