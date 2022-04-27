@@ -25,10 +25,6 @@ export class Order {
   @Prop()
   totalPrice: number;
 
-  @AutoMap()
-  @Prop({ type: Number, default: 1 })
-  quantity: number;
-
   @Prop({ type: Date, default: Date.now })
   updatedAt: Date;
 

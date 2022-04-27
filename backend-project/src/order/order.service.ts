@@ -25,7 +25,7 @@ export class OrderService {
     this.logger = new Logger(OrderService.name);
   }
 
-  async createOrder(orderModel: CreateOrderDto) {
+  async createOrder(orderModel: CreateOrderDto): Promise<CreateOrderDto> {
     const orderMapper = this.mapper.map(orderModel, CreateOrderDto, Order);
 
     orderMapper.products = await this.cartService.findCartByUser(
@@ -48,7 +48,7 @@ export class OrderService {
     return order;
   }
 
-  async listOrdersByUser(userId: string) {
+  async listOrdersByUser(userId: string): Promise<CreateOrderDto[]> {
     this.logger.log(`looking for order with user: ${userId}`);
     const orders = await this.repository.findPopulateUserIdProducts(userId);
 
@@ -61,7 +61,7 @@ export class OrderService {
     return orders;
   }
 
-  async cancelledOrderByUser(orderId: string) {
+  async cancelledOrderByUser(orderId: string): Promise<CreateOrderDto> {
     this.logger.log(`looking for order with id: ${orderId}`);
     const order = await this.repository.findOneUserId(orderId);
 
@@ -74,7 +74,7 @@ export class OrderService {
     return order.updateOne({ status: OrderStatus.Cancelled });
   }
 
-  async completedOrderByUser(orderId: string) {
+  async completedOrderByUser(orderId: string): Promise<CreateOrderDto> {
     this.logger.log(`looking for order with id: ${orderId}`);
     const order = await this.repository.findOneUserId(orderId);
 
@@ -101,7 +101,7 @@ export class OrderService {
     return this.repository.remove(orderId);
   }
 
-  async findAll() {
+  async findAll(): Promise<CreateOrderDto[]> {
     this.logger.log('Looking for all orders');
     const order = await this.repository.findAll();
 

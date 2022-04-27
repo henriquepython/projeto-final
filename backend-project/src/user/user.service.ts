@@ -22,7 +22,7 @@ export class UserService {
     this.logger = new Logger(UserService.name);
   }
 
-  async create(createUserDto: CreateUserDto): Promise<CreateUserDto> {
+  async createUser(createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
     const user = await this.repository.findByEmail(userMapper.email);
 
@@ -37,7 +37,7 @@ export class UserService {
 
   async createAdmin(createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const userMapper = this.mapper.map(createUserDto, CreateUserDto, User);
-    const user = await this.repository.findByEmail(createUserDto.email);
+    const user = await this.repository.findByEmail(userMapper.email);
 
     if (user) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
@@ -48,7 +48,7 @@ export class UserService {
     return await this.repository.create(userMapper);
   }
 
-  async findByEmail(userEmail: string) {
+  async findByEmail(userEmail: string): Promise<CreateUserDto> {
     this.logger.log(`looking for user with email: ${userEmail}`);
     const user = await this.repository.findByEmail(userEmail);
 

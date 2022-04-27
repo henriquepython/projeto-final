@@ -14,7 +14,7 @@ export class CartService {
   ) {
     this.logger = new Logger(CartService.name);
   }
-  async addCart(createCartDto: CreateCartDto) {
+  async addCart(createCartDto: CreateCartDto): Promise<CreateCartDto> {
     const cartMapper = this.mapper.map(createCartDto, CreateCartDto, Cart);
 
     this.logger.log(
@@ -23,19 +23,19 @@ export class CartService {
     return await this.repository.create(cartMapper);
   }
 
-  async removeCart(id: string) {
+  async removeCart(id: string): Promise<string> {
     this.logger.log(`product with id: ${id} has been removed from cart`);
     await this.repository.remove(id);
-    return 'removed one';
+    return `product with id: ${id} has been removed from cart`;
   }
 
-  async removeAllCart(userId: any) {
+  async removeAllCart(userId: any): Promise<string> {
     this.logger.log('empty cart');
     await this.repository.removeMany(userId);
     return 'empty cart';
   }
 
-  async findCartByUser(userId: any) {
+  async findCartByUser(userId: any): Promise<CreateCartDto[]> {
     const cart = await this.repository.findCartByUser(userId);
 
     if (!cart) {

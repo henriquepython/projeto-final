@@ -16,27 +16,27 @@ export class ProductRepository {
     return await this.productModel.find();
   }
 
-  async findById(id: string): Promise<Product> {
-    return await this.productModel.findById(id);
+  async findById(productId: string): Promise<Product> {
+    return await this.productModel.findById(productId);
   }
 
-  async findByCartId(id: any): Promise<Product> {
-    return await this.productModel.findById(id);
+  async findByCartId(productId: any): Promise<Product> {
+    return await this.productModel.findById(productId);
   }
 
-  async findByName(name: string): Promise<Product> {
-    return await this.productModel.findOne({ title: name });
+  async findByName(productName: string): Promise<Product[]> {
+    return await this.productModel.find({ title: productName });
   }
 
-  async update(id: string, Product: Product): Promise<Product> {
+  async update(productId: string, Product: Product): Promise<Product> {
     return this.productModel.findByIdAndUpdate(
-      { _id: id },
+      { _id: productId },
       { $set: Product },
       { new: true },
     );
   }
 
-  async remove(id: string): Promise<void> {
-    await this.productModel.deleteOne({ _id: id }).exec();
+  async remove(productId: string): Promise<void> {
+    await this.productModel.deleteOne({ _id: productId }).exec();
   }
 }

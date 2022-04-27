@@ -18,7 +18,6 @@ export class Cart {
   @Prop()
   quantity: number;
 
-  @AutoMap()
   @Prop()
   price: number;
 }

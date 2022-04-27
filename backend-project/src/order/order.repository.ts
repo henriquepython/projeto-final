@@ -33,7 +33,7 @@ export class OrderRepository {
       .populate('products');
   }
 
-  async findAll() {
+  async findAll(): Promise<Order[]> {
     return await this.orderModel.find();
   }
 

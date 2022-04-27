@@ -16,10 +16,6 @@ export class CreateOrderDto {
 
   @AutoMap()
   @ApiProperty()
-  quantity: number;
-
-  @AutoMap()
-  @ApiProperty()
   status: OrderStatus;
 
   @AutoMap()

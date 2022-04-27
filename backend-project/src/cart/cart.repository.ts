@@ -1,6 +1,13 @@
-import { HttpException, HttpStatus, Injectable, Logger, Scope } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Logger,
+  Scope,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Product } from 'src/product/entities/product.entity';
 import { ProductRepository } from 'src/product/product.repository';
 import { Cart } from './entities/cart.entity';
 
@@ -40,7 +47,7 @@ export class CartRepository {
     return await this.cartModel.deleteMany({ userId: userId }).exec();
   }
 
-  async findAll() {
+  async findAll(): Promise<Cart[]> {
     return await this.cartModel.find();
   }
 
@@ -48,7 +55,7 @@ export class CartRepository {
     return await this.cartModel.findById(id);
   }
 
-  async findCartByUser(userId: any) {
+  async findCartByUser(userId: any): Promise<Cart[]> {
     return await this.cartModel.find({ userId: userId });
   }
 }

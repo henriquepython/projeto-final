@@ -53,7 +53,7 @@ export class ProductService {
     return product;
   }
 
-  async findById(productId: string) {
+  async findById(productId: string): Promise<CreateProductDto> {
     this.logger.log(`looking for products with id: ${productId}`);
     const product = await this.repository.findById(productId);
 
@@ -66,7 +66,7 @@ export class ProductService {
     return product;
   }
 
-  async findByTitle(productName: string) {
+  async findByTitle(productName: string): Promise<CreateProductDto[]> {
     this.logger.log(`looking for products with name: ${productName}`);
     const product = await this.repository.findByName(productName);
 
@@ -79,7 +79,7 @@ export class ProductService {
     return product;
   }
 
-  async viewDetailProducts(productId: string) {
+  async viewDetailProducts(productId: string): Promise<string> {
     this.logger.log(`looking for products with id: ${productId}`);
     const product = await this.repository.findById(productId);
 
@@ -92,7 +92,10 @@ export class ProductService {
     return product.description;
   }
 
-  async edit(productId: string, updateProductDto: UpdateProductDto) {
+  async edit(
+    productId: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<UpdateProductDto> {
     this.logger.log(`looking for products with id: ${productId}`);
     const product = await this.repository.findById(productId);
 
@@ -114,7 +117,7 @@ export class ProductService {
     return productMapper;
   }
 
-  async remove(productId: string) {
+  async remove(productId: string): Promise<string> {
     this.logger.log(`looking for products with id: ${productId}`);
     const product = await this.repository.findById(productId);
 
