@@ -1,18 +1,23 @@
 import { Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ProductRepository } from 'src/product/product.repository';
 import { Cart } from './entities/cart.entity';
 
 @Injectable({ scope: Scope.REQUEST })
 export class CartRepository {
-  constructor(@InjectModel('Cart') private cartModel: Model<Cart>) {}
+  constructor(
+    @InjectModel('Cart') private cartModel: Model<Cart>,
+    private readonly productRepository: ProductRepository,
+  ) {}
 
   async create(cart: Cart) {
+    const product = await this.productRepository.findByCartId(cart.productId);
     const carts = await this.cartModel.create({
       userId: cart.userId,
       productId: cart.productId,
       quantity: cart.quantity,
-      price: cart.price,
+      price: product.price,
     });
     await carts.save();
     return carts;

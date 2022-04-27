@@ -5,6 +5,7 @@ import { Cart, CartSchema } from './entities/cart.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CartRepository } from './cart.Repository';
 import { CartProfile } from './mapper/cartProfile';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CartProfile } from './mapper/cartProfile';
         schema: CartSchema,
       },
     ]),
+    ProductModule,
   ],
   controllers: [CartController],
   providers: [CartService, CartRepository, Logger, CartProfile],

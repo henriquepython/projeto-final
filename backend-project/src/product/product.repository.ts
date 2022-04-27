@@ -20,6 +20,10 @@ export class ProductRepository {
     return await this.productModel.findById(id);
   }
 
+  async findByCartId(id: any): Promise<Product> {
+    return await this.productModel.findById(id);
+  }
+
   async findByName(name: string): Promise<Product> {
     return await this.productModel.findOne({ title: name });
   }
