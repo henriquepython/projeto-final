@@ -27,7 +27,7 @@ export class OrderController {
     return this.orderService.findAll();
   }
 
-  @Get(':user')
+  @Get('/user/:user')
   findByUser(@Param('user') user: string) {
     return this.orderService.listOrdersByUser(user);
   }
