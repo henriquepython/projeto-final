@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ProductService } from 'src/product/product.service';
+import { CartService } from 'src/cart/cart.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './entities/order.entity';
 
@@ -9,7 +9,7 @@ import { Order } from './entities/order.entity';
 export class OrderRepository {
   constructor(
     @InjectModel('Order') private orderModel: Model<Order>,
-    private readonly productService: ProductService,
+    private readonly cartService: CartService,
   ) {}
 
   async listOrdersByUser(userId: string) {
@@ -25,22 +25,28 @@ export class OrderRepository {
   }
 
   async createOrder(orderModel: CreateOrderDto) {
-    const createOrder = new this.orderModel(orderModel);
-    await createOrder.save();
+    orderModel.products = await this.cartService.findCartByUser(
+      orderModel.userId,
+    );
+    const createOrder = {
+      userId: orderModel.userId,
+      products: orderModel.products,
+    };
+    const { _id } = await this.orderModel.create(createOrder);
+    let order = await this.orderModel.findById(_id).populate('products');
 
-    // const orders = await this.orderModel
-    //   .find({ userId: createOrder.userId })
-    //   .populate('userId')
-    //   .populate('products.products');
+    const totalPrice = order.products.reduce((acc, product) => {
+      const price = product.price * product.quantity;
+      return acc + price;
+    }, 0);
+    await order.update({ totalPrice });
 
-    // const totalPrice = orders.map(async (item) => {
-    //   const produto = await this.productService.findById(item);
-    //   let price = produto.price * item.quantity;
-    //   return (price += 0);
-    // });
+    order = await this.orderModel
+      .findById(_id)
+      .populate('userId')
+      .populate('products');
 
-    // await createOrder.updateOne({ totalPrice: totalPrice });
-    return createOrder;
+    return await order.save();
   }
 
   async findAll() {

@@ -1,6 +1,7 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { CartOrderDto } from 'src/cart/dto/cart-order.dto';
 import { User } from 'src/user/entities/user.entity';
 import { OrderStatus } from './OrderStatus.enum';
 
@@ -18,13 +19,7 @@ export class Order {
 
   @AutoMap()
   @Prop()
-  products: {
-    products: {
-      type: MongooseSchema.Types.ObjectId;
-      ref: 'Product';
-    };
-    quantity: number;
-  }[];
+  products: CartOrderDto[];
 
   @AutoMap()
   @Prop()

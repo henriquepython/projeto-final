@@ -7,6 +7,7 @@ import { CamelCaseNamingConvention } from '@automapper/core';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { AuthModule } from './auth/auth.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
     OrderModule,
     UserModule,
     ProductModule,
+    CartModule,
   ],
   controllers: [],
   providers: [],

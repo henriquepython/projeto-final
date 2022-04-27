@@ -18,6 +18,6 @@ import { Product } from './entities/product.entity';
   ],
   controllers: [ProductController],
   providers: [ProductService, ProductRepository, Logger, ProductProfile],
-  exports: [ProductService, Logger],
+  exports: [Logger],
 })
 export class ProductModule {}

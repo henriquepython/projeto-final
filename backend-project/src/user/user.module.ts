@@ -16,7 +16,6 @@ import { ProductModule } from 'src/product/product.module';
         schema: UserSchema,
       },
     ]),
-    ProductModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, Logger, UserProfile],

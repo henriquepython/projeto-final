@@ -33,7 +33,7 @@ export class ProductController {
     return this.productService.findById(id);
   }
 
-  @Get(':name')
+  @Get('/name/:name')
   findByName(@Param('name') name: string) {
     return this.productService.findByTitle(name);
   }
