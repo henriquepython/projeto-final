@@ -15,8 +15,8 @@ export class OrderRepository {
   async listOrdersByUser(userId: string) {
     const orders = await this.orderModel
       .find({ user: userId })
-      .populate('user')
-      .populate('products.product');
+      .populate('userId')
+      .populate('products.products');
 
     if (!orders) {
       throw new HttpException('No Orders Found', HttpStatus.NO_CONTENT);
