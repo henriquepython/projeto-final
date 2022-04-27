@@ -1,4 +1,4 @@
-import { Injectable, Scope } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProductRepository } from 'src/product/product.repository';
@@ -9,7 +9,10 @@ export class CartRepository {
   constructor(
     @InjectModel('Cart') private cartModel: Model<Cart>,
     private readonly productRepository: ProductRepository,
-  ) {}
+    private readonly logger: Logger,
+  ) {
+    this.logger = new Logger(CartRepository.name);
+  }
 
   async create(cart: Cart) {
     const product = await this.productRepository.findByCartId(cart.productId);
@@ -19,6 +22,12 @@ export class CartRepository {
       quantity: cart.quantity,
       price: product.price,
     });
+
+    if (carts.quantity > product.quantity) {
+      this.logger.error('out of stock');
+      throw new HttpException('out of stock', HttpStatus.NO_CONTENT);
+    }
+
     await carts.save();
     return carts;
   }
