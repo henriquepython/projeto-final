@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiTags } from '@nestjs/swagger';
@@ -15,7 +16,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
-
+  @HttpCode(201)
   @Post()
   createOrder(@Body() order: CreateOrderDto) {
     return this.orderService.createOrder(order);
@@ -41,6 +42,7 @@ export class OrderController {
     return this.orderService.completedOrderByUser(id);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.orderService.remove(id);

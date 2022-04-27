@@ -23,14 +23,14 @@ export class ProductService {
     this.logger = new Logger(ProductService.name);
   }
 
-  async create(createProductDto: CreateProductDto): Promise<Product> {
+  async create(createProductDto: CreateProductDto): Promise<CreateProductDto> {
     const productMapper = this.mapper.map(
       createProductDto,
       CreateProductDto,
       Product,
     );
 
-    const product = await this.repository.findByName(createProductDto.title);
+    const product = await this.repository.findByName(productMapper.title);
 
     if (product) {
       throw new HttpException('Product already exists', HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ export class ProductService {
     return product;
   }
 
-  async findByTitle(productName: string): Promise<CreateProductDto[]> {
+  async findByTitle(productName: string): Promise<CreateProductDto> {
     this.logger.log(`looking for products with name: ${productName}`);
     const product = await this.repository.findByName(productName);
 

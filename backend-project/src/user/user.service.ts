@@ -11,7 +11,6 @@ import { UserRepository } from './user.repository';
 import { Mapper } from '@automapper/core';
 import { User } from './entities/user.entity';
 import { InjectMapper } from '@automapper/nestjs';
-import { Roles } from './dto/roles.enum';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {

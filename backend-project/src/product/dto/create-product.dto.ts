@@ -1,17 +1,15 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Category } from './category.enum';
 
 export class CreateProductDto {
   @AutoMap()
-  @IsString()
   @IsNotEmpty()
   @ApiProperty()
   title: string;
 
   @AutoMap()
-  @IsUrl()
   @ApiProperty()
   image: string;
 

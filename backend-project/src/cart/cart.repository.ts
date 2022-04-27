@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Product } from 'src/product/entities/product.entity';
 import { ProductRepository } from 'src/product/product.repository';
 import { Cart } from './entities/cart.entity';
 

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -17,7 +18,7 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
-
+  @HttpCode(201)
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
@@ -48,6 +49,7 @@ export class ProductController {
     return this.productService.edit(id, updateProductDto);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(id);
