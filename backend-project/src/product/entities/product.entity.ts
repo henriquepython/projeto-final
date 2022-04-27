@@ -8,10 +8,6 @@ export type ProductDocument = Product & Document;
 @Schema()
 export class Product {
   @AutoMap()
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: User.name })
-  userId: MongooseSchema.Types.ObjectId | '';
-
-  @AutoMap()
   @Prop()
   title: string;
 

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  Delete,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -19,7 +27,22 @@ export class OrderController {
   }
 
   @Get(':user')
-  findOne(@Param('user') user: string) {
+  findByUser(@Param('user') user: string) {
     return this.orderService.listOrdersByUser(user);
+  }
+
+  @Patch('/cancelled/:id')
+  cancelledOrder(@Param('id') id: string) {
+    return this.orderService.cancelledOrderByUser(id);
+  }
+
+  @Patch('/completed/:id')
+  completedOrder(@Param('id') id: string) {
+    return this.orderService.completedOrderByUser(id);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.orderService.remove(id);
   }
 }

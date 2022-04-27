@@ -22,17 +22,9 @@ export class ProductService {
       CreateProductDto,
       Product,
     );
-
+    this.logger.log('created product');
     return this.repository.create(productMapper);
   }
-
-  async addCar(id: string, user: string) {
-    return await this.repository.addCar(id, user);
-  }
-
-  // async removeCar(id: any) {
-  //   return await this.repository.removeCar(id);
-  // }
 
   async findAll(): Promise<CreateProductDto[]> {
     this.logger.log('Looking for all products');
@@ -47,12 +39,12 @@ export class ProductService {
     return product;
   }
 
-  async findById(id: string) {
-    this.logger.log(`looking for products with id: ${id}`);
-    const product = await this.repository.findById(id);
+  async findById(productId: string) {
+    this.logger.log(`looking for products with id: ${productId}`);
+    const product = await this.repository.findById(productId);
 
     if (!product) {
-      this.logger.error(`there is no product with the id: ${id}`);
+      this.logger.error(`there is no product with the id: ${productId}`);
       throw new BadRequestException('product not found');
     }
 
@@ -60,12 +52,12 @@ export class ProductService {
     return product;
   }
 
-  async findByTitle(name: string) {
-    this.logger.log(`looking for products with name: ${name}`);
-    const product = await this.repository.findByName(name);
+  async findByTitle(productName: string) {
+    this.logger.log(`looking for products with name: ${productName}`);
+    const product = await this.repository.findByName(productName);
 
     if (!product) {
-      this.logger.error(`there is no product with the name: ${name}`);
+      this.logger.error(`there is no product with the name: ${productName}`);
       throw new BadRequestException('product not found');
     }
 
@@ -73,12 +65,12 @@ export class ProductService {
     return product;
   }
 
-  async viewDetailProducts(id: string) {
-    this.logger.log(`looking for products with id: ${id}`);
-    const product = await this.repository.findById(id);
+  async viewDetailProducts(productId: string) {
+    this.logger.log(`looking for products with id: ${productId}`);
+    const product = await this.repository.findById(productId);
 
     if (!product) {
-      this.logger.error(`there is no product with the name: ${name}`);
+      this.logger.error(`there is no product with the id: ${productId}`);
       throw new BadRequestException('product not found');
     }
 
@@ -86,40 +78,41 @@ export class ProductService {
     return product.description;
   }
 
-  async edit(id: string, updateProductDto: UpdateProductDto) {
-    this.logger.log(`looking for products with id: ${id}`);
+  async edit(productId: string, updateProductDto: UpdateProductDto) {
+    this.logger.log(`looking for products with id: ${productId}`);
+    const product = await this.repository.findById(productId);
+
     const productMapper = this.mapper.map(
       updateProductDto,
       CreateProductDto,
       Product,
     );
-    const product = await this.repository.findById(id);
 
     if (!product) {
-      this.logger.error(`there is no product with the id: ${id}`);
+      this.logger.error(`there is no product with the id: ${productId}`);
       throw new BadRequestException('product not found');
     }
 
     this.logger.log('product found');
     this.logger.log('updated product ');
-    this.repository.update(id, productMapper);
+    this.repository.update(productId, productMapper);
 
     return productMapper;
   }
 
-  async remove(id: string) {
-    this.logger.log(`looking for products with id: ${id}`);
-    const product = await this.repository.findById(id);
+  async remove(productId: string) {
+    this.logger.log(`looking for products with id: ${productId}`);
+    const product = await this.repository.findById(productId);
 
     if (!product) {
-      this.logger.error(`there is no product with the id: ${id}`);
+      this.logger.error(`there is no product with the id: ${productId}`);
       throw new BadRequestException('product not found');
     }
 
     this.logger.log('product found');
     this.logger.log('product removed');
-    this.repository.remove(id);
+    this.repository.remove(productId);
 
-    return `product with id: ${id} successfully removed `;
+    return `product with id: ${productId} successfully removed `;
   }
 }

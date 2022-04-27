@@ -25,58 +25,16 @@ export class OrderService {
     return await this.repository.listOrdersByUser(user);
   }
 
-  async CancelledOrderByUser(id: string, updateOrderDto: UpdateOrderDto) {
-    this.logger.log(`looking for order with id: ${id}`);
-    const orderMapper = this.mapper.map(updateOrderDto, CreateOrderDto, Order);
-    const order = await this.repository.findById(id);
-
-    if (!order) {
-      this.logger.error(`there is no order with the id: ${id}`);
-      throw new BadRequestException('order not found');
-    }
-
-    orderMapper.status = OrderStatus.Cancelled;
-
-    this.logger.log('order found');
-    this.logger.log('updated order ');
-    this.repository.update(id, orderMapper);
-
-    return orderMapper;
+  async cancelledOrderByUser(orderId: string) {
+    return this.repository.cancelledOrderByUser(orderId);
   }
 
-  async CompletedOrderByUser(id: string, updateOrderDto: UpdateOrderDto) {
-    this.logger.log(`looking for order with id: ${id}`);
-    const orderMapper = this.mapper.map(updateOrderDto, CreateOrderDto, Order);
-    const order = await this.repository.findById(id);
-
-    if (!order) {
-      this.logger.error(`there is no order with the id: ${id}`);
-      throw new BadRequestException('order not found');
-    }
-
-    orderMapper.status = OrderStatus.Completed;
-
-    this.logger.log('order found');
-    this.logger.log('updated order ');
-    this.repository.update(id, orderMapper);
-
-    return orderMapper;
+  async completedOrderByUser(orderId: string) {
+    return this.repository.completedOrderByUser(orderId);
   }
 
-  async cancelledOrderByAdmin(id: string) {
-    this.logger.log(`looking for order with id: ${id}`);
-    const order = await this.repository.findById(id);
-
-    if (!order) {
-      this.logger.error(`there is no order with the id: ${id}`);
-      throw new BadRequestException('order not found');
-    }
-
-    this.logger.log('order found');
-    this.logger.log('order removed');
-    this.repository.remove(id);
-
-    return `order with id: ${id} successfully cancelled `;
+  async remove(orderId: string) {
+    return this.repository.remove(orderId);
   }
 
   async findAll() {

@@ -6,7 +6,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/user/entities/user.entity';
 import { UserRepository } from './user.repository';
 import { UserProfile } from './mapper/userProfile';
-import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
