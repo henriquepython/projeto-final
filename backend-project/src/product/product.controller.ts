@@ -12,7 +12,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
 import { ApiTags } from '@nestjs/swagger';
-import { User } from 'src/user/entities/user.entity';
 
 @ApiTags('product')
 @Controller('product')
