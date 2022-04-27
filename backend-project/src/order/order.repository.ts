@@ -46,4 +46,20 @@ export class OrderRepository {
   async findAll() {
     return await this.orderModel.find();
   }
+
+  async findById(id: string): Promise<Order> {
+    return await this.orderModel.findById(id);
+  }
+
+  async update(id: string, order: Order): Promise<Order> {
+    return this.orderModel.findByIdAndUpdate(
+      { _id: id },
+      { $set: order },
+      { new: true },
+    );
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.orderModel.deleteOne({ _id: id }).exec();
+  }
 }

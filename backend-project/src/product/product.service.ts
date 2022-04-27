@@ -73,6 +73,19 @@ export class ProductService {
     return product;
   }
 
+  async viewDetailProducts(id: string) {
+    this.logger.log(`looking for products with id: ${id}`);
+    const product = await this.repository.findById(id);
+
+    if (!product) {
+      this.logger.error(`there is no product with the name: ${name}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    return product.description;
+  }
+
   async edit(id: string, updateProductDto: UpdateProductDto) {
     this.logger.log(`looking for products with id: ${id}`);
     const productMapper = this.mapper.map(
