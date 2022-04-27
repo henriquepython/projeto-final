@@ -13,18 +13,18 @@ export class CartController {
     return this.cartService.addCart(createCartDto);
   }
 
-  @Delete(':id')
+  @Delete('/user/:id')
   removeCart(@Param('id') id: string) {
     return this.cartService.removeCart(id);
   }
 
-  @Delete('/userId/:id')
+  @Delete(':id')
   removeAllByUser(@Param('id') id: string) {
     return this.cartService.removeAllCart(id);
   }
 
-  @Get(':id')
-  findByName(@Param('id') id: string) {
+  @Get('/user/:id')
+  findByUser(@Param('id') id: string) {
     return this.cartService.findCartByUser(id);
   }
 }
