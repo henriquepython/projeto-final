@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { UserModule } from 'src/user/user.module';
+import { Auth } from './entities/auth.entity';
+import { AuthSchema } from 'src/shared/schemas/auth.schema';
 
 @Module({
   imports: [
@@ -12,6 +14,12 @@ import { UserModule } from 'src/user/user.module';
       secret: 'projetofinaljoao',
       signOptions: { expiresIn: '2700s' },
     }),
+    MongooseModule.forFeature([
+      {
+        name: Auth.name,
+        schema: AuthSchema,
+      },
+    ]),
     MongooseModule,
     UserModule,
   ],

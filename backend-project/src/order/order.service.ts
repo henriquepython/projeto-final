@@ -21,12 +21,16 @@ export class OrderService {
   async createOrder(orderModel: CreateOrderDto): Promise<CreateOrderDto> {
     const orderMapper = this.mapper.map(orderModel, CreateOrderDto, Order);
 
+    this.logger.log(
+      `searching all products in the user's cart: ${orderMapper.userId}`,
+    );
     orderMapper.products = await this.cartService.findCartByUser(
       orderMapper.userId,
     );
     const { _id } = await this.repository.create(orderMapper);
     let order = await this.repository.findPopulateProducts(_id);
 
+    this.logger.log('calculating the order total');
     const totalPrice = order.products.reduce((acc, product) => {
       const price = product.price * product.quantity;
       return acc + price;
@@ -34,7 +38,7 @@ export class OrderService {
     await order.update({ totalPrice });
 
     order = await this.repository.findPopulateUserProducts(_id);
-    this.logger.log('created user');
+    this.logger.log('order created');
     await order.save();
     await this.cartService.removeAllCart(orderMapper.userId);
 

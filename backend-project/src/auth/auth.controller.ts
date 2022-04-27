@@ -29,7 +29,7 @@ export class AuthController {
       return { accessToken: await this.jwtService.signAsync(payload) };
     }
 
-    this.logger.log('email ou password invalido');
-    return null;
+    this.logger.error('email ou password invalido');
+    return 'email ou password invalido';
   }
 }

@@ -1,11 +1,12 @@
 import { Logger, Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { User } from './entities/user.entity';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from 'src/user/entities/user.entity';
+
 import { UserRepository } from './user.repository';
 import { UserProfile } from './mapper/userProfile';
+import { UserSchema } from 'src/shared/schemas/user.schema';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
