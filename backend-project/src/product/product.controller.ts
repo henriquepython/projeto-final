@@ -49,7 +49,6 @@ export class ProductController {
     return this.productService.edit(id, updateProductDto);
   }
 
-  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(id);

@@ -1,11 +1,4 @@
-import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  Logger,
-  Scope,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -33,7 +26,7 @@ export class ProductService {
     const product = await this.repository.findByName(productMapper.title);
 
     if (product) {
-      throw new HttpException('Product already exists', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('Product already exists');
     }
 
     this.logger.log('created product');

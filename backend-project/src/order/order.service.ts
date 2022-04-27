@@ -1,11 +1,4 @@
-import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  Logger,
-  Scope,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { CartService } from 'src/cart/cart.service';
@@ -54,7 +47,7 @@ export class OrderService {
 
     if (!orders) {
       this.logger.error(`there is no order with the user: ${userId}`);
-      throw new HttpException('No Orders Found', HttpStatus.NO_CONTENT);
+      throw new BadRequestException('No Orders Found');
     }
 
     this.logger.log('user found');
