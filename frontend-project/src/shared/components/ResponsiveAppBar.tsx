@@ -11,6 +11,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LoginIcon from '@mui/icons-material/Login';
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField } from '@mui/material';
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -38,14 +41,12 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
     position="fixed" sx={{ p: 1, background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,119,1) 35%, rgba(0,212,255,1) 100%)'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          <IconButton
+            href='/home'
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: 'white' }}
           >
             {title}
-          </Typography>
+          </IconButton>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -95,43 +96,47 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
                 onClick={handleCloseNavMenu}
                 variant='outlined'
                 href={section.url}
-                sx={{ my: 2, m: 1, color: 'white', display: 'block', borderColor: 'white' }}
+                sx={{ my: 2, m: 1, color: 'white', display: 'block', borderColor: 'white', fontSize: 13}}
               >
                 {section.title}
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0, mr: 1 }}>
-            <Button 
-              sx={{color: 'white', borderColor: 'white'}}
-              variant='outlined'
-            >
-              Sign In
-            </Button>
+          <Box sx={{ position: 'relative'}}>
+            <TextField id="standard-basic" label="Standard" variant="standard" sx={{ color: 'white'}} />
           </Box>
 
-          <Box sx={{ flexGrow: 0, mr: 1 }}>
-            <Button 
-              sx={{color: 'white', borderColor: 'white'}}
-              variant='outlined'
-             >
-               Sign Up
-             </Button>
-          </Box>
+          <Box sx={{ flexGrow: 0, mr: 15, display: { xs: 'none', md: 'flex' }}}>
+            <SearchIcon />
+          </Box> 
+
+          <Box sx={{ flexGrow: 0, mr: 1, display: { xs: 'flex', md: 'none' }}}>
+            <SearchIcon />
+          </Box> 
+
+          <Box sx={{ flexGrow: 0, mr: 2}}>
+            <Tooltip title="Login">
+              <IconButton 
+                sx={{color: 'white'}}
+                href='/signin'
+              >
+                <LoginIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>   
           
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0,mr: 2 }}>
             <Tooltip title="Open Cart">
-              <IconButton href='/cart' sx={{ p: 0 }}>
-                <ShoppingCartIcon sx={{color: 'white', p:2}} />
+              <IconButton href='/cart'>
+                <ShoppingCartIcon sx={{color: 'white'}} />
               </IconButton>
             </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open Area Admin">
-              <IconButton href='/signinadmin' sx={{ p: 0 }}>
-                <SettingsIcon sx={{color: 'white', p:2}}/>
+              <IconButton href='/signinadmin'>
+                <SettingsIcon sx={{color: 'white'}}/>
               </IconButton>
             </Tooltip>
           </Box>
