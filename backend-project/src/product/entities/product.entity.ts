@@ -1,5 +1,5 @@
 import { AutoMap } from '@automapper/classes';
-import { Category } from '../dto/category.enum';
+import { Category } from '../../shared/enum/category.enum';
 
 export class Product {
   @AutoMap()

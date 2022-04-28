@@ -7,13 +7,19 @@ import {
   Param,
   Delete,
   HttpCode,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { JwtGuard } from 'src/auth/jwt.auth.guard';
+import { Roles } from 'src/shared/decorators/roles.decorator';
+import { Role } from 'src/shared/enum/role.enum';
 
+@ApiBearerAuth()
 @ApiTags('product')
 @Controller('product')
 export class ProductController {
@@ -24,6 +30,8 @@ export class ProductController {
     return this.productService.create(createProductDto);
   }
 
+  //@Roles(Role.ADMIN)
+  @UseGuards(JwtGuard, RolesGuard)
   @Get()
   findAll() {
     return this.productService.findAll();

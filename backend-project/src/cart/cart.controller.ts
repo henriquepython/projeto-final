@@ -7,10 +7,11 @@ import {
   Get,
   HttpCode,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CartService } from './cart.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 
+@ApiBearerAuth()
 @ApiTags('cart')
 @Controller('cart')
 export class CartController {

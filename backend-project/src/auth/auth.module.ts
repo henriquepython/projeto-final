@@ -10,10 +10,13 @@ import { AuthSchema } from 'src/shared/schemas/auth.schema';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: 'projetofinaljoao',
-      signOptions: { expiresIn: '2700s' },
-    }),
+    {
+      ...JwtModule.register({
+        secret: 'projetofinaljoao',
+        signOptions: { expiresIn: '2700s' },
+      }),
+      global: true,
+    },
     MongooseModule.forFeature([
       {
         name: Auth.name,

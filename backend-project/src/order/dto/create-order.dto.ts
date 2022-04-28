@@ -4,7 +4,7 @@ import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { CartOrderDto } from 'src/cart/dto/cart-order.dto';
 
-import { OrderStatus } from '../entities/OrderStatus.enum';
+import { OrderStatus } from '../../shared/enum/OrderStatus.enum';
 
 export class CreateOrderDto {
   @AutoMap()

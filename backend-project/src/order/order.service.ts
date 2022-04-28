@@ -4,7 +4,7 @@ import { InjectMapper } from '@automapper/nestjs';
 import { CartService } from 'src/cart/cart.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './entities/order.entity';
-import { OrderStatus } from './entities/OrderStatus.enum';
+import { OrderStatus } from '../shared/enum/OrderStatus.enum';
 import { OrderRepository } from './order.repository';
 
 @Injectable({ scope: Scope.REQUEST })

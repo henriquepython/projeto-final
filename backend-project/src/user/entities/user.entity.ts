@@ -1,5 +1,5 @@
 import { AutoMap } from '@automapper/classes';
-import { Roles } from '../dto/roles.enum';
+import { Role } from 'src/shared/enum/role.enum';
 
 export class User {
   @AutoMap()
@@ -12,7 +12,7 @@ export class User {
   phoneNumber: string;
 
   @AutoMap()
-  roles: Roles;
+  roles: Role[];
 
   @AutoMap()
   password: string;

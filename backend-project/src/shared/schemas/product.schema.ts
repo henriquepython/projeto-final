@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Category } from '../../product/dto/category.enum';
+import { Category } from '../enum/category.enum';
 
 export type ProductDocument = ProductModel & Document;
 

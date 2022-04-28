@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { CartOrderDto } from 'src/cart/dto/cart-order.dto';
 import { User } from 'src/user/entities/user.entity';
-import { OrderStatus } from '../../order/entities/OrderStatus.enum';
+import { OrderStatus } from '../enum/OrderStatus.enum';
 
 export type OrderDocument = OrderModel & Document;
 
