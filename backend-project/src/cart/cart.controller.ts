@@ -23,12 +23,12 @@ export class CartController {
     return this.cartService.addCart(createCartDto);
   }
 
-  @Delete('/user/:id')
+  @Delete(':id')
   removeCart(@Param('id') id: string) {
     return this.cartService.removeCart(id);
   }
 
-  @Delete(':id')
+  @Delete('/user/:id')
   removeAllByUser(@Param('id') id: string) {
     return this.cartService.removeAllCart(id);
   }
