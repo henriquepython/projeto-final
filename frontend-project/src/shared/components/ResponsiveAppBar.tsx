@@ -13,7 +13,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField } from '@mui/material';
+import { Input, TextField } from '@mui/material';
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -102,19 +102,18 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ position: 'relative'}}>
-            <TextField id="standard-basic" label="Standard" variant="standard" sx={{ color: 'white'}} />
-          </Box>
+          
+          <Input id="searchProduct" type="search" placeholder='Search Products' sx={{ mr: 1, color: 'white', position: 'relative'}} />
 
-          <Box sx={{ flexGrow: 0, mr: 15, display: { xs: 'none', md: 'flex' }}}>
+          <IconButton sx={{ flexGrow: 0, mr: 14, color: 'white', display: { xs: 'none', md: 'flex' }}}>
             <SearchIcon />
-          </Box> 
+          </IconButton> 
 
-          <Box sx={{ flexGrow: 0, mr: 1, display: { xs: 'flex', md: 'none' }}}>
+          <IconButton sx={{ flexGrow: 0, mr: 1, color: 'white', display: { xs: 'flex', md: 'none' }}}>
             <SearchIcon />
-          </Box> 
+          </IconButton> 
 
-          <Box sx={{ flexGrow: 0, mr: 2}}>
+          <Box sx={{ flexGrow: 0, mr: .5}}>
             <Tooltip title="Login">
               <IconButton 
                 sx={{color: 'white'}}
@@ -125,7 +124,7 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
             </Tooltip>
           </Box>   
           
-          <Box sx={{ flexGrow: 0,mr: 2 }}>
+          <Box sx={{ flexGrow: 0,mr: .5 }}>
             <Tooltip title="Open Cart">
               <IconButton href='/cart'>
                 <ShoppingCartIcon sx={{color: 'white'}} />
