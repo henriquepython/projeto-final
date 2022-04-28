@@ -13,7 +13,7 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
-  @Get('/email/:email')
+  @Get(':email')
   findByEmail(@Param('email') email: string) {
     return this.userService.findByEmail(email);
   }
