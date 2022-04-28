@@ -12,22 +12,9 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AddressForm } from './AddressForm';
-import { PaymentForm } from './PaymentForm';
-import { ReviewOrder } from './ReviewOrder';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { AddressForm } from '../shared/components/AddressForm';
+import { PaymentForm } from '../shared/components/PaymentForm';
+import { ReviewOrder } from '../shared/components/ReviewOrder';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -71,7 +58,7 @@ export const Checkout = () => {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            My Store
           </Typography>
         </Toolbar>
       </AppBar>
@@ -104,10 +91,23 @@ export const Checkout = () => {
                 {getStepContent(activeStep)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    <Button 
+                    onClick={handleBack}
+                    variant="contained"
+                    sx={{ mt: 3, ml: 1 }}>
                       Back
                     </Button>
                   )}
+                  {activeStep == 0 && (
+                    <Button 
+                    href='/cart'
+                    variant="contained"
+                    sx={{ mt: 3, ml: 1 }}>
+                      Back
+                    </Button>
+                  )}
+                  
+        
                   <Button
                     variant="contained"
                     onClick={handleNext}
@@ -120,7 +120,6 @@ export const Checkout = () => {
             )}
           </React.Fragment>
         </Paper>
-        <Copyright />
       </Container>
     </ThemeProvider>
   );

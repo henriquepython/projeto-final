@@ -1,6 +1,6 @@
 
 export const StoreEletronic = () => {
     return (
-        <div>Olá mundo!</div>
+        <div>Listar todos produtos categoria eletronics</div>
     );
 };

@@ -1,6 +1,7 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Cart, Home, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
+import { Cart, Checkout, Home, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
+
 
 export const AppRoutes = () => {
     return (
@@ -10,6 +11,7 @@ export const AppRoutes = () => {
             <Route path="/signinadmin" element={<SignInAdmin />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/storeclothes" element={<StoreClothes />} />
             <Route path="/storesports" element={<StoreSports />} />
             <Route path="/storeeletronics" element={<StoreEletronic />} />
