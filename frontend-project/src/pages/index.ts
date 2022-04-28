@@ -6,3 +6,7 @@ export * from './SignUp';
 export * from './StoreClothes';
 export * from './StoreSports';
 export * from './StoreEletronic';
+export * from './Checkout';
+export * from './AddressForm';
+export * from './PaymentForm';
+export * from './ReviewOrder';
