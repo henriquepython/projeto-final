@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { Footer } from "../components/Footer";
 import { ResponsiveHeader } from "../components/ResponsiveHeader";
 

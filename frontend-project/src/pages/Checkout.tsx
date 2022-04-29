@@ -16,6 +16,15 @@ import { AddressForm } from '../shared/components/AddressForm';
 import { PaymentForm } from '../shared/components/PaymentForm';
 import { ReviewOrder } from '../shared/components/ReviewOrder';
 
+const products = [
+  { title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
+  { title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
+  { title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
+  { title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
+  { title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
+]
+
+
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 function getStepContent(step: number) {
@@ -25,7 +34,7 @@ function getStepContent(step: number) {
     case 1:
       return <PaymentForm />;
     case 2:
-      return <ReviewOrder />;
+      return <ReviewOrder products={products} />;
     default:
       throw new Error('Unknown step');
   }
@@ -81,9 +90,7 @@ export const Checkout = () => {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  Assim que seu pedido for confirmado, continuaremos lhe atualizando.
                 </Typography>
               </React.Fragment>
             ) : (
