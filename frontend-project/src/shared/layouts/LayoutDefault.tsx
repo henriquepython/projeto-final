@@ -1,6 +1,6 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { Footer } from "../components/Footer";
-import { ResponsiveAppBar } from "../components/ResponsiveAppBar";
+import { ResponsiveHeader } from "../components/ResponsiveHeader";
 
 interface ILayoutBaseDePagina {
     children: React.ReactNode;
@@ -9,7 +9,7 @@ interface ILayoutBaseDePagina {
 export const LayoutDefault: React.FC<ILayoutBaseDePagina> = ({ children }) => {
     return (
         <Container>
-            <ResponsiveAppBar />
+            <ResponsiveHeader />
                 {children}
             <Footer />
         </Container>
