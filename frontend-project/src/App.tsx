@@ -1,11 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
+import { LayoutDefault } from './shared/layouts';
 
 export function App() { 
     return (
-        <BrowserRouter>
-            <AppRoutes />
-        </BrowserRouter>
+        <LayoutDefault>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </LayoutDefault>
     );
 }
 

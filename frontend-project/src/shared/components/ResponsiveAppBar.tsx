@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -14,16 +13,14 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Divider, Input, Typography } from '@mui/material';
 
-interface HeaderProps {
-  sections: ReadonlyArray<{
-    title: string;
-    url: string;
-  }>;
-  title: string;
-}
 
-export const ResponsiveAppBar = (props: HeaderProps) => {
-  const { sections, title } = props;
+const sections = [ 
+  {title: 'Clothes', url:'/storeclothes'},
+  {title: 'Sports', url:'/storesports'},
+  {title: 'Eletronics', url:'/storeeletronics'}
+]
+
+export const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -36,9 +33,13 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
 
  
   return (
-    <AppBar 
-    position="fixed" sx={{ p: 1, background: 'none', color: 'black'}}>
-      <Container maxWidth="xl">
+    <Box 
+      position='static'
+      height='100%'
+      display='flex'
+      sx={{ mb: 1 ,p: 1, background: 'none', color: 'black'}}
+    >
+      <Container>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             <IconButton
@@ -76,6 +77,7 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
               >
                 Category
               </Typography>
+
               <Divider color= 'black' />
               {sections.map((section) => (
                 <Button 
@@ -92,11 +94,12 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
             </Menu>
 
             <IconButton
-            href='/home'
-            color='inherit'
-            sx={{ ml: 2 }}
+              href='/home'
+              color='inherit'
+              disableRipple='true'
+              sx={{ ml: 2 }}
             >
-              {title}
+              My Store
             </IconButton>
           </Box>
          
@@ -149,7 +152,7 @@ export const ResponsiveAppBar = (props: HeaderProps) => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </Box>
   );
 };
 
