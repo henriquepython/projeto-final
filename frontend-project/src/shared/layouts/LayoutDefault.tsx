@@ -8,10 +8,10 @@ interface ILayoutBaseDePagina {
 
 export const LayoutDefault: React.FC<ILayoutBaseDePagina> = ({ children }) => {
     return (
-        <Container>
+        <>
             <ResponsiveHeader />
                 {children}
             <Footer />
-        </Container>
+        </>
     );
 }
