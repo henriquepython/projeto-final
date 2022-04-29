@@ -8,3 +8,5 @@ export * from './Store/StoreSports';
 export * from './Store/Search';
 export * from './Store/StoreEletronic';
 export * from './Checkout';
+export * from './Adm';
+export * from './Accounts';

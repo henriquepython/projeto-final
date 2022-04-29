@@ -1,4 +1,4 @@
-export const AdmProduct = () => {
+export const Adm = () => {
     return (
         <>
         <div>
