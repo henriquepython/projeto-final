@@ -12,4 +12,8 @@ export class Cart {
   quantity: number;
 
   price: number;
+
+  title: string;
+
+  image: string;
 }

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 import { Button } from '@mui/material';
 
 const Img = styled('img')({
@@ -14,15 +14,15 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-interface ProductProps {
+interface CartProps {
   title: string;
   image: string;
   price: number;
-  code: string;
+  productId: string;
 }
 
-export const ProductItem = (props: ProductProps) => {
-  const { title, image, price, code } = props;
+export const ProductCart = (props: CartProps) => {
+  const { title, image, price, productId } = props;
 
   return (
     <Paper
@@ -48,7 +48,7 @@ export const ProductItem = (props: ProductProps) => {
                 {title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {code}
+                {productId}
               </Typography>
             </Grid>
             <Grid item>
@@ -56,7 +56,7 @@ export const ProductItem = (props: ProductProps) => {
                 //onClick={'addcart'}
                 sx={{ cursor: 'pointer' }}
               >
-                <AddShoppingCartOutlinedIcon /> Add Cart
+                <RemoveShoppingCartOutlinedIcon /> Remove Cart
               </Button>
             </Grid>
           </Grid>

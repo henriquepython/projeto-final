@@ -27,6 +27,8 @@ export class CartRepository {
       productId: cart.productId,
       quantity: cart.quantity,
       price: product.price,
+      title: product.title,
+      image: product.image,
     });
 
     if (carts.quantity > product.quantity) {

@@ -1,6 +1,12 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+} from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 
 export class CreateCartDto {
@@ -27,4 +33,13 @@ export class CreateCartDto {
   @IsNotEmpty()
   @ApiProperty()
   price: number;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  title: string;
+
+  @IsOptional()
+  @ApiProperty()
+  image: string;
 }
