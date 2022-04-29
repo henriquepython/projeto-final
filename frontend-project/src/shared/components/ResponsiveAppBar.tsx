@@ -96,7 +96,6 @@ export const ResponsiveAppBar = () => {
             <IconButton
               href='/home'
               color='inherit'
-              disableRipple='true'
               sx={{ ml: 2 }}
             >
               My Store
