@@ -24,7 +24,7 @@ export const Footer = () => {
         sx={{
             py: 3,
             px: 2,
-            mt: 'auto',
+            mt: 'auto'
         }}
         >
         <Divider color='black' sx={{ my: 3}} />
