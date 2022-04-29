@@ -22,6 +22,8 @@ const sections = [
 
 export const ResponsiveHeader = () => {
   const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
+  const [search, setSearch] = React.useState('')
+  //colocar no contextapi e usar na page search no findbyname product
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorNav(event.currentTarget);
@@ -107,11 +109,13 @@ export const ResponsiveHeader = () => {
             id="searchProduct"
             type="search"
             placeholder='Search Products'
+            onChange={(e)=>setSearch(e.target.value)}
             sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%'}} 
           />
 
           <IconButton 
             color='inherit'
+            href='/search'
             sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
           >
             <SearchOutlinedIcon />

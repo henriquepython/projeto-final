@@ -5,6 +5,6 @@ export * from './Login/SignInAdmin';
 export * from './Login/SignUp';
 export * from './Store/StoreClothes';
 export * from './Store/StoreSports';
+export * from './Store/Search';
 export * from './Store/StoreEletronic';
 export * from './Checkout';
-export * from '../shared/components/AddressForm';
