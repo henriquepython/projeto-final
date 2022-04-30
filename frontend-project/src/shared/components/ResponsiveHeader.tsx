@@ -11,7 +11,10 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Divider, Input, Typography } from '@mui/material';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import { CssBaseline, Divider, OutlinedInput, FilledInput , Typography, InputBase, Input } from '@mui/material';
+import { useAppThemeContext } from '../contexts/ThemeContext';
 
 
 const sections = [ 
@@ -33,130 +36,144 @@ export const ResponsiveHeader = () => {
     setAnchorNav(null);
   };
 
+  const { toggleTheme, themeName } = useAppThemeContext();
  
   return (
-    <Box 
-      position='static'
-      height='100%'
-      display='flex'
-      sx={{ mb: 1 ,p: 1, background: 'none', color: 'black'}}
-    >
-      <Container>
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex' }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color='inherit'
-              onClick={handleOpenNavMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorNav)}
-              onClose={handleCloseNavMenu}
-              color='inherit'
-              sx={{
-                display: 'block',
-              }}
-            >
-              <Typography 
-                color='inherit'
-                sx={{ ml: 2, my: 1 }}  
+    <>
+      <CssBaseline/>
+      <Box 
+        height='15%'
+        display='flex'
+        color='primary'
+        sx={{ my: 2 ,background: 'none', borderBottom: .5, borderColor: '#5c6bc0'}}
+      >
+        <Container>
+          <Toolbar disableGutters>
+            <Box sx={{ flexGrow: 1, display: 'flex' }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color='primary'
+                onClick={handleOpenNavMenu}
               >
-                Category
-              </Typography>
-
-              <Divider color= 'black' />
-              {sections.map((section) => (
-                <Button 
-                key={section.title}
-                href={section.url}
-                onClick={handleCloseNavMenu}
-                variant='outlined'
-                color='inherit'
-                sx={{ display: { xs: 'flex'}, mx: 4, my: 2  }}
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorNav)}
+                onClose={handleCloseNavMenu}
+                color='primary'
+                sx={{
+                  display: 'block',
+                }}
+              >
+                <Typography 
+                  color='primary'
+                  sx={{ ml: 2, my: 1 }}  
                 >
-                    {section.title}
-                </Button>
-              ))}
-            </Menu>
+                  Category
+                </Typography>
 
-            <IconButton
-              href='/home'
-              color='inherit'
-              sx={{ ml: 2 }}
+                <Divider color='#5c6bc0' />
+                {sections.map((section) => (
+                  <Button 
+                  key={section.title}
+                  href={section.url}
+                  onClick={handleCloseNavMenu}
+                  variant='outlined'
+                  color='primary'
+                  sx={{ display: { xs: 'flex'}, mx: 4, my: 2  }}
+                  >
+                      {section.title}
+                  </Button>
+                ))}
+              </Menu>
+
+              <IconButton
+                href='/home'
+                color='primary'
+                sx={{ ml: 2 }}
+                >
+                My Store
+              </IconButton>
+            </Box>
+            
+            <Input 
+              id="searchProduct"
+              type='search'
+              placeholder=' Search Products'
+              onChange={(e)=>setSearch(e.target.value)}
+              autoFocus
+              sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%', color:'#5c6bc0', border: 1, borderColor: '#5c6bc0', borderRadius: 1}}
+            />
+
+
+            <IconButton 
+              color='primary'
+              href='/search'
+              sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
             >
-              My Store
-            </IconButton>
-          </Box>
-         
+              <SearchOutlinedIcon />
+            </IconButton> 
 
-          <Input 
-            id="searchProduct"
-            type="search"
-            placeholder='Search Products'
-            onChange={(e)=>setSearch(e.target.value)}
-            sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%'}} 
-          />
+            <Box sx={{ flexGrow: 0, mr: .5}}>
+              <Tooltip title="Login">
+                <IconButton 
+                  href='/signin'
+                  color='primary'
+                >
+                  <AccountCircleOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>   
+            
+            <Box sx={{ flexGrow: 0,mr: .5 }}>
+              <Tooltip title="Open Cart">
+                <IconButton 
+                  href='/cart'
+                  color='primary'
+                  >
+                  <ShoppingCartOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
 
-          <IconButton 
-            color='inherit'
-            href='/search'
-            sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
-          >
-            <SearchOutlinedIcon />
-          </IconButton> 
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open Area Admin">
+                <IconButton 
+                  href='/signinadmin'
+                  color='primary'
+                >
+                  <SettingsOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
 
-          <Box sx={{ flexGrow: 0, mr: .5}}>
-            <Tooltip title="Login">
-              <IconButton 
-                href='/signin'
-                color='inherit'
-              >
-                <AccountCircleOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>   
-          
-          <Box sx={{ flexGrow: 0,mr: .5 }}>
-            <Tooltip title="Open Cart">
-              <IconButton 
-                href='/cart'
-                color='inherit'
-              >
-                <ShoppingCartOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open Area Admin">
-              <IconButton 
-                href='/signinadmin'
-                color='inherit'
-              >
-                <SettingsOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </Toolbar>
-      </Container>
-    </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Change Theme">
+                <IconButton 
+                  onClick={toggleTheme}
+                  color='primary'
+                >
+                  {themeName === 'light' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon/>}
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Toolbar>
+        </Container>
+      </Box>
+    </>
   );
 };
-
-

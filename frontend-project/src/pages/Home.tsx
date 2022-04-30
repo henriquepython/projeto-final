@@ -3,6 +3,8 @@
 
 export const Home = () => {
     return (
-       <>ola</>
+       <>
+            <div>ola</div>
+        </>
     );
 };
