@@ -40,8 +40,6 @@ function getStepContent(step: number) {
   }
 }
 
-const theme = createTheme();
-
 export const Checkout = () => {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -54,32 +52,17 @@ export const Checkout = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            My Store
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}>
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel >{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
@@ -96,7 +79,7 @@ export const Checkout = () => {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', color:'primary' }}>
                   {activeStep !== 0 && (
                     <Button 
                     onClick={handleBack}
@@ -128,6 +111,6 @@ export const Checkout = () => {
           </React.Fragment>
         </Paper>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

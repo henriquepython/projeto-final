@@ -116,7 +116,7 @@ export const ResponsiveHeader = () => {
               placeholder=' Search Products'
               onChange={(e)=>setSearch(e.target.value)}
               autoFocus
-              sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%', color:'#5c6bc0', border: 1, borderColor: '#5c6bc0', borderRadius: 1}}
+              sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%', color:'primary', border: 1, borderRadius: 1}}
             />
 
 

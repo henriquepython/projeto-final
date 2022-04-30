@@ -15,11 +15,11 @@ interface ProductListProps {
 
 export const ReviewOrder = (props: ProductListProps) => {
   const { products } = props
-  let total = 0
+  let total = 0;
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography color='primary' variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>

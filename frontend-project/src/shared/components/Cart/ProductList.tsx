@@ -13,7 +13,6 @@ import { ProductItem } from './ProductItem';
 
 export const ProductList = (props: ProductListProps) => {
     const { products } = props
-        
 
     return (
       <>
