@@ -13,7 +13,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { CssBaseline, Divider, OutlinedInput, FilledInput , Typography, InputBase, Input } from '@mui/material';
+import { CssBaseline, Divider, OutlinedInput, FilledInput , Typography, InputBase, Input, TextField } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
 
 
@@ -110,15 +110,18 @@ export const ResponsiveHeader = () => {
               </IconButton>
             </Box>
             
-            <Input 
-              id="searchProduct"
+            <TextField
+              size='small'
+              required
               type='search'
+              id="searchProduct"
               placeholder=' Search Products'
               onChange={(e)=>setSearch(e.target.value)}
+              name="search"
+              autoComplete="search"
               autoFocus
-              sx={{ position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%', color:'primary', border: 1, borderRadius: 1}}
+              sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
             />
-
 
             <IconButton 
               color='primary'
