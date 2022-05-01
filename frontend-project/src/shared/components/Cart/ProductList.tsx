@@ -20,14 +20,14 @@ export const ProductList = (props: ProductListProps) => {
         {products.map((item) => (
             <Box sx={{width: 220, m: 2}}>
                 <ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
-                  <Grid item>
+                 
                     <Button 
                       //onClick={'addcart'}
-                      sx={{ cursor: 'pointer', color: 'black' }}
+                      sx={{ cursor: 'pointer', color: 'black', mt: 1, ml: 5, border: 1 }}
                     >
                       <AddShoppingCartOutlinedIcon /> Add Cart
                     </Button>
-                  </Grid>
+                  
                 </ProductItem>
             </Box>
         ))}

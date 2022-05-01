@@ -20,16 +20,17 @@ export const CartList = (props: CartListProps) => {
         <Box sx={{ width: '100vw', display: 'flex', flexShrink: 1, flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row' }}>
         {productsByUser.map((item) => (
             <Box sx={{width: 220, m: 2}}>
-                <ProductItem title={item.title} image={item.image} price={item.price} quantity={item.quantity} productId={item.productId}>
-                  <Typography variant='subtitle2' component="div">
-                      Quantity: {item.quantity}
-                    </Typography>
-                    <Button 
-                      //onClick={'addcart'}
-                      sx={{ cursor: 'pointer', color: 'black' }}
-                    >
-                      <RemoveShoppingCartOutlinedIcon /> Remove Cart
-                    </Button>
+                <ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
+                                    
+                  <Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
+                  Quantity: {item.quantity}
+                  </Typography>
+                  <Button 
+                  //onClick={'addcart'}
+                  sx={{ cursor: 'pointer', color: 'black', ml: 4, border: 1 }}
+                  >
+                  <RemoveShoppingCartOutlinedIcon /> Remove Cart
+                  </Button>
                 </ProductItem>
             </Box>
         ))}

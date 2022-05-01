@@ -45,17 +45,20 @@ export const ProductItem = (props: ProductProps) => {
             <Img alt="complex" src={image} sx={{borderRadius: 2}} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
+        <Grid item>
+          
+            <Grid item>
               <Typography gutterBottom variant="subtitle1" component="div">
                 {title}
               </Typography>
+            </Grid>
+
+            <Grid item>
               <Typography variant="subtitle2" color="text.secondary">
                 {productId}
               </Typography>
             </Grid>
-          </Grid>
+          
           <Grid item>
             <Typography variant="subtitle1" component="div">
               Price: ${price}
