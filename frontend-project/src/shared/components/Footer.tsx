@@ -14,8 +14,8 @@ function Copyright() {
     <Typography variant="body2" color="primary">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/henriquepython/projeto-final">
-        My Store
-      </Link>{' '}
+        Feito por João Henrique B. Cerqueira
+      </Link>{', '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -31,42 +31,42 @@ export const Footer = () => {
       <Box
           component="footer"
           display='flex'
-          sx={{ my: 3 , p: 4,background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
+          sx={{ mt:2 ,background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
           >
-          <Container sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
+          <Container sx={{mt: 2,display: 'flex', flexDirection: 'column', ml:15, gap: 1}}>
               <Typography variant="h5" color='primary'>
                   My Store
               </Typography>
-              <Typography>
+              <Typography color='primary'>
                   Inicio
-              </Typography>
-              <Typography>
+              </Typography >
+              <Typography color='primary'>
                 Contato
               </Typography>
-              <Typography>
+              <Typography color='primary'>
                 Quem Somos
               </Typography>
+              <Box sx={{mt: 2}}>
+                <Copyright />
+              </Box>
           </Container>
-          <Container sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
+          <Container sx={{mt: 2,display: 'flex', flexDirection: 'column', gap: 1}}>
               <Typography variant="h5" color='primary'>
                   Contato:
               </Typography>
-              <Typography>
-                <WhatsappOutlinedIcon/> (xx) xxxxx-xxxx
+              <Typography color='primary'>
+                <WhatsappOutlinedIcon fontSize='small' /> (xx) xxxxx-xxxx
               </Typography>
-              <Typography>
-                <LocalPhoneOutlinedIcon/> (xx) xxxxx-xxxx
+              <Typography color='primary'>
+                <LocalPhoneOutlinedIcon fontSize='small' /> (xx) xxxxx-xxxx
               </Typography>
-              <Typography>
-                <EmailOutlinedIcon/> Mystore@mail.com
+              <Typography color='primary'>
+                <EmailOutlinedIcon fontSize='small'/> Mystore@mail.com
               </Typography>
-              <Typography>
-                <LocationOnOutlinedIcon/> Rua xxxxxx, nºxxx, xxxx, Feira de Santana-BA
+              <Typography color='primary'>
+                <LocationOnOutlinedIcon fontSize='small'/> Rua xxxxxx, nºxxx, xxxx, Feira de Santana-BA
               </Typography>
           </Container>
-      </Box>
-      <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100vw'}}>
-        <Copyright />
       </Box>
     </>
   );
