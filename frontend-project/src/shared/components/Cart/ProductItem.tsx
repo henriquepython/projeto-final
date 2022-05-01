@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+
 import { Button } from '@mui/material';
 
 const Img = styled('img')({
@@ -19,10 +19,12 @@ interface ProductProps {
   image: string;
   price: number;
   productId: string;
+  quantity?: number;
+  children: React.ReactNode
 }
 
 export const ProductItem = (props: ProductProps) => {
-  const { title, image, price, productId } = props;
+  const { title, image, price, productId, quantity, children } = props;
 
   return (
     <Paper
@@ -51,14 +53,7 @@ export const ProductItem = (props: ProductProps) => {
                 {productId}
               </Typography>
             </Grid>
-            <Grid item>
-              <Button 
-                //onClick={'addcart'}
-                sx={{ cursor: 'pointer' }}
-              >
-                <AddShoppingCartOutlinedIcon /> Add Cart
-              </Button>
-            </Grid>
+            {children}
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">

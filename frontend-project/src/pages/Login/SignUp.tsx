@@ -9,10 +9,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { useAppThemeContext } from '../../shared/contexts';
 
-
-const theme = createTheme();
 
 export const SignUp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,8 +23,9 @@ export const SignUp = () => {
     });
   };
 
+  const { themeName } = useAppThemeContext();
+
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -39,7 +39,7 @@ export const SignUp = () => {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography color='primary' component="h1" variant="h5">
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -51,8 +51,9 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="name"
-                  label="Name"
+                  placeholder="Name"
                   autoFocus
+                  sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -60,9 +61,10 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  placeholder="Email Address"
                   name="email"
                   autoComplete="email"
+                  sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -70,10 +72,11 @@ export const SignUp = () => {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  placeholder="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -81,8 +84,9 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="phone"
-                  label="phone number"
+                  placeholder="phone number"
                   name="phone"
+                  sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
                 />
                 </Grid>
             </Grid>
@@ -91,12 +95,13 @@ export const SignUp = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              color='primary'
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/signin" variant="body2">
+                <Link color='primary' href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
@@ -104,6 +109,5 @@ export const SignUp = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

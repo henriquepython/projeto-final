@@ -13,7 +13,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { CssBaseline, Divider, OutlinedInput, FilledInput , Typography, InputBase, Input, TextField } from '@mui/material';
+import { CssBaseline, Divider, Typography, TextField } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
 
 
@@ -45,7 +45,7 @@ export const ResponsiveHeader = () => {
         height='15%'
         display='flex'
         color='primary'
-        sx={{ my: 2 ,background: 'none', borderBottom: .5, borderColor: '#5c6bc0'}}
+        sx={{ my: 2 ,background: 'none', borderBottom: .5, borderColor: themeName === 'light' ? 'black' : 'white'}}
       >
         <Container>
           <Toolbar disableGutters>
@@ -81,12 +81,11 @@ export const ResponsiveHeader = () => {
               >
                 <Typography 
                   color='primary'
-                  sx={{ ml: 2, my: 1 }}  
+                  sx={{ my: 1, fontSize: 20,borderBottom: 1, borderColor: 'primary', display: 'flex', justifyContent: 'center' }}  
                 >
                   Category
                 </Typography>
 
-                <Divider color='#5c6bc0' />
                 {sections.map((section) => (
                   <Button 
                   key={section.title}

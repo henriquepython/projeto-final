@@ -84,6 +84,7 @@ export const Login = (props: LoginProps) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              autoFocus
               sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
             />
             <Button

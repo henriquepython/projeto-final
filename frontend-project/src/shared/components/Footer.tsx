@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { CssBaseline, Divider } from '@mui/material';
+import { useAppThemeContext } from '../contexts';
 
 function Copyright() {
   return (
@@ -18,13 +19,15 @@ function Copyright() {
 }
 
 export const Footer = () => {
+  
+  const { themeName } = useAppThemeContext();
   return (
     <>
       <CssBaseline/>
       <Box
           component="footer"
           display='flex'
-          sx={{ my: 3 , p: 4, background: 'none', borderTop: .5, borderColor: '#5c6bc0', color: 'primary'}}
+          sx={{ my: 3 , p: 4, background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
           >
           <Container maxWidth='sm'>
               <Typography variant="body1" color='primary'>

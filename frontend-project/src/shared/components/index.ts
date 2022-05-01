@@ -7,4 +7,4 @@ export * from './Login';
 export * from './Cart/ProductItem';
 export * from  './Cart/ProductList'
 export * from  './Cart/CartList'
-export * from  './Cart/CartItem'
+export * from  './Carrousel'
