@@ -4,6 +4,10 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { CssBaseline, Divider } from '@mui/material';
 import { useAppThemeContext } from '../contexts';
+import WhatsappOutlinedIcon from '@mui/icons-material/WhatsappOutlined';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 function Copyright() {
   return (
@@ -27,14 +31,42 @@ export const Footer = () => {
       <Box
           component="footer"
           display='flex'
-          sx={{ my: 3 , p: 4, background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
+          sx={{ my: 3 , p: 4,background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
           >
-          <Container maxWidth='sm'>
-              <Typography variant="body1" color='primary'>
-                  My sticky footer can be found here.
+          <Container sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
+              <Typography variant="h5" color='primary'>
+                  My Store
               </Typography>
-              <Copyright />
+              <Typography>
+                  Inicio
+              </Typography>
+              <Typography>
+                Contato
+              </Typography>
+              <Typography>
+                Quem Somos
+              </Typography>
           </Container>
+          <Container sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
+              <Typography variant="h5" color='primary'>
+                  Contato:
+              </Typography>
+              <Typography>
+                <WhatsappOutlinedIcon/> (xx) xxxxx-xxxx
+              </Typography>
+              <Typography>
+                <LocalPhoneOutlinedIcon/> (xx) xxxxx-xxxx
+              </Typography>
+              <Typography>
+                <EmailOutlinedIcon/> Mystore@mail.com
+              </Typography>
+              <Typography>
+                <LocationOnOutlinedIcon/> Rua xxxxxx, nºxxx, xxxx, Feira de Santana-BA
+              </Typography>
+          </Container>
+      </Box>
+      <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100vw'}}>
+        <Copyright />
       </Box>
     </>
   );

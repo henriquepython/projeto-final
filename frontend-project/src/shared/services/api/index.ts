@@ -1,1 +1,1 @@
-export * from './apiCarrousel';
+export * from './api';

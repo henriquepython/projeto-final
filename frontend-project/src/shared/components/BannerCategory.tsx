@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import { IconButton } from '@mui/material';
+import { useAppThemeContext } from '../contexts';
 
 const images = [
   {
@@ -74,10 +75,12 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export const BannerCategory = () => {
+  
+  const { themeName } = useAppThemeContext();
   return (
       <>
         <Typography 
-                sx={{mb: 4, mt: 4, fontSize: 30,display: 'flex', justifyContent: 'center', width: '100%'}}
+                sx={{mb: 4, mt: 4, fontSize: 30,display: 'flex', justifyContent: 'center', width: '100%', color: themeName === 'light' ? 'black' : 'white'}}
             >
                 Category
             </Typography>
