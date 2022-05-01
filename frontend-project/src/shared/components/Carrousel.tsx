@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, CssBaseline, Grid, ImageListItem, styled, Typography } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductItem } from './Cart/ProductItem';
@@ -6,60 +6,65 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 
 const products = [
     { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/mwa_nzFpnJw', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/TS--uNw-JqE', price: 1, productId: 'djfs'},
     { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/mwa_nzFpnJw', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/TS--uNw-JqE', price: 1, productId: 'djfs'},
     { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-    { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-    { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-    { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/mwa_nzFpnJw', price: 1, productId: 'djfs'},
+    { title: 'Sports', image: 'https://source.unsplash.com/TS--uNw-JqE', price: 1, productId: 'djfs'},
      ]
 
-     interface CarrouselProps {
-         category: string;
-     }
-export const Carrousel = (props: CarrouselProps) => {
-    const {category} = props;
+     //findll products
+     const Img = styled('img')({
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+      });
+
+export const Carrousel = () => {
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
           breakpoint: { max: 4000, min: 3000 },
-          items: 5
+          items: 1,
+          slidesToSlide: 1
         },
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
-          items: 3
+          items: 1,
+          slidesToSlide: 1
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
-          items: 2
+          items: 1 ,
+          slidesToSlide: 1
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
-          items: 1
+          items: 1,
+          slidesToSlide: 1
         }
       };
       return(
-        <Container sx={{ my: 12}}>
-            <Typography 
-                sx={{mb: 4, fontSize: 30,display: 'flex', justifyContent: 'center', width: '100%'}}
-            >
-                {category}
-            </Typography>
-            <Carousel responsive={responsive}>
-                {products.map((item) => (
-                    <Box sx={{width: 220}}>
-                        <ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
-                        <Grid item>
-                            <Button 
-                            //onClick={'addcart'}
-                            sx={{ cursor: 'pointer', color: 'black' }}
-                            >
-                            <AddShoppingCartOutlinedIcon /> Add Cart
-                            </Button>
-                        </Grid>
-                        </ProductItem>
-                    </Box>
-                ))}
-            </Carousel>
-        </Container>
+        <>
+            <Box sx={{ width: '100%'}}>
+                <Carousel 
+                    autoPlay= {true}
+                    autoPlaySpeed= {1600}
+                    showDots= {true}
+                    arrows= {false}
+                    infinite={true}
+                    slidesToSlide={1}
+                    responsive={responsive}
+                >
+                    {products.map((item) => (
+                        <Img src={item.image} sx={{width: '100%', height: 500}} />
+                        ))}
+                </Carousel>
+            </Box>
+        </>
     );
   }

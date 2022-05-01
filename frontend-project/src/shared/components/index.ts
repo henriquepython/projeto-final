@@ -8,3 +8,4 @@ export * from './Cart/ProductItem';
 export * from  './Cart/ProductList'
 export * from  './Cart/CartList'
 export * from  './Carrousel'
+export * from  './CarrouselItem'

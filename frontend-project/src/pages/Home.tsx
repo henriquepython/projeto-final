@@ -1,13 +1,14 @@
-import { Carrousel } from '../shared/components'
+import { Carrousel, CarrouselItem } from '../shared/components'
 
 
 
 export const Home = () => {
     return (
        <>
-            <Carrousel category='Clothes' />
-            <Carrousel category='Eletronics'/>
-            <Carrousel category='Sports'/>
+            <Carrousel />
+            <CarrouselItem category='Clothes'/>
+            <CarrouselItem category='Eletronics'/>
+            <CarrouselItem category='Sports'/>
         </>
     );
 };

@@ -21,19 +21,15 @@ export const CartList = (props: CartListProps) => {
         {productsByUser.map((item) => (
             <Box sx={{width: 220, m: 2}}>
                 <ProductItem title={item.title} image={item.image} price={item.price} quantity={item.quantity} productId={item.productId}>
-                  <Grid item>
-                    <Typography variant="body2" component="div">
+                  <Typography variant='subtitle2' component="div">
                       Quantity: {item.quantity}
                     </Typography>
-                  </Grid>
-                  <Grid item>
                     <Button 
                       //onClick={'addcart'}
                       sx={{ cursor: 'pointer', color: 'black' }}
                     >
                       <RemoveShoppingCartOutlinedIcon /> Remove Cart
                     </Button>
-                  </Grid>
                 </ProductItem>
             </Box>
         ))}

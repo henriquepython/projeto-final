@@ -9,7 +9,9 @@ import { Button } from '@mui/material';
 
 const Img = styled('img')({
   margin: 'auto',
-  display: 'block',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'row',
   maxWidth: '100%',
   maxHeight: '100%',
 });
@@ -37,10 +39,10 @@ export const ProductItem = (props: ProductProps) => {
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item>
-          <ButtonBase sx={{ width: 190, height: 128 }}>
-            <Img alt="complex" src={image} />
+          <ButtonBase sx={{ mb: 1 }}>
+            <Img alt="complex" src={image} sx={{borderRadius: 2}} />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
@@ -49,16 +51,16 @@ export const ProductItem = (props: ProductProps) => {
               <Typography gutterBottom variant="subtitle1" component="div">
                 {title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="subtitle2" color="text.secondary">
                 {productId}
               </Typography>
             </Grid>
-            {children}
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">
               Price: ${price}
             </Typography>
+            {children}
           </Grid>
         </Grid>
       </Grid>
