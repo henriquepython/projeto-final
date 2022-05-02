@@ -6,6 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Box, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
 
 interface OrderProps {
@@ -52,6 +53,14 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 									sx={{ fontSize: 15 }}
 								>
 									<CancelOutlinedIcon />
+								</IconButton>
+								<IconButton
+									onClick={getRequestCancel}
+									color='success'
+									title='Finalizar Pedido'
+									sx={{ fontSize: 15 }}
+								>
+									<CheckCircleOutlineOutlinedIcon />
 								</IconButton>
 							</TableCell>
 						</TableRow>

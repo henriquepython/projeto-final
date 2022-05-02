@@ -32,7 +32,7 @@ interface ProductProps {
 }
 
 export const ProductItem = (props: ProductProps) => {
-	const { title, image, price, productId, quantity, children } = props;
+	const { title, image, price, productId, children } = props;
   
 	const { setCode } = useAppStoreContext();
 
