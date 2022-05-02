@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { useAppThemeContext } from '../../shared/contexts';
+import { useAppStoreContext, useAppThemeContext } from '../../shared/contexts';
 
 
 interface LoginProps {
@@ -28,6 +28,7 @@ export const Login = (props: LoginProps) => {
       password: data.get('password'),
     });
   };
+  
 
   const { themeName } = useAppThemeContext();
   return (
@@ -87,14 +88,6 @@ export const Login = (props: LoginProps) => {
               autoFocus
               sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
             {children}
           </Box>
         </Box>

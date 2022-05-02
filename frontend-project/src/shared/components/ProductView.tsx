@@ -27,10 +27,11 @@ interface ProductViewProps {
   price: number;
   productId: string;
   quantity?: number;
+  descriptions: string;
 }
 
 export const ProductView = (props: ProductViewProps) => {
-  const { title, image, price, productId, quantity } = props;
+  const { title, image, price, productId, quantity, descriptions } = props;
  
   return (
     <>
@@ -71,7 +72,16 @@ export const ProductView = (props: ProductViewProps) => {
             </Typography>
           </Grid>
         </Grid>
-        <InputBase type='number' placeholder='Qtd'  sx={{width: '10%', border: 3, mr: 16}}/>
+        <InputBase 
+          type='number'
+          placeholder=' Qtd'
+          //onChange={}
+          sx={{
+                width: '10%',
+                border: 3,
+                mr: 16
+          }}
+        />
 
         <ButtonAddCart />
         
@@ -82,9 +92,7 @@ export const ProductView = (props: ProductViewProps) => {
         Descriptions:
       </Typography>
       <Typography variant='subtitle1'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum obcaecati dolorem itaque
-        facere dolor, rem vero praesentium, aliquid harum necessitatibus ad id omnis molestias neque,
-         reprehenderit excepturi nisi aut sequi!
+        {descriptions}
       </Typography>
       
     </Box>

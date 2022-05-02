@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
 import { LayoutDefault } from './shared/layouts';
-import { AppThemeProvider } from './shared/contexts';
+import { AppStoreProvider, AppThemeProvider } from './shared/contexts';
 import { CssBaseline } from '@mui/material';
 
 export function App() { 
@@ -9,11 +9,13 @@ export function App() {
         <>
             <CssBaseline/>
             <AppThemeProvider>
-                <LayoutDefault>
-                    <BrowserRouter>
-                        <AppRoutes />
-                    </BrowserRouter>
-                </LayoutDefault>
+                <AppStoreProvider>
+                    <LayoutDefault>
+                        <BrowserRouter>
+                            <AppRoutes />
+                        </BrowserRouter>
+                    </LayoutDefault>
+                </AppStoreProvider>
             </AppThemeProvider>
         </>
     );

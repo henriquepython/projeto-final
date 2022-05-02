@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import { useAppStoreContext } from '../../contexts';
 
 
 
@@ -32,7 +33,8 @@ interface ProductProps {
 
 export const ProductItem = (props: ProductProps) => {
   const { title, image, price, productId, quantity, children } = props;
- const [code, setCode] = React.useState('');
+  
+  const { setCode } = useAppStoreContext();
 
  const getId = () => {
   setCode(productId);

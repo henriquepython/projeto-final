@@ -1,25 +1,18 @@
+import { OneK } from "@mui/icons-material";
+import { TableOrders } from "../shared/components";
+import { useAppStoreContext } from "../shared/contexts";
+
+//find by id order userid=user
+//const {user} = useAppStoreContext()
+const order = [
+    {
+    totalPrice: 1, status: 'OK', userId:'fiaif' 
+    }]
+
 export const Accounts = () => {
     return (
         <>
-        <div>
-
-            form com esses dados:
-          
-            title: string;
-
-            image: string;
-
-            description: string;
-
-            category: Category;
-
-            price: number;
-
-            quantity: number;
-        </div>
-        <div>
-            listar todos produtos
-        </div>
+            <TableOrders orders={order} />
         </>
     );
 }

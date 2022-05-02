@@ -23,8 +23,15 @@ const sections = [
   {title: 'Eletronics', url:'/storeeletronics'}
 ]
 
+const sections1 = [ 
+  {title: 'Sign In', url:'/signin'},
+  {title: 'Sign Up', url:'/signup'},
+  {title: 'Account', url:'/accounts'}
+]
+
 export const ResponsiveHeader = () => {
   const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
+  const [anchorNavAccount, setAnchorNavAccount] = React.useState<null | HTMLElement>(null);
   const [search, setSearch] = React.useState('')
   //colocar no contextapi e usar na page search no findbyname product
 
@@ -34,6 +41,14 @@ export const ResponsiveHeader = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorNav(null);
+  };
+
+  const handleOpenNavMenuAccount = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorNavAccount(event.currentTarget);
+  };
+
+  const handleCloseNavMenuAccount = () => {
+    setAnchorNavAccount(null);
   };
 
   const { toggleTheme, themeName } = useAppThemeContext();
@@ -131,13 +146,47 @@ export const ResponsiveHeader = () => {
             </IconButton> 
 
             <Box sx={{ flexGrow: 0, mr: .5}}>
-              <Tooltip title="Login">
-                <IconButton 
-                  href='/signin'
-                  color='primary'
-                >
-                  <AccountCircleOutlinedIcon />
-                </IconButton>
+              <Tooltip title="User">
+               <>
+                  <IconButton 
+                    onClick={handleOpenNavMenuAccount}
+                    color='primary'
+                  >
+                    <AccountCircleOutlinedIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorNavAccount}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    open={Boolean(anchorNavAccount)}
+                    onClose={handleCloseNavMenuAccount}
+                    color='primary'
+                    sx={{
+                      display: 'block',
+                    }}
+                    >
+                    {sections1.map((section) => (
+                      <Button 
+                      key={section.title}
+                      href={section.url}
+                      onClick={handleCloseNavMenuAccount}
+                      variant='outlined'
+                      color='primary'
+                      sx={{ display: { xs: 'flex'}, mx: 4, my: 2  }}
+                      >
+                          {section.title}
+                      </Button>
+                    ))}
+                  </Menu>
+                </>
               </Tooltip>
             </Box>   
             

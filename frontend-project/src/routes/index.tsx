@@ -1,6 +1,7 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Cart, Checkout, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
+import { Accounts, Cart, Checkout, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
+import { Admin } from '../pages/Admin';
 
 
 export const AppRoutes = () => {
@@ -17,6 +18,8 @@ export const AppRoutes = () => {
             <Route path="/storeeletronics" element={<StoreEletronic />} />
             <Route path="/search" element={<Search />} />
             <Route path="/product" element={<Product />} />
+            <Route path="/accounts" element={<Accounts />} />
+            <Route path="/admin" element={<Admin />} />
 
             <Route path="*" element={<Navigate to='/home' />} />
         </Routes>
