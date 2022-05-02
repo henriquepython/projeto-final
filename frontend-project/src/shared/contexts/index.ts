@@ -1,2 +1,2 @@
-export * from './ContextStore'
-export * from './ThemeContext'
+export * from './ContextStore';
+export * from './ThemeContext';

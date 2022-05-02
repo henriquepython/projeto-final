@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -21,69 +20,69 @@ interface ProductListProps {
   }
 
 export const TableProductAdmin = (props: ProductListProps) => {
-    const { products } = props
+	const { products } = props;
 
-    const deleteProduct = () => {
-        //axios product delete 
-    }
+	const deleteProduct = () => {
+		//axios product delete 
+	};
     
-  return (
-    <React.Fragment>
-        <Box sx={{background: 'white'}}>
-            <Typography variant='h5' align='center' sx={{my: 4, width: '100vw'}}>
-                Products
-            </Typography>
-            <Button
-                href='/createproduct'
-                sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s', color: 'black',
-                '&:hover': {
-                    backgroundColor: 'blue',
-                    color: 'white'
-                    }}}
-                >
-                Create Product
-            </Button>
-        </Box>
-      <Table size="small" sx={{ background: 'white'}}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Id</TableCell>
-            <TableCell>image</TableCell>
-            <TableCell>title</TableCell>
-            <TableCell>price</TableCell>
-            <TableCell>stock</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {products.map((row) => (
-            <TableRow key={row.productId}>
-              <TableCell>{row.productId}</TableCell>
-              <TableCell>{row.image}</TableCell>
-              <TableCell>{row.title}</TableCell>
-              <TableCell>{row.price}</TableCell>
-              <TableCell>{row.quantity}</TableCell>
-              <TableCell>  
-                    <IconButton
-                        onClick={deleteProduct}
-                        color='warning'
-                        title='Delete Product'
-                        sx={{ fontSize: 15 }}
-                    >
-                         <CancelOutlinedIcon />
-                    </IconButton>
-                    <IconButton
-                        color='info'
-                        title='Edit Product'
-                        sx={{ fontSize: 15 }}
-                    >
-                         <EditOutlinedIcon />
-                    </IconButton>
-                </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </React.Fragment>
-  );
-}
+	return (
+		<React.Fragment>
+			<Box sx={{background: 'white'}}>
+				<Typography variant='h5' align='center' sx={{my: 4, width: '100vw'}}>
+                Produtos
+				</Typography>
+				<Button
+					href='/createproduct'
+					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s', color: 'black',
+						'&:hover': {
+							backgroundColor: 'blue',
+							color: 'white'
+						}}}
+				>
+                Criar Produtos
+				</Button>
+			</Box>
+			<Table size="small" sx={{ background: 'white'}}>
+				<TableHead>
+					<TableRow>
+						<TableCell>Id</TableCell>
+						<TableCell>imagem</TableCell>
+						<TableCell>Nome</TableCell>
+						<TableCell>preço</TableCell>
+						<TableCell>stock</TableCell>
+						<TableCell>Ações</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{products.map((row) => (
+						<TableRow key={row.productId}>
+							<TableCell>{row.productId}</TableCell>
+							<TableCell>{row.image}</TableCell>
+							<TableCell>{row.title}</TableCell>
+							<TableCell>{row.price}</TableCell>
+							<TableCell>{row.quantity}</TableCell>
+							<TableCell>  
+								<IconButton
+									onClick={deleteProduct}
+									color='warning'
+									title='Remover Produto'
+									sx={{ fontSize: 15 }}
+								>
+									<CancelOutlinedIcon />
+								</IconButton>
+								<IconButton
+									color='info'
+									title='Editar Produto'
+									sx={{ fontSize: 15 }}
+								>
+									<EditOutlinedIcon />
+								</IconButton>
+							</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</React.Fragment>
+	);
+};

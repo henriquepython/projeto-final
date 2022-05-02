@@ -13,218 +13,226 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { CssBaseline, Divider, Typography, TextField } from '@mui/material';
+import { CssBaseline, Typography, TextField } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
+import { useAppStoreContext } from '../contexts';
 
 
 const sections = [ 
-  {title: 'Clothes', url:'/storeclothes'},
-  {title: 'Sports', url:'/storesports'},
-  {title: 'Eletronics', url:'/storeeletronics'}
-]
+	{title: 'Roupas', url:'/storeclothes'},
+	{title: 'Esportes', url:'/storesports'},
+	{title: 'Eletronicos', url:'/storeeletronics'}
+];
 
 const sections1 = [ 
-  {title: 'Sign In', url:'/signin'},
-  {title: 'Sign Up', url:'/signup'},
-  {title: 'Account', url:'/accounts'}
-]
+	{title: 'Entrar', url:'/signin'},
+	{title: 'Cadastre-se', url:'/signup'},
+	{title: 'Area do Usuario', url:'/accounts'}
+];
 
 export const ResponsiveHeader = () => {
-  const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
-  const [anchorNavAccount, setAnchorNavAccount] = React.useState<null | HTMLElement>(null);
-  const [search, setSearch] = React.useState('')
-  //colocar no contextapi e usar na page search no findbyname product
+	const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
+	const [anchorNavAccount, setAnchorNavAccount] = React.useState<null | HTMLElement>(null);
+	
+	//colocar no contextapi e usar na page search no findbyname product
+	const { setSearch } = useAppStoreContext();
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorNav(event.currentTarget);
-  };
+	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorNav(event.currentTarget);
+	};
 
-  const handleCloseNavMenu = () => {
-    setAnchorNav(null);
-  };
+	const handleCloseNavMenu = () => {
+		setAnchorNav(null);
+	};
 
-  const handleOpenNavMenuAccount = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorNavAccount(event.currentTarget);
-  };
+	const handleOpenNavMenuAccount = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorNavAccount(event.currentTarget);
+	};
 
-  const handleCloseNavMenuAccount = () => {
-    setAnchorNavAccount(null);
-  };
+	const handleCloseNavMenuAccount = () => {
+		setAnchorNavAccount(null);
+	};
 
-  const { toggleTheme, themeName } = useAppThemeContext();
+	const { toggleTheme, themeName } = useAppThemeContext();
  
-  return (
-    <>
-      <CssBaseline/>
-      <Box 
-        height='15%'
-        display='flex'
-        color='primary'
-        sx={{ my: 2 ,background: 'none', borderBottom: .5, borderColor: themeName === 'light' ? 'black' : 'white'}}
-      >
-        <Container>
-          <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: 'flex' }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color='primary'
-                onClick={handleOpenNavMenu}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorNav)}
-                onClose={handleCloseNavMenu}
-                color='primary'
-                sx={{
-                  display: 'block',
-                }}
-              >
-                <Typography 
-                  color='primary'
-                  sx={{ my: 1, fontSize: 20,borderBottom: 1, borderColor: 'primary', display: 'flex', justifyContent: 'center' }}  
-                >
-                  Category
-                </Typography>
+	return (
+		<>
+			<CssBaseline/>
+			<Box 
+				height='15%'
+				display='flex'
+				color='primary'
+				sx={{ my: 2 ,background: 'none', borderBottom: .5, borderColor: themeName === 'light' ? 'black' : 'white'}}
+			>
+				<Container>
+					<Toolbar disableGutters>
+						<Box sx={{ flexGrow: 1, display: 'flex' }}>
+							<IconButton
+								size="large"
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								color='primary'
+								onClick={handleOpenNavMenu}
+							>
+								<MenuIcon />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorNav}
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'left',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'left',
+								}}
+								open={Boolean(anchorNav)}
+								onClose={handleCloseNavMenu}
+								color='primary'
+								sx={{
+									display: 'block',
+								}}
+							>
+								<Typography 
+									color='primary'
+									sx={{ my: 1, fontSize: 20,borderBottom: 1, borderColor: 'primary', display: 'flex', justifyContent: 'center' }}  
+								>
+                  Categorias
+								</Typography>
 
-                {sections.map((section) => (
-                  <Button 
-                  key={section.title}
-                  href={section.url}
-                  onClick={handleCloseNavMenu}
-                  variant='outlined'
-                  color='primary'
-                  sx={{ display: { xs: 'flex'}, mx: 4, my: 2  }}
-                  >
-                      {section.title}
-                  </Button>
-                ))}
-              </Menu>
+								{sections.map((section) => (
+									<Button 
+										key={section.title}
+										href={section.url}
+										onClick={handleCloseNavMenu}
+										variant='outlined'
+										color='primary'
+										sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
+											backgroundColor: 'blue',
+											color: 'white'
+										}  }}
+									>
+										{section.title}
+									</Button>
+								))}
+							</Menu>
 
-              <IconButton
-                href='/home'
-                color='primary'
-                sx={{ ml: 2 }}
-                >
-                My Store
-              </IconButton>
-            </Box>
+							<IconButton
+								href='/home'
+								color='primary'
+								sx={{ ml: 2 }}
+							>
+                JHBC Store
+							</IconButton>
+						</Box>
             
-            <TextField
-              size='small'
-              required
-              type='search'
-              id="searchProduct"
-              placeholder=' Search Products'
-              onChange={(e)=>setSearch(e.target.value)}
-              name="search"
-              autoComplete="search"
-              autoFocus
-              sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
-            />
+						<TextField
+							size='small'
+							required
+							type='search'
+							id="searchProduct"
+							placeholder=' Pesquise Produtos'
+							onChange={(e)=>setSearch(e.target.value)}
+							name="search"
+							autoComplete="search"
+							autoFocus
+							sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+						/>
 
-            <IconButton 
-              color='primary'
-              href='/search'
-              sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
-            >
-              <SearchOutlinedIcon />
-            </IconButton> 
+						<IconButton 
+							color='primary'
+							href='/search'
+							sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
+						>
+							<SearchOutlinedIcon />
+						</IconButton> 
 
-            <Box sx={{ flexGrow: 0, mr: .5}}>
-              <Tooltip title="User">
-               <>
-                  <IconButton 
-                    onClick={handleOpenNavMenuAccount}
-                    color='primary'
-                  >
-                    <AccountCircleOutlinedIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorNavAccount}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left',
-                    }}
-                    open={Boolean(anchorNavAccount)}
-                    onClose={handleCloseNavMenuAccount}
-                    color='primary'
-                    sx={{
-                      display: 'block',
-                    }}
-                    >
-                    {sections1.map((section) => (
-                      <Button 
-                      key={section.title}
-                      href={section.url}
-                      onClick={handleCloseNavMenuAccount}
-                      variant='outlined'
-                      color='primary'
-                      sx={{ display: { xs: 'flex'}, mx: 4, my: 2  }}
-                      >
-                          {section.title}
-                      </Button>
-                    ))}
-                  </Menu>
-                </>
-              </Tooltip>
-            </Box>   
+						<Box sx={{ flexGrow: 0, mr: .5}}>
+							<Tooltip title="Usuário">
+								<>
+									<IconButton 
+										onClick={handleOpenNavMenuAccount}
+										color='primary'
+									>
+										<AccountCircleOutlinedIcon />
+									</IconButton>
+									<Menu
+										id="menu-appbar"
+										anchorEl={anchorNavAccount}
+										anchorOrigin={{
+											vertical: 'bottom',
+											horizontal: 'left',
+										}}
+										keepMounted
+										transformOrigin={{
+											vertical: 'top',
+											horizontal: 'left',
+										}}
+										open={Boolean(anchorNavAccount)}
+										onClose={handleCloseNavMenuAccount}
+										color='primary'
+										sx={{
+											display: 'block',
+										}}
+									>
+										{sections1.map((section) => (
+											<Button 
+												key={section.title}
+												href={section.url}
+												onClick={handleCloseNavMenuAccount}
+												variant='outlined'
+												color='primary'
+												sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
+													backgroundColor: 'blue',
+													color: 'white'
+												}  }}
+											>
+												{section.title}
+											</Button>
+										))}
+									</Menu>
+								</>
+							</Tooltip>
+						</Box>   
             
-            <Box sx={{ flexGrow: 0,mr: .5 }}>
-              <Tooltip title="Open Cart">
-                <IconButton 
-                  href='/cart'
-                  color='primary'
-                  >
-                  <ShoppingCartOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Box>
+						<Box sx={{ flexGrow: 0,mr: .5 }}>
+							<Tooltip title="Carrinho">
+								<IconButton 
+									href='/cart'
+									color='primary'
+								>
+									<ShoppingCartOutlinedIcon />
+								</IconButton>
+							</Tooltip>
+						</Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open Area Admin">
-                <IconButton 
-                  href='/signinadmin'
-                  color='primary'
-                >
-                  <SettingsOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Box>
+						<Box sx={{ flexGrow: 0 }}>
+							<Tooltip title="Area Admin">
+								<IconButton 
+									href='/signinadmin'
+									color='primary'
+								>
+									<SettingsOutlinedIcon />
+								</IconButton>
+							</Tooltip>
+						</Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Change Theme">
-                <IconButton 
-                  onClick={toggleTheme}
-                  color='primary'
-                >
-                  {themeName === 'light' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon/>}
-                </IconButton>
-              </Tooltip>
-            </Box>
-          </Toolbar>
-        </Container>
-      </Box>
-    </>
-  );
+						<Box sx={{ flexGrow: 0 }}>
+							<Tooltip title="Mudar Tema">
+								<IconButton 
+									onClick={toggleTheme}
+									color='primary'
+								>
+									{themeName === 'light' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon/>}
+								</IconButton>
+							</Tooltip>
+						</Box>
+					</Toolbar>
+				</Container>
+			</Box>
+		</>
+	);
 };

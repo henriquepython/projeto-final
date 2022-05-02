@@ -1,28 +1,29 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
-import { Box, ThemeProvider } from '@mui/material';
-import { DarkTheme, LightTheme } from '../themes';
+import React, { createContext, useContext } from 'react';
 
 interface IStoreContextData {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   user: string;
   setUser: React.Dispatch<React.SetStateAction<string>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 const ContextStore = createContext({} as IStoreContextData);
 
 export const useAppStoreContext = () => {
-  return useContext(ContextStore);
+	return useContext(ContextStore);
 };
 
 
 export const AppStoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [code, setCode] = React.useState('');
-  const [ user, setUser] = React.useState('');
+	const [code, setCode] = React.useState('');
+	const [ user, setUser] = React.useState('');
+	const [search, setSearch] = React.useState('');
   
-  return (
-    //values = states
-    <ContextStore.Provider value={{ code, setCode, user, setUser  }}>
-          {children}
-    </ContextStore.Provider>
-  );
+	return (
+	//values = states
+		<ContextStore.Provider value={{ code, setCode, user, setUser, search, setSearch  }}>
+			{children}
+		</ContextStore.Provider>
+	);
 };
