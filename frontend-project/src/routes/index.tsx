@@ -2,6 +2,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Accounts, Cart, Checkout, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
 import { Admin } from '../pages/Admin';
+import { CreateProduct } from '../shared/components';
 
 
 export const AppRoutes = () => {
@@ -20,6 +21,7 @@ export const AppRoutes = () => {
             <Route path="/product" element={<Product />} />
             <Route path="/accounts" element={<Accounts />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path='/createproduct' element={<CreateProduct/>} />
 
             <Route path="*" element={<Navigate to='/home' />} />
         </Routes>

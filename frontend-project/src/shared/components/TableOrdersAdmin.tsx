@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 
@@ -25,10 +25,12 @@ export const TableOrdersAdmin = (props: OrderProps) => {
     }
   return (
     <React.Fragment>
-        <Typography variant='h5' align='center' sx={{my: 4, width: '100vw'}}>
-            Orders
-        </Typography>
-      <Table size="small">
+        <Box sx={{background: 'white'}}>
+            <Typography variant='h5' align='center' sx={{position: 'static',mt: 4, width: '100vw', color: 'black'}}>
+                Orders
+            </Typography>
+        </Box>
+      <Table size="small" sx={{ background: 'white'}}>
         <TableHead>
           <TableRow>
             <TableCell>User</TableCell>
