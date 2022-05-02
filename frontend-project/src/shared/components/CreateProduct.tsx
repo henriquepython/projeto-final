@@ -1,4 +1,4 @@
-import { Checkbox, Container, FormControlLabel, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Button, Checkbox, Container, FormControlLabel, Grid, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
 
 export const CreateProduct = () => {
@@ -80,6 +80,17 @@ export const CreateProduct = () => {
                     />
                     </Grid>
                 </Grid>
+                <Button
+                    variant="contained"
+                    //onclick functions 
+                    href='/admin'
+                    sx={{ width: '100%', mt: 6, color: 'white', background: 'black','&:hover': {
+                        backgroundColor: 'white',
+                        color: 'black'
+                        } }}
+                  >
+                    Create
+                  </Button>
             </>
         </Paper>
     </Container>
