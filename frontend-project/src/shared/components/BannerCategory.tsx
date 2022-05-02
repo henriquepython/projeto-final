@@ -27,10 +27,6 @@ const images = [
   },
 ];
 
-const ImageButton = styled(IconButton)(({ theme }) => ({
-  
-}));
-
 const ImageSrc = styled('span')({
   position: 'absolute',
   left: 0,

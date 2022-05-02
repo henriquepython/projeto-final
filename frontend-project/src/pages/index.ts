@@ -10,3 +10,4 @@ export * from './Store/StoreEletronic';
 export * from './Checkout';
 export * from './Adm';
 export * from './Accounts';
+export * from './Product';

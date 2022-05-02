@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 
-import { Button } from '@mui/material';
+
 
 const Img = styled('img')({
   margin: 'auto',
@@ -14,6 +14,11 @@ const Img = styled('img')({
   flexDirection: 'row',
   maxWidth: '100%',
   maxHeight: '100%',
+  transition: 'all linear 0.4s',
+  '&:hover': {
+    filter: 'grayscale(100%)',
+    transform: 'scale(1.1)'
+  }
 });
 
 interface ProductProps {
@@ -27,7 +32,11 @@ interface ProductProps {
 
 export const ProductItem = (props: ProductProps) => {
   const { title, image, price, productId, quantity, children } = props;
+ const [code, setCode] = React.useState('');
 
+ const getId = () => {
+  setCode(productId);
+}
   return (
     <Paper
       sx={{
@@ -41,7 +50,7 @@ export const ProductItem = (props: ProductProps) => {
     >
       <Grid container spacing={1}>
         <Grid item>
-          <ButtonBase sx={{ mb: 1 }}>
+          <ButtonBase href='/product' onClick={getId} sx={{ mb: 1 }}>
             <Img alt="complex" src={image} sx={{borderRadius: 2}} />
           </ButtonBase>
         </Grid>

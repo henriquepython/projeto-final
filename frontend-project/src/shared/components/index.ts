@@ -10,3 +10,6 @@ export * from  './Cart/CartList'
 export * from  './Carrousel'
 export * from  './CarrouselItem'
 export * from  './BannerCategory'
+export * from  './ProductView';
+export * from  './ButtonAddCart';
+export * from  './ButtonRemoveCart';

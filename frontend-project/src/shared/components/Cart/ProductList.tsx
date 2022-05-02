@@ -1,7 +1,9 @@
 import { Box, Button, Grid, Pagination } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
+import { ButtonAddCart } from '../ButtonAddCart';
+
 import { ProductItem } from './ProductItem';
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+
   interface ProductListProps {
     products: ReadonlyArray<{
       title: string;
@@ -21,12 +23,7 @@ export const ProductList = (props: ProductListProps) => {
             <Box sx={{width: 220, m: 2}}>
                 <ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
                  
-                    <Button 
-                      //onClick={'addcart'}
-                      sx={{ cursor: 'pointer', color: 'black', mt: 1, ml: 5, border: 1 }}
-                    >
-                      <AddShoppingCartOutlinedIcon /> Add Cart
-                    </Button>
+                    <ButtonAddCart />
                   
                 </ProductItem>
             </Box>

@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import { ProductItem } from './ProductItem';
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
+import { ButtonRemoveCart } from '../ButtonRemoveCart';
 
   interface CartListProps {
     productsByUser: ReadonlyArray<{
@@ -25,12 +26,7 @@ export const CartList = (props: CartListProps) => {
                   <Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
                   Quantity: {item.quantity}
                   </Typography>
-                  <Button 
-                  //onClick={'addcart'}
-                  sx={{ cursor: 'pointer', color: 'black', ml: 4, border: 1 }}
-                  >
-                  <RemoveShoppingCartOutlinedIcon /> Remove Cart
-                  </Button>
+                  <ButtonRemoveCart />
                 </ProductItem>
             </Box>
         ))}

@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { ProductItem } from './Cart/ProductItem';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { useAppThemeContext } from '../contexts';
+import { ButtonAddCart } from '.';
 
 const products = [
     { title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
@@ -62,12 +63,7 @@ export const CarrouselItem = (props: CarrouselProps) => {
                     <Box sx={{width: '90%'}}>
                         <ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
                         <Grid item>
-                            <Button 
-                            //onClick={'addcart'}
-                            sx={{ cursor: 'pointer', color: 'black', mt:1 ,ml: 7 }}
-                            >
-                            <AddShoppingCartOutlinedIcon /> Add Cart
-                            </Button>
+                          <ButtonAddCart />
                         </Grid>
                         </ProductItem>
                     </Box>
