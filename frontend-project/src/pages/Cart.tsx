@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material';
 import { CartList } from '../shared/components/CartList';
 
+
 const products = [
 	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
 	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
@@ -11,9 +12,7 @@ const products = [
     
 ];
 //fazer chamada api cart findCartByUser
-
 export const Cart = () => {
-    
 	return (
 		<>
 			<Box sx={{ width: '100vw'}}>

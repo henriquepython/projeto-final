@@ -59,12 +59,27 @@ export class ProductService {
     return product;
   }
 
-  async findByTitle(productName: string): Promise<CreateProductDto> {
+  async findByTitle(productName: string): Promise<CreateProductDto[]> {
     this.logger.log(`looking for products with name: ${productName}`);
     const product = await this.repository.findByName(productName);
 
     if (!product) {
       this.logger.error(`there is no product with the name: ${productName}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    return product;
+  }
+
+  async findByCategory(productCategory: string): Promise<CreateProductDto[]> {
+    this.logger.log(`looking for products with category: ${productCategory}`);
+    const product = await this.repository.findByCategory(productCategory);
+
+    if (!product) {
+      this.logger.error(
+        `there is no product with the category: ${productCategory}`,
+      );
       throw new BadRequestException('product not found');
     }
 

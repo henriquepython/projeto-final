@@ -5,9 +5,9 @@ export const Home = () => {
 		<>
 			<Carrousel />
 			<BannerCategory />
-			<CarrouselItem category='Roupas'/>
-			<CarrouselItem category='Eletronicos'/>
-			<CarrouselItem category='Esportes'/>
+			<CarrouselItem products={} category='Roupas'/>
+			<CarrouselItem products={} category='Eletronicos'/>
+			<CarrouselItem products={} category='Esportes'/>
 		</>
 	);
 };

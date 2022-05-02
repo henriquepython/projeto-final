@@ -5,26 +5,17 @@ import { ProductItem } from './ProductItem';
 import { useAppThemeContext } from '../contexts';
 import { ButtonAddCart } from '.';
 
-const products = [
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-];
-
      interface CarrouselProps {
          category: string;
+         products: ReadonlyArray<{
+          title: string;
+          image: string;
+          price: number;
+          productId: string;
+        }>;
      }
 export const CarrouselItem = (props: CarrouselProps) => {
-	const {category} = props;
+	const {category, products} = props;
 	const responsive = {
 		superLargeDesktop: {
 			// the naming can be any, depends on you.

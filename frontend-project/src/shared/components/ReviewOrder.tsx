@@ -15,8 +15,6 @@ interface ProductListProps {
 
 export const ReviewOrder = (props: ProductListProps) => {
 	const { products } = props;
-	let total = 0;
-
 	return (
 		<React.Fragment>
 			<Typography color='primary' variant="h6" gutterBottom>
@@ -25,7 +23,6 @@ export const ReviewOrder = (props: ProductListProps) => {
 			<List disablePadding>
 				{products.map((product) => (
 					<>
-						{total += product.price }
 						<ListItem key={product.title} sx={{ py: 1, px: 0 }}>
 							<ListItemText primary={product.title} />
 							<Typography variant="body2">{product.price}</Typography>
@@ -33,12 +30,6 @@ export const ReviewOrder = (props: ProductListProps) => {
 					</>
   
 				))}
-				<ListItem sx={{ py: 1, px: 0 }}>
-					<ListItemText primary="Total" />
-					<Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            ${total}
-					</Typography>
-				</ListItem>
 			</List>
 		</React.Fragment>
 	);

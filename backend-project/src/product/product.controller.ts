@@ -50,6 +50,11 @@ export class ProductController {
     return this.productService.findByTitle(name);
   }
 
+  @Get('/category/:category')
+  findByCategory(@Param('category') category: string) {
+    return this.productService.findByCategory(category);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productService.edit(id, updateProductDto);

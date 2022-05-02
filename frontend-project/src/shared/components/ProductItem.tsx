@@ -22,7 +22,7 @@ const Img = styled('img')({
 	}
 });
 
-interface ProductProps {
+interface IProductProps {
   title: string;
   image: string;
   price: number;
@@ -31,7 +31,7 @@ interface ProductProps {
   children: React.ReactNode
 }
 
-export const ProductItem = (props: ProductProps) => {
+export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, productId, children } = props;
   
 	const { setCode } = useAppStoreContext();

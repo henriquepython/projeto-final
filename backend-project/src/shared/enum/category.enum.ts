@@ -1,5 +1,5 @@
 export enum Category {
   Eletronics = 'Eletronics',
-  Clothes = 'clothes',
+  Clothes = 'Clothes',
   Sports = 'Sports',
 }

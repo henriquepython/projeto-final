@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { ButtonAddCart } from './';
 import { ProductItem } from './';
 
-  interface ProductListProps {
+  interface IProductListProps {
     products: ReadonlyArray<{
       title: string;
       image: string;
@@ -11,7 +11,7 @@ import { ProductItem } from './';
     }>;
   }
 
-export const ProductList = (props: ProductListProps) => {
+export const ProductList = (props: IProductListProps) => {
 	const { products } = props;
 
 	return (

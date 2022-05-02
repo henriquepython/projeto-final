@@ -1,4 +1,14 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+
+interface IProductListProps {
+    products: ReadonlyArray<{
+      title: string;
+      image: string;
+      price: number;
+      productId: string;
+    }>;
+  }
+
 
 interface IStoreContextData {
   code: string;
@@ -7,7 +17,10 @@ interface IStoreContextData {
   setUser: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  clothes: [];
+  setClothes: React.Dispatch<React.SetStateAction<[]>>;
 }
+
 const ContextStore = createContext({} as IStoreContextData);
 
 export const useAppStoreContext = () => {
@@ -16,13 +29,14 @@ export const useAppStoreContext = () => {
 
 
 export const AppStoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const [code, setCode] = React.useState('');
-	const [ user, setUser] = React.useState('');
-	const [search, setSearch] = React.useState('');
+	const [code, setCode] = useState('');
+	const [ user, setUser] = useState('');
+	const [search, setSearch] = useState('');
+	const [clothes, setClothes] = useState([]);
   
 	return (
 	//values = states
-		<ContextStore.Provider value={{ code, setCode, user, setUser, search, setSearch  }}>
+		<ContextStore.Provider value={{ code, setCode, user, setUser, search, setSearch, clothes, setClothes }}>
 			{children}
 		</ContextStore.Provider>
 	);

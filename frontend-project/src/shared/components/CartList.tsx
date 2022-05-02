@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { ProductItem } from './ProductItem';
 import { ButtonRemoveCart } from './ButtonRemoveCart';
 
-  interface CartListProps {
+  interface ICartListProps {
     productsByUser: ReadonlyArray<{
       title: string;
       image: string;
@@ -12,7 +12,7 @@ import { ButtonRemoveCart } from './ButtonRemoveCart';
     }>;
   }
 
-export const CartList = (props: CartListProps) => {
+export const CartList = (props: ICartListProps) => {
 	const { productsByUser } = props;
 	return (
 		<>
@@ -22,7 +22,7 @@ export const CartList = (props: CartListProps) => {
 						<ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
                                     
 							<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
-                  Quantidade: {item.quantity}
+                  Quantity: {item.quantity}
 							</Typography>
 							<ButtonRemoveCart />
 						</ProductItem>
