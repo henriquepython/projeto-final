@@ -11,7 +11,7 @@ export const ButtonAddCart = () => {
                 border: 1,
                 transition: 'all linear 0.4s',
                 '&:hover': {
-                    backgroundColor: 'green',
+                    backgroundColor: 'blue',
                     color: 'white'
                     }
             }}

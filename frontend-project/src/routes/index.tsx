@@ -1,8 +1,8 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Accounts, Cart, Checkout, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
+import { Accounts, Cart, Checkout, CreateProduct, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
 import { Admin } from '../pages/Admin';
-import { CreateProduct } from '../shared/components';
+
 
 
 export const AppRoutes = () => {

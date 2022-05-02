@@ -16,4 +16,3 @@ export * from  './ButtonRemoveCart';
 export * from  './TableOrders';
 export * from  './TableOrdersAdmin';
 export * from  './TableProductAdmin';
-export * from  './CreateProduct';
