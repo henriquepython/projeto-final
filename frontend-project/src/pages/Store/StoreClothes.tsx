@@ -1,31 +1,26 @@
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ProductList } from '../../shared/components/ProductList';
-import { useAppStoreContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
 
 const products = [
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
+	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs'},
+	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs'},
+	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs'},
+	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs'},
 ];
-//fazer chamada api cart findByCategory clothes
-export const StoreClothes = () => {
-	const {clothes, setClothes} = useAppStoreContext();
 
-	useEffect(() => {
-		api
-			.get('/category/Clothes')
-			.then(({data}) => {
-				setClothes(data);
+export const StoreClothes = () => {
+	const [clothes, setClothes] = useState([...products]);
+
+	useEffect(()=> {
+		api.get('product/category/Clothes')
+			.then((response) => {
+				console.log(JSON.stringify(response.data));
+				setClothes(response.data);
 			});
 	}, []);
+
 	return (
 		<Box sx={{ width: '100vw'}}>
 			<ProductList products={clothes}  />

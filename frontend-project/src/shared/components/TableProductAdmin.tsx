@@ -55,8 +55,8 @@ export const TableProductAdmin = (props: ProductListProps) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{products.map((row) => (
-						<TableRow key={row.productId}>
+					{products.map((row, index) => (
+						<TableRow key={index}>
 							<TableCell>{row.productId}</TableCell>
 							<TableCell>{row.image}</TableCell>
 							<TableCell>{row.title}</TableCell>

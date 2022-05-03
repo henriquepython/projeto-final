@@ -71,6 +71,19 @@ export class OrderService {
     return order.updateOne({ status: OrderStatus.Cancelled });
   }
 
+  async RequestCancelledOrderByUser(orderId: string): Promise<CreateOrderDto> {
+    this.logger.log(`looking for order with id: ${orderId}`);
+    const order = await this.repository.findOneUserId(orderId);
+
+    if (!order) {
+      this.logger.error(`there is no order with the id: ${orderId}`);
+      throw new BadRequestException('order not found');
+    }
+
+    this.logger.log('order found');
+    return order.updateOne({ status: OrderStatus.RequestCancelled });
+  }
+
   async completedOrderByUser(orderId: string): Promise<CreateOrderDto> {
     this.logger.log(`looking for order with id: ${orderId}`);
     const order = await this.repository.findOneUserId(orderId);

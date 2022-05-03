@@ -1,9 +1,8 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductItem } from './ProductItem';
 import { useAppThemeContext } from '../contexts';
-import { ButtonAddCart } from '.';
 
      interface CarrouselProps {
          category: string;
@@ -11,7 +10,7 @@ import { ButtonAddCart } from '.';
           title: string;
           image: string;
           price: number;
-          productId: string;
+          _id: string;
         }>;
      }
 export const CarrouselItem = (props: CarrouselProps) => {
@@ -51,11 +50,7 @@ export const CarrouselItem = (props: CarrouselProps) => {
 			>
 				{products.map((item, index) => (
 					<Box key={index} sx={{width: '90%'}}>
-						<ProductItem title={item.title} image={item.image} price={item.price} productId={item.productId}>
-							<Grid item>
-								<ButtonAddCart />
-							</Grid>
-						</ProductItem>
+						<ProductItem title={item.title} image={item.image} price={item.price} _id={item._id}/>
 					</Box>
 				))}
 			</Carousel>

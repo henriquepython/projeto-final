@@ -16,6 +16,7 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { CssBaseline, Typography, TextField } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
 import { useAppStoreContext } from '../contexts';
+import { useRef } from 'react';
 
 
 const sections = [ 
@@ -34,8 +35,8 @@ export const ResponsiveHeader = () => {
 	const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
 	const [anchorNavAccount, setAnchorNavAccount] = React.useState<null | HTMLElement>(null);
 	
-	//colocar no contextapi e usar na page search no findbyname product
-	const { setSearch } = useAppStoreContext();
+	
+	const { search, setSearch } = useAppStoreContext();
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorNav(event.currentTarget);
@@ -51,6 +52,11 @@ export const ResponsiveHeader = () => {
 
 	const handleCloseNavMenuAccount = () => {
 		setAnchorNavAccount(null);
+	};
+
+
+	const searchInput = () => {
+		setSearch(input);
 	};
 
 	const { toggleTheme, themeName } = useAppThemeContext();
@@ -131,13 +137,10 @@ export const ResponsiveHeader = () => {
             
 						<TextField
 							size='small'
-							required
 							type='search'
-							id="searchProduct"
+							id="search"
 							placeholder=' Pesquise Produtos'
-							onChange={(e)=>setSearch(e.target.value)}
 							name="search"
-							autoComplete="search"
 							autoFocus
 							sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
 						/>
@@ -145,6 +148,7 @@ export const ResponsiveHeader = () => {
 						<IconButton 
 							color='primary'
 							href='/search'
+							onClick={searchInput}
 							sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
 						>
 							<SearchOutlinedIcon />

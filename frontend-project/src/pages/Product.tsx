@@ -1,19 +1,41 @@
+import { useEffect, useState } from 'react';
 import { ProductView } from '../shared/components';
+import { useAppStoreContext } from '../shared/contexts';
+import { api } from '../shared/services/api';
 //import { useAppStoreContext } from '../shared/contexts';
 //find by id =state code
 //const {code} = useAppStoreContext()
-const product = {
-	title: 'Tecnologia',
-	image: 'https://source.unsplash.com/ojZ4wJNUM5w',
-	price: 1,
-	productId: 'djfs',
-	quantity: 1,
-	descriptions: 'ksfkjdjljfgçl'
-};
+interface IProduct {
+	title: string;
+	image: string;
+	price: number;
+	_id: any;
+	quantity: number;
+	description: string;
+}
 
 
 export const Product = () => {
+	const [productView, setproductView] = useState<IProduct>({
+		title: '',
+		image: '',
+		price: 0,
+		_id: '',
+		quantity: 0,
+		description: '',
+	});
+	
+	const {code} = useAppStoreContext();
+	
+
+	useEffect(()=> {
+		api.get<IProduct>(`product/${code}`)
+			.then((response) => {
+				console.log(JSON.stringify(response.data));
+				setproductView(response.data);
+			});
+	}, []);
 	return(
-		<ProductView title={product.title} image={product.image} price={product.price} productId={product.productId} quantity={product.quantity} descriptions={product.descriptions}/>
+		<ProductView title={productView.title} image={productView.image} price={productView.price} _id={productView._id} description={productView.description}/>
 	);
 };

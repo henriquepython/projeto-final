@@ -17,7 +17,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { JwtGuard } from 'src/auth/jwt.auth.guard';
 
-@ApiBearerAuth()
+// @ApiBearerAuth()
 @ApiTags('product')
 @Controller('product')
 export class ProductController {
@@ -29,7 +29,7 @@ export class ProductController {
   }
 
   //@Roles(Role.ADMIN)
-  @UseGuards(JwtGuard, RolesGuard)
+  // @UseGuards(JwtGuard, RolesGuard)
   @Get()
   findAll() {
     return this.productService.findAll();
@@ -38,11 +38,6 @@ export class ProductController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productService.findById(id);
-  }
-
-  @Get('/detail/:id')
-  findDetail(@Param('id') id: string) {
-    return this.productService.viewDetailProducts(id);
   }
 
   @Get('/name/:name')

@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { Box, InputBase } from '@mui/material';
-import { ButtonAddCart } from './ButtonAddCart';
+import { Box, Button, InputBase } from '@mui/material';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 
 
@@ -23,13 +23,13 @@ interface ProductViewProps {
   title: string;
   image: string;
   price: number;
-  productId: string;
+  _id: string;
   quantity?: number;
-  descriptions: string;
+  description: string;
 }
 
 export const ProductView = (props: ProductViewProps) => {
-	const { title, image, price, productId, quantity, descriptions } = props;
+	const { title, image, price, _id, quantity, description } = props;
  
 	return (
 		<>
@@ -57,7 +57,7 @@ export const ProductView = (props: ProductViewProps) => {
 
 					<Grid item>
 						<Typography variant="subtitle2" color="text.secondary">
-							{productId}
+							{_id}
 						</Typography>
 					</Grid>
 
@@ -81,7 +81,22 @@ export const ProductView = (props: ProductViewProps) => {
 					}}
 				/>
 
-				<ButtonAddCart />
+				<Button 
+					//onClick={addCart}
+					sx={{ 
+						cursor: 'pointer',
+						color: 'black',
+						mt: 1,
+						border: 1,
+						transition: 'all linear 0.4s',
+						'&:hover': {
+							backgroundColor: 'blue',
+							color: 'white'
+						}
+					}}
+				>
+					<AddShoppingCartOutlinedIcon /> Add Carrinho
+				</Button>
         
 
 			</Paper>
@@ -90,7 +105,7 @@ export const ProductView = (props: ProductViewProps) => {
         Descriptions:
 				</Typography>
 				<Typography variant='subtitle1'>
-					{descriptions}
+					{description}
 				</Typography>
       
 			</Box>

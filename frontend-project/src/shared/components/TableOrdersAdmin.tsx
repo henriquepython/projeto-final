@@ -13,7 +13,8 @@ interface OrderProps {
     orders: ReadonlyArray<{
         totalPrice: number;
         status: string;
-        userId: string; 
+        userId: any;
+		_id?: any; 
     }>
 }
 
@@ -33,15 +34,17 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 			<Table size="small" sx={{ background: 'white'}}>
 				<TableHead>
 					<TableRow>
-						<TableCell>Id usuario</TableCell>
+						<TableCell>Id Order</TableCell>
+						<TableCell>Id User</TableCell>
 						<TableCell>Status</TableCell>
 						<TableCell>Total</TableCell>
-						<TableCell>Actions</TableCell>
+						<TableCell>Ações</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{orders.map((row) => (
-						<TableRow key={row.userId}>
+					{orders.map((row, index) => (
+						<TableRow key={index}>
+							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.userId}</TableCell>
 							<TableCell>{row.status}</TableCell>
 							<TableCell>{row.totalPrice}</TableCell>

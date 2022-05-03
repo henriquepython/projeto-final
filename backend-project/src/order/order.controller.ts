@@ -46,6 +46,11 @@ export class OrderController {
     return this.orderService.completedOrderByUser(id);
   }
 
+  @Patch('/requestCancelled/:id')
+  RequestCancelledOrder(@Param('id') id: string) {
+    return this.orderService.RequestCancelledOrderByUser(id);
+  }
+
   @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {

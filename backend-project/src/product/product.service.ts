@@ -87,19 +87,6 @@ export class ProductService {
     return product;
   }
 
-  async viewDetailProducts(productId: string): Promise<string> {
-    this.logger.log(`looking for products with id: ${productId}`);
-    const product = await this.repository.findById(productId);
-
-    if (!product) {
-      this.logger.error(`there is no product with the id: ${productId}`);
-      throw new BadRequestException('product not found');
-    }
-
-    this.logger.log('product found');
-    return product.description;
-  }
-
   async edit(
     productId: string,
     updateProductDto: UpdateProductDto,

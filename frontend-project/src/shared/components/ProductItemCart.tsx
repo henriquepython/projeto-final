@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import { useAppStoreContext } from '../contexts';
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 import { Button } from '@mui/material';
 
 
@@ -24,16 +23,16 @@ const Img = styled('img')({
 	}
 });
 
-interface IProductProps {
+interface IProductCartProps {
   title: string;
   image: string;
   price: number;
   _id: any;
-  quantity?: number;
+  quantity: number;
 }
 
-export const ProductItem = (props: IProductProps) => {
-	const { title, image, price, _id } = props;
+export const ProductItemCart = (props: IProductCartProps) => {
+	const { title, image, price, _id, quantity} = props;
   
 	const { setCode } = useAppStoreContext();
 
@@ -75,21 +74,23 @@ export const ProductItem = (props: IProductProps) => {
 						<Typography variant="subtitle1" component="div">
               Preço: ${price}
 						</Typography>
+						<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
+                  Quantity: {quantity}
+						</Typography>
 						<Button 
-							//onClick={addCart}
+							//onClick={'removecart'}
 							sx={{ 
 								cursor: 'pointer',
 								color: 'black',
-								mt: 1,
 								border: 1,
 								transition: 'all linear 0.4s',
 								'&:hover': {
-									backgroundColor: 'blue',
+									backgroundColor: 'red',
 									color: 'white'
 								}
 							}}
 						>
-							<AddShoppingCartOutlinedIcon /> Add Carrinho
+							<RemoveShoppingCartOutlinedIcon /> Remover Carrinho
 						</Button>
 					</Grid>
 				</Grid>

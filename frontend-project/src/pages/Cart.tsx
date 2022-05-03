@@ -1,5 +1,8 @@
 import { Box, Button } from '@mui/material';
+// import { useEffect, useState } from 'react';
 import { CartList } from '../shared/components/CartList';
+// import { useAppStoreContext } from '../shared/contexts';
+// import { api } from '../shared/services/api';
 
 
 const products = [
@@ -13,6 +16,16 @@ const products = [
 ];
 //fazer chamada api cart findCartByUser
 export const Cart = () => {
+	// const [cart, setCart] = useState([]);
+	// const {codeUser} = useAppStoreContext();
+
+	// useEffect(()=> {
+	// 	api.get(`/cart/user/${codeUser}`)
+	// 		.then((response) => {
+	// 			console.log(JSON.stringify(response.data));
+	// 			setCart(response.data);
+	// 		});
+	// }, []);
 	return (
 		<>
 			<Box sx={{ width: '100vw'}}>
