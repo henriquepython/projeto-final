@@ -56,6 +56,7 @@ export const ResponsiveHeader = () => {
 
 
 	const searchInput = () => {
+		const input = document.getElementById('search');
 		setSearch(input);
 	};
 
@@ -148,7 +149,7 @@ export const ResponsiveHeader = () => {
 						<IconButton 
 							color='primary'
 							href='/search'
-							onClick={searchInput}
+							onClick={() => searchInput()}
 							sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
 						>
 							<SearchOutlinedIcon />

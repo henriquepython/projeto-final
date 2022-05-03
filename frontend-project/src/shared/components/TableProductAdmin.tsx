@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { api } from '../services/api';
 
 
 interface ProductListProps {
@@ -15,15 +16,18 @@ interface ProductListProps {
       image: string;
       price: number;
       quantity: number;
-      productId: string;
+      _id: string;
     }>;
   }
 
 export const TableProductAdmin = (props: ProductListProps) => {
 	const { products } = props;
 
-	const deleteProduct = () => {
-		//axios product delete 
+	const getDelete = async (index: string) => {
+		const { data } = await api.delete(`product/${index}`);
+		console.log(`${data}`);
+		document.location.reload();
+		//axios order update status for cancelled 
 	};
     
 	return (
@@ -57,14 +61,14 @@ export const TableProductAdmin = (props: ProductListProps) => {
 				<TableBody>
 					{products.map((row, index) => (
 						<TableRow key={index}>
-							<TableCell>{row.productId}</TableCell>
+							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.image}</TableCell>
 							<TableCell>{row.title}</TableCell>
 							<TableCell>{row.price}</TableCell>
 							<TableCell>{row.quantity}</TableCell>
 							<TableCell>  
 								<IconButton
-									onClick={deleteProduct}
+									onClick={()=> getDelete(row._id)}
 									color='warning'
 									title='Remover Produto'
 									sx={{ fontSize: 15 }}

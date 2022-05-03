@@ -17,7 +17,7 @@ export class ProductRepository {
   }
 
   async findById(productId: string): Promise<Product> {
-    return await this.productModel.findById(productId);
+    return await this.productModel.findOne({ _id: productId });
   }
 
   async findByCartId(productId: any): Promise<Product> {

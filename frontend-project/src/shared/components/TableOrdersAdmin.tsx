@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { Box, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { api } from '../services/api';
 
 
 interface OrderProps {
@@ -21,7 +22,17 @@ interface OrderProps {
 export const TableOrdersAdmin = (props: OrderProps) => {
 	const { orders } = props;
 
-	const getRequestCancel = () => {
+	const getCancelled = async (index: string) => {
+		const { data } = await api.patch(`order/cancelled/${index}`);
+		console.log(`${data}`);
+		document.location.reload();
+		//axios order update status for cancelled 
+	};
+
+	const getCompleted = async (index: string) => {
+		const { data } = await api.patch(`order/completed/${index}`);
+		console.log(`${data}`);
+		document.location.reload();
 		//axios order update status for cancelled 
 	};
 	return (
@@ -50,7 +61,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 							<TableCell>{row.totalPrice}</TableCell>
 							<TableCell>  
 								<IconButton
-									onClick={getRequestCancel}
+									onClick={()=> getCancelled(row._id)}
 									color='warning'
 									title='Cancelar Pedido'
 									sx={{ fontSize: 15 }}
@@ -58,7 +69,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 									<CancelOutlinedIcon />
 								</IconButton>
 								<IconButton
-									onClick={getRequestCancel}
+									onClick={()=> getCompleted(row._id)}
 									color='success'
 									title='Finalizar Pedido'
 									sx={{ fontSize: 15 }}
