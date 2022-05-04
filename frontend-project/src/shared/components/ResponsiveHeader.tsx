@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -13,10 +12,10 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { CssBaseline, Typography, TextField } from '@mui/material';
+import { CssBaseline, Typography, TextField, Box } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
-import { useAppStoreContext } from '../contexts';
-import { useRef } from 'react';
+import { useState } from 'react';
+import { api } from '../services/api';
 
 
 const sections = [ 
@@ -32,11 +31,10 @@ const sections1 = [
 ];
 
 export const ResponsiveHeader = () => {
-	const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
-	const [anchorNavAccount, setAnchorNavAccount] = React.useState<null | HTMLElement>(null);
+	const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
+	const [anchorNavAccount, setAnchorNavAccount] = useState<null | HTMLElement>(null);
+	const [search, setSearch] = useState([]);
 	
-	
-	const { search, setSearch } = useAppStoreContext();
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorNav(event.currentTarget);
@@ -55,9 +53,15 @@ export const ResponsiveHeader = () => {
 	};
 
 
-	const searchInput = () => {
-		const input = document.getElementById('search');
-		setSearch(input);
+	
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+
+		const searchs = input.get('search');
+		const { data } = await api.get(`product/name/${searchs}`);
+		setSearch(data);
+		//axios order update status for Request cancelled
 	};
 
 	const { toggleTheme, themeName } = useAppThemeContext();
@@ -135,25 +139,24 @@ export const ResponsiveHeader = () => {
                 JHBC Store
 							</IconButton>
 						</Box>
-            
-						<TextField
-							size='small'
-							type='search'
-							id="search"
-							placeholder=' Pesquise Produtos'
-							name="search"
-							autoFocus
-							sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '40%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
-						/>
+						<Box component="form" noValidate onSubmit={handleSubmit} sx={{width:'55%',flexGrow: 0, display: { xs: 'none', md: 'flex' }}}>
+							<TextField
+								size='small'
+								type='search'
+								id="search"
+								placeholder=' Pesquise Produtos'
+								name="search"
+								autoFocus
+								sx={{position: 'relative', display: { xs: 'none', md: 'flex'}, width: '80%' ,border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+							/>
 
-						<IconButton 
-							color='primary'
-							href='/search'
-							onClick={() => searchInput()}
-							sx={{ flexGrow: 0, mr: 19, display: { xs: 'none', md: 'flex' }}}
-						>
-							<SearchOutlinedIcon />
-						</IconButton> 
+							<IconButton 
+								color='primary'
+								type='submit'
+							>
+								<SearchOutlinedIcon />
+							</IconButton> 
+						</Box>
 
 						<Box sx={{ flexGrow: 0, mr: .5}}>
 							<Tooltip title="Usuário">

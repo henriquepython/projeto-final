@@ -16,7 +16,7 @@ interface ProductListProps {
       image: string;
       price: number;
       quantity: number;
-      _id: string;
+      _id?: any;
     }>;
   }
 

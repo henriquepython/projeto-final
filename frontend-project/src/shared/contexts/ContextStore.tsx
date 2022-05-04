@@ -7,8 +7,6 @@ interface IStoreContextData {
   setCodeUser: React.Dispatch<React.SetStateAction<string>>;
   user: string;
   setUser: React.Dispatch<React.SetStateAction<string>>;
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ContextStore = createContext({} as IStoreContextData);
@@ -22,11 +20,11 @@ export const AppStoreProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 	const [code, setCode] = useState('');
 	const [codeUser, setCodeUser] = useState('');
 	const [ user, setUser] = useState('');
-	const [search, setSearch] = useState('');
+	
   
 	return (
 	//values = states
-		<ContextStore.Provider value={{ code, setCode,codeUser, setCodeUser,user, setUser, search, setSearch}}>
+		<ContextStore.Provider value={{ code, setCode,codeUser, setCodeUser,user, setUser}}>
 			{children}
 		</ContextStore.Provider>
 	);
