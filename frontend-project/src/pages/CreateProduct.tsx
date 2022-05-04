@@ -1,8 +1,36 @@
 import { Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import { api } from '../shared/services/api';
+
 
 export const CreateProduct = () => {
+	const handleCreateProduct = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const title = `${input.get('title')}`;
+		const image = `${input.get('image')}`;
+		const description = `${input.get('description')}`;
+		const category = `${input.get('category')}`;
+		const quantity = Number(input.get('quantity'));
+		const price = Number(input.get('price'));
+
+		await api.post('/product', {
+			title: title,
+			image: image,
+			description: description,
+			category: category,
+			price: price,
+			quantity: quantity
+		})
+			.then(function (response) {
+				console.log(response.data);
+			}).catch(function (response) {
+			//handle error
+				console.log(response);
+			});
+		
+	};
 	return(
-		<Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+		<Container component="form" noValidate onSubmit={handleCreateProduct} maxWidth="sm" sx={{ mb: 4 }}>
 			<Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}>
 				<>
 					<Typography variant="h6" gutterBottom>
@@ -81,8 +109,8 @@ export const CreateProduct = () => {
 					</Grid>
 					<Button
 						variant="contained"
-						//onclick functions 
-						href='/admin'
+						type='submit'
+						
 						sx={{ width: '100%', mt: 6, color: 'white', background: 'black','&:hover': {
 							backgroundColor: 'white',
 							color: 'black'

@@ -23,7 +23,7 @@ export class ProductService {
       Product,
     );
 
-    const product = await this.repository.findByName(productMapper.title);
+    const product = await this.repository.findByNameOne(productMapper.title);
 
     if (product) {
       throw new BadRequestException('Product already exists');

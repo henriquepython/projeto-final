@@ -28,6 +28,10 @@ export class ProductRepository {
     return await this.productModel.find({ title: productName });
   }
 
+  async findByNameOne(productName: string): Promise<Product> {
+    return await this.productModel.findOne({ title: productName });
+  }
+
   async findByCategory(productName: string): Promise<Product[]> {
     return await this.productModel.find({ category: productName });
   }
