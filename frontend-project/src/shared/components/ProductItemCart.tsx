@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import { useAppStoreContext } from '../contexts';
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 import { Button } from '@mui/material';
 
@@ -34,10 +33,10 @@ interface IProductCartProps {
 export const ProductItemCart = (props: IProductCartProps) => {
 	const { title, image, price, _id, quantity} = props;
   
-	const { setCode } = useAppStoreContext();
+	
 
 	const getId = () => {
-		setCode(_id);
+		const get = 0;
 	};
 	return (
 		<Paper

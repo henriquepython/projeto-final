@@ -1,7 +1,7 @@
 //find by all order
 
 import { useEffect, useState } from 'react';
-import { TableOrdersAdmin, TableProductAdmin } from '../shared/components';
+import { TableOrdersAdmin, TableProductAdmin, TableUsersAdmin } from '../shared/components';
 import { api } from '../shared/services/api';
 
 const order = [
@@ -41,10 +41,21 @@ export const Admin = () => {
 				setProductAll(response.data);
 			});
 	}, []);
+
+	const [userAll, setUserAll] = useState([]);
+
+	useEffect(()=> {
+		api.get('user/')
+			.then((response) => {
+				console.log(JSON.stringify(response.data));
+				setUserAll(response.data);
+			});
+	}, []);
 	return (
 		<>
 			<TableOrdersAdmin orders={orderAll} />
 			<TableProductAdmin products={productAll} />
+			<TableUsersAdmin user={userAll} />
 		</>
 	);
 };

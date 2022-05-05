@@ -13,7 +13,7 @@ import { ProductItem } from './';
 
 export const ProductList = (props: IProductListProps) => {
 	const { products } = props;
-	
+
 	return (
 		<>
 			<Box sx={{ width: '100vw', display: 'flex', flexShrink: 1, flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row' }}>

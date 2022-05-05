@@ -12,7 +12,7 @@ export class User {
   phoneNumber: string;
 
   @AutoMap()
-  roles: Role[];
+  roles: Role;
 
   @AutoMap()
   password: string;

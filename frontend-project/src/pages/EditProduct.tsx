@@ -7,7 +7,7 @@ const categories = [
 	{ label: 'Roupas' }
 ];
 
-export const CreateProduct = () => {
+export const EditProduct = () => {
 	const handleCreateProduct = async (event: React.FormEvent<HTMLFormElement>) => {
 		try {
 
@@ -20,7 +20,8 @@ export const CreateProduct = () => {
 			const quantity = Number(input.get('quantity'));
 			const price = Number(input.get('price'));
 			
-			const { data } = await api.post('/product', {
+			const edit = localStorage.getItem('index');
+			const { data } = await api.patch(`product/${edit}`,{
 				title: title,
 				image: image,
 				description: description,
@@ -30,27 +31,26 @@ export const CreateProduct = () => {
 			});
 			
 			console.log(data);
-			alert('Produto Criado');
+			alert('Produto Editado');
 			document.location.href = '/admin';
 			
 			
 		} catch (err) {
 			console.log(err);
-			alert('Não foi possivel criar produto');
+			alert('Não foi possivel editar produto');
 		}
 		
 	};
 	return(
-		<Container component="form" noValidate={false} onSubmit={handleCreateProduct} maxWidth="sm" sx={{ mb: 4 }}>
+		<Container component="form"  onSubmit={handleCreateProduct} maxWidth="sm" sx={{ mb: 4 }}>
 			<Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}>
 				<>
-					<Typography variant="h6" gutterBottom>
-                    Criar Produto
+					<Typography variant="h6" gutterBottom sx={{color: 'black'}}>
+						{localStorage.getItem('title')}
 					</Typography>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<TextField
-								required={true}
 								id="title"
 								name="title"
 								label="Nome"
@@ -100,7 +100,6 @@ export const CreateProduct = () => {
 						</Grid>
 						<Grid item xs={12} sm={2}>
 							<TextField
-								required={true}
 								id="quantity"
 								name="quantity"
 								type='number'
@@ -112,7 +111,6 @@ export const CreateProduct = () => {
 						</Grid>
 						<Grid item xs={12} sm={4}>
 							<TextField
-								required={true}
 								type='number'
 								id="price"
 								name="price"
@@ -132,7 +130,7 @@ export const CreateProduct = () => {
 							color: 'black'
 						} }}
 					>
-                    Criar Produto
+                    Editar Produto
 					</Button>
 				</>
 			</Paper>

@@ -18,8 +18,8 @@ export class CreateUserDto {
   email: string;
 
   @AutoMap()
-  @ApiProperty({ enum: ['user', 'admin'] })
-  roles: Role[];
+  @ApiProperty({ enum: ['user', 'admin'], default: 'user' })
+  roles: Role;
 
   @AutoMap()
   @IsString()

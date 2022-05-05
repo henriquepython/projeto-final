@@ -59,7 +59,7 @@ export class ProductService {
     return product;
   }
 
-  async findByTitle(productName: string): Promise<CreateProductDto[]> {
+  async findByTitle(productName: string): Promise<CreateProductDto> {
     this.logger.log(`looking for products with name: ${productName}`);
     const product = await this.repository.findByName(productName);
 

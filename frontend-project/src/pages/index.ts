@@ -12,3 +12,4 @@ export * from './Admin';
 export * from './Accounts';
 export * from './Product';
 export * from './CreateProduct';
+export * from './EditProduct';

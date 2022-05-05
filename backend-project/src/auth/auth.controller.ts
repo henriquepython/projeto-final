@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { BadRequestException, Logger } from '@nestjs/common';
 import { Controller, Post, Body, Scope } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ApiTags } from '@nestjs/swagger';
@@ -20,16 +20,38 @@ export class AuthController {
   async login(@Body() loginDto: LoginDto) {
     this.logger.log(`Buscando usuario por email: ${loginDto.email}`);
     const user = await this.userService.findByEmail(loginDto.email);
-    if (user && user.password === loginDto.password) {
-      this.logger.log('Login realizado com sucesso');
-      const payload = {
-        name: user.email,
-        sub: user.email,
-      };
-      return { accessToken: await this.jwtService.signAsync(payload) };
+
+    if (!user || user.password != loginDto.password) {
+      this.logger.error('unauthorized user');
+      throw new BadRequestException('Invalid');
     }
 
-    this.logger.error('email ou password invalido');
-    return 'email ou password invalido';
+    this.logger.log('Login realizado com sucesso');
+    const payload = {
+      name: user.email,
+      sub: user.email,
+    };
+    return {
+      email: user.email,
+      accessToken: await this.jwtService.signAsync(payload),
+    };
+  }
+
+  @Post('/admin')
+  async loginAdmin(@Body() loginDto: LoginDto) {
+    this.logger.log(`Buscando usuario por email: ${loginDto.email}`);
+    const user = await this.userService.findByEmail(loginDto.email);
+
+    if (!user || user.password != loginDto.password || user.roles != 'admin') {
+      this.logger.error('unauthorized user');
+      throw new BadRequestException('unauthorized user');
+    }
+
+    this.logger.log('Login realizado com sucesso');
+    const payload = {
+      name: user.email,
+      sub: user.email,
+    };
+    return { accessToken: await this.jwtService.signAsync(payload) };
   }
 }

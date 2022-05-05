@@ -1,41 +1,41 @@
+import { ThemeContext } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { ProductView } from '../shared/components';
-import { useAppStoreContext } from '../shared/contexts';
 import { api } from '../shared/services/api';
 //import { useAppStoreContext } from '../shared/contexts';
 //find by id =state code
 //const {code} = useAppStoreContext()
-interface IProduct {
+
+interface TProduct {
 	title: string;
 	image: string;
 	price: number;
 	_id: any;
-	quantity: number;
+	quantity?: number;
 	description: string;
-}
-
+  }
 
 export const Product = () => {
-	const [productView, setproductView] = useState<IProduct>({
-		title: '',
-		image: '',
-		price: 0,
-		_id: '',
-		quantity: 0,
-		description: '',
+	const [ productById, setProductById] = useState({
+		_id:'',
+		title:'',
+		image:'',
+		description:'',
+		category:'',
+		quantity:0,
+		price:0,
 	});
-	
-	const {code} = useAppStoreContext();
-	
-
+	const code = localStorage.getItem('id_product');	
 	useEffect(()=> {
-		api.get<IProduct>(`product/${code}`)
-			.then((response) => {
-				console.log(JSON.stringify(response.data));
-				setproductView(response.data);
+		api.get(`product/${code}`)
+			.then((response)=>{
+				setProductById(response.data);
 			});
-	}, []);
+	}, [code]);
+
+
+
 	return(
-		<ProductView title={productView.title} image={productView.image} price={productView.price} _id={productView._id} description={productView.description}/>
+		<ProductView title={productById.title} image={productById.image} price={productById.price} _id={productById._id} description={productById.description}/>
 	);
 };

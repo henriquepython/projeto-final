@@ -4,9 +4,10 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import { useAppStoreContext } from '../contexts';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import { Button } from '@mui/material';
+import { Button, Input } from '@mui/material';
+import { api } from '../services/api';
+import { SettingsCellOutlined } from '@mui/icons-material';
 
 
 
@@ -34,12 +35,28 @@ interface IProductProps {
 
 export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, _id } = props;
-  
-	const { setCode } = useAppStoreContext();
 
-	const getId = () => {
-		setCode(_id);
+	const handleAddCart = async(idProduct: string) => {
+		const userId = localStorage.getItem('user_id');
+		await api.post('/cart', {
+			title: title,
+			image: image,
+			price: Number(price),
+			quantity: 2,
+			userId: {'_id': userId},
+  			productId: {'_id': idProduct}
+		})
+			.then(()=>{
+				alert('produto adicionado ao carrinho!');
+			});
+
 	};
+
+	const getId = async(id: string) => {
+		localStorage.setItem('id_product', `${id}`);
+		document.location.href= '/product';
+	};
+
 	return (
 		<Paper
 			sx={{
@@ -53,7 +70,7 @@ export const ProductItem = (props: IProductProps) => {
 		>
 			<Grid container spacing={1}>
 				<Grid item>
-					<ButtonBase href='/product' onClick={getId} sx={{ mb: 1 }}>
+					<ButtonBase onClick={()=>getId(_id)} sx={{ mb: 1 }}>
 						<Img key={_id} alt="complex" src={image} sx={{borderRadius: 2, width: '100vw', height: 150}} />
 					</ButtonBase>
 				</Grid>
@@ -75,8 +92,9 @@ export const ProductItem = (props: IProductProps) => {
 						<Typography variant="subtitle1" component="div">
               Preço: ${price}
 						</Typography>
+						<Input placeholder='Qtd' id='quantity' type='number'/>
 						<Button 
-							//onClick={addCart}
+							onClick={()=>handleAddCart(_id)}
 							sx={{ 
 								cursor: 'pointer',
 								color: 'black',

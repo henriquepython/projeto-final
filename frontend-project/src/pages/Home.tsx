@@ -26,7 +26,7 @@ export const Home = () => {
 	const [clothesCarrousel, setClothesCarrousel] = useState([...productsClothes]);
 
 	useEffect(()=> {
-		api.get('product/category/Clothes')
+		api.get('product/category/Roupas')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setClothesCarrousel(response.data);
@@ -36,7 +36,7 @@ export const Home = () => {
 	const [sportsCarrousel, setSportsCarrousel] = useState([...productsSports]);
 
 	useEffect(()=> {
-		api.get('product/category/Sports')
+		api.get('product/category/Esportes')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setSportsCarrousel(response.data);
@@ -45,7 +45,7 @@ export const Home = () => {
 	const [eletronicsCarrousel, setEletronicsCarrousel] = useState([...productsEletronics]);
 
 	useEffect(()=> {
-		api.get('product/category/Eletronics')
+		api.get('product/category/Eletronicos')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setEletronicsCarrousel(response.data);

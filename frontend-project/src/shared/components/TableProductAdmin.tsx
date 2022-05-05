@@ -8,6 +8,7 @@ import { Box, Button, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { api } from '../services/api';
+import { useAppThemeContext } from '../contexts';
 
 
 interface ProductListProps {
@@ -16,17 +17,25 @@ interface ProductListProps {
       image: string;
       price: number;
       quantity: number;
+      category?: string;
       _id?: any;
     }>;
   }
 
 export const TableProductAdmin = (props: ProductListProps) => {
 	const { products } = props;
-
+	
 	const getDelete = async (index: string) => {
-		const { data } = await api.delete(`product/${index}`);
-		console.log(`${data}`);
+		await api.delete(`product/${index}`);
+		alert('Produto removido com sucesso');
 		document.location.reload();
+		//axios order update status for cancelled 
+	};
+
+	const getEdit = async (index: string, title:string) => {
+		localStorage.setItem('index',`${index}`);
+		localStorage.setItem('title',`${title}`);
+		document.location.href='/editproduct';
 		//axios order update status for cancelled 
 	};
     
@@ -38,10 +47,10 @@ export const TableProductAdmin = (props: ProductListProps) => {
 				</Typography>
 				<Button
 					href='/createproduct'
-					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s', color: 'black',
+					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s', color: 'white', background: 'blue',
 						'&:hover': {
-							backgroundColor: 'blue',
-							color: 'white'
+							backgroundColor: 'white',
+							color: 'black'
 						}}}
 				>
                 Criar Produtos
@@ -54,6 +63,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 						<TableCell>imagem</TableCell>
 						<TableCell>Nome</TableCell>
 						<TableCell>preço</TableCell>
+						<TableCell>categoria</TableCell>
 						<TableCell>stock</TableCell>
 						<TableCell>Ações</TableCell>
 					</TableRow>
@@ -65,6 +75,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 							<TableCell>{row.image}</TableCell>
 							<TableCell>{row.title}</TableCell>
 							<TableCell>{row.price}</TableCell>
+							<TableCell>{row.category}</TableCell>
 							<TableCell>{row.quantity}</TableCell>
 							<TableCell>  
 								<IconButton
@@ -78,6 +89,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 								<IconButton
 									color='info'
 									title='Editar Produto'
+									onClick={()=>getEdit(row._id, row.title)}
 									sx={{ fontSize: 15 }}
 								>
 									<EditOutlinedIcon />

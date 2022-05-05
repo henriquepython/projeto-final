@@ -16,7 +16,7 @@ export const StoreEletronic = () => {
 	const [eletronic, setEletronic] = useState([...products]);
 
 	useEffect(()=> {
-		api.get('product/category/Eletronics')
+		api.get('product/category/Eletronicos')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setEletronic(response.data);

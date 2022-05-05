@@ -14,7 +14,7 @@ export const StoreClothes = () => {
 	const [clothes, setClothes] = useState([...products]);
 
 	useEffect(()=> {
-		api.get('product/category/Clothes')
+		api.get('product/category/Roupas')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setClothes(response.data);

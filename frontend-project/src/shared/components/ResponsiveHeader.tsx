@@ -33,7 +33,7 @@ const sections1 = [
 export const ResponsiveHeader = () => {
 	const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
 	const [anchorNavAccount, setAnchorNavAccount] = useState<null | HTMLElement>(null);
-	const [search, setSearch] = useState([]);
+
 	
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -59,8 +59,8 @@ export const ResponsiveHeader = () => {
 		const input = new FormData(event.currentTarget);
 
 		const searchs = input.get('search');
-		const { data } = await api.get(`product/name/${searchs}`);
-		setSearch(data);
+		localStorage.setItem('search',`${searchs}`);
+		document.location.href='/search';
 		//axios order update status for Request cancelled
 	};
 

@@ -17,7 +17,6 @@ export class CreateProductDto {
   title: string;
 
   @AutoMap()
-  @IsUrl()
   @IsOptional()
   @ApiProperty()
   image: string;

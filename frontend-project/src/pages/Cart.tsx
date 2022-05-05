@@ -1,35 +1,28 @@
 import { Box, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
 // import { useEffect, useState } from 'react';
 import { CartList } from '../shared/components/CartList';
+import { api } from '../shared/services/api';
 // import { useAppStoreContext } from '../shared/contexts';
 // import { api } from '../shared/services/api';
 
-
-const products = [
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs', quantity: 1 },
-    
-];
 //fazer chamada api cart findCartByUser
 export const Cart = () => {
-	// const [cart, setCart] = useState([]);
-	// const {codeUser} = useAppStoreContext();
+	const [cart, setCart] = useState([]);
+	const idUser = localStorage.getItem('id_user');
 
-	// useEffect(()=> {
-	// 	api.get(`/cart/user/${codeUser}`)
-	// 		.then((response) => {
-	// 			console.log(JSON.stringify(response.data));
-	// 			setCart(response.data);
-	// 		});
-	// }, []);
+	useEffect(()=> {
+		console.log(idUser);
+		api.get(`cart/user/${idUser}`)
+			.then((response)=> {
+				setCart(response.data);
+				console.log(JSON.stringify(response.data));
+			});
+	}, [idUser]);
 	return (
 		<>
 			<Box sx={{ width: '100vw'}}>
-				<CartList productsByUser={products} />
+				<CartList productsByUser={cart} />
 			</Box>
 			<Box sx={{ mr: 2, display: 'flex', flexShrink: 1, flexWrap: 'wrap', justifyContent: 'end', flexDirection: 'row' }}>
 				<Button

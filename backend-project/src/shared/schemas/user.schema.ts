@@ -15,7 +15,7 @@ export class UserModel {
   phoneNumber: string;
 
   @Prop()
-  roles: Role[];
+  roles: Role;
 
   @Prop({ type: String })
   password: string;

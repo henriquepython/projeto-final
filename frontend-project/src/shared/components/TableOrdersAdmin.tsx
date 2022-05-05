@@ -22,17 +22,23 @@ interface OrderProps {
 export const TableOrdersAdmin = (props: OrderProps) => {
 	const { orders } = props;
 
-	const getCancelled = async (index: string) => {
-		const { data } = await api.patch(`order/cancelled/${index}`);
-		console.log(`${data}`);
-		document.location.reload();
+	const getCancelled = async (index: string, status: string) => {
+		if (status === ('Cancelamento Pendente' || 'Pendente')) {
+			const { data } = await api.patch(`order/cancelled/${index}`);
+			console.log(`${data}`);
+			alert('Pedido Cancelado com sucesso!');
+			document.location.reload();
+		}
 		//axios order update status for cancelled 
 	};
 
-	const getCompleted = async (index: string) => {
-		const { data } = await api.patch(`order/completed/${index}`);
-		console.log(`${data}`);
-		document.location.reload();
+	const getCompleted = async (index: string, status: string) => {
+		if (status === 'Pendente') {
+			const { data } = await api.patch(`order/completed/${index}`);
+			console.log(`${data}`);
+			alert('Pedido Finalizado');
+			document.location.reload();
+		}
 		//axios order update status for cancelled 
 	};
 	return (
@@ -61,7 +67,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 							<TableCell>{row.totalPrice}</TableCell>
 							<TableCell>  
 								<IconButton
-									onClick={()=> getCancelled(row._id)}
+									onClick={()=> getCancelled(row._id, row.status)}
 									color='warning'
 									title='Cancelar Pedido'
 									sx={{ fontSize: 15 }}
@@ -69,7 +75,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 									<CancelOutlinedIcon />
 								</IconButton>
 								<IconButton
-									onClick={()=> getCompleted(row._id)}
+									onClick={()=> getCompleted(row._id, row.status)}
 									color='success'
 									title='Finalizar Pedido'
 									sx={{ fontSize: 15 }}

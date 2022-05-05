@@ -23,7 +23,7 @@ interface ProductViewProps {
   title: string;
   image: string;
   price: number;
-  _id: string;
+  _id: any;
   quantity?: number;
   description: string;
 }

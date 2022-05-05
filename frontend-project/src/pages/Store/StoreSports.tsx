@@ -16,7 +16,7 @@ export const StoreSports = () => {
 	const [sport, setSport] = useState([...products]);
 
 	useEffect(()=> {
-		api.get('product/category/Sports')
+		api.get('product/category/Esportes')
 			.then((response) => {
 				console.log(JSON.stringify(response.data));
 				setSport(response.data);

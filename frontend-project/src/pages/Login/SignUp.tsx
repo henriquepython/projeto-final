@@ -10,17 +10,37 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useAppThemeContext } from '../../shared/contexts';
+import { api } from '../../shared/services/api';
 
 
 export const SignUp = () => {
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
-		});
+		const input = new FormData(event.currentTarget);
+		const name = input.get('name');
+		const email = input.get('email');
+		const password = input.get('password');
+		const phone = input.get('phone');
+		
+		try{
+			const { data } = await api.post('/user', {
+				name: name,
+				email: email,
+				password: password,
+				phoneNumber: phone,
+			});
+				
+			console.log(data);
+			alert('Usuário cadastrado com sucesso');
+			document.location.href = '/home';
+				
+				
+		} catch (err) {
+			console.log(err);
+			alert('Não foi possivel criar produto');
+		}
+			
 	};
 
 	const { themeName } = useAppThemeContext();
@@ -45,7 +65,7 @@ export const SignUp = () => {
           Cadastro
 				</Typography>
         
-				<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+				<Box component="form" noValidate={false} onSubmit={handleSubmit} sx={{ mt: 3 }}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<TextField

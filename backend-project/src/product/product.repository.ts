@@ -24,8 +24,8 @@ export class ProductRepository {
     return await this.productModel.findById(productId);
   }
 
-  async findByName(productName: string): Promise<Product[]> {
-    return await this.productModel.find({ title: productName });
+  async findByName(productName: string): Promise<Product> {
+    return await this.productModel.findOne({ title: productName });
   }
 
   async findByNameOne(productName: string): Promise<Product> {

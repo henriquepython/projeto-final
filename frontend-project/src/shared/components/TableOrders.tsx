@@ -21,10 +21,13 @@ interface OrderListProps {
 export const TableOrders = (props: OrderListProps) => {
 	const { orders } = props;
 
-	const getRequestCancel = async (index: string) => {
-		const { data } = await api.patch(`order/requestCancelled/${index}`);
-		console.log(`${data}`);
-		document.location.reload();
+	const getRequestCancel = async (index: string, status: string) => {
+		if (status === 'Pendente') {
+			const { data } = await api.patch(`order/requestCancelled/${index}`);
+			console.log(`${data}`);
+			alert('Pedido de cancelamento realizado');
+			document.location.reload();
+		}
 		//axios order update status for Request cancelled
 	};
 	return (
@@ -51,7 +54,7 @@ export const TableOrders = (props: OrderListProps) => {
 									key={index}
 									color='warning'
 									title='Pedido de Cancelamento'
-									onClick={()=>getRequestCancel(row._id)}
+									onClick={()=>getRequestCancel(row._id, row.status)}
 									sx={{ fontSize: 15 }}
 								>
 									<CancelOutlinedIcon />
