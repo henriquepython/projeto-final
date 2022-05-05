@@ -20,7 +20,7 @@ export const EditProduct = () => {
 			const quantity = Number(input.get('quantity'));
 			const price = Number(input.get('price'));
 			
-			const edit = localStorage.getItem('index');
+			const edit = localStorage.getItem('id_product');
 			const { data } = await api.patch(`product/${edit}`,{
 				title: title,
 				image: image,

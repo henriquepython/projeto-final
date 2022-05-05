@@ -4,6 +4,7 @@ import { CreateCartDto } from './dto/create-cart.dto';
 import { Cart } from './entities/cart.entity';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
+import { ProductRepository } from 'src/product/product.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class CartService {
@@ -11,6 +12,7 @@ export class CartService {
     @InjectMapper() private mapper: Mapper,
     private readonly logger: Logger,
     private readonly repository: CartRepository,
+    private readonly repositoryProduct: ProductRepository,
   ) {
     this.logger = new Logger(CartService.name);
   }
@@ -24,8 +26,18 @@ export class CartService {
   }
 
   async removeCart(id: string): Promise<string> {
-    this.logger.log(`product with id: ${id} has been removed from cart`);
-    await this.repository.remove(id);
+    this.logger.log(`looking for products with id: ${id}`);
+    const product = await this.repository.findByIdProduct(id);
+
+    if (!product) {
+      this.logger.error(`there is no product with the id: ${id}`);
+      throw new BadRequestException('product not found');
+    }
+
+    this.logger.log('product found');
+    this.logger.log('product removed');
+    this.repository.remove(id);
+
     return `product with id: ${id} has been removed from cart`;
   }
 

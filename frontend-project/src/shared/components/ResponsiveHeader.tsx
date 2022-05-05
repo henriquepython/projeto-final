@@ -12,7 +12,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { CssBaseline, Typography, TextField, Box } from '@mui/material';
+import { CssBaseline, Typography, TextField, Box, Avatar, Icon } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
 import { useState } from 'react';
 import { api } from '../services/api';
@@ -26,9 +26,9 @@ const sections = [
 
 const sections1 = [ 
 	{title: 'Entrar', url:'/signin'},
-	{title: 'Cadastre-se', url:'/signup'},
-	{title: 'Area do Usuario', url:'/accounts'}
+	{title: 'Cadastre-se', url:'/signup'}
 ];
+
 
 export const ResponsiveHeader = () => {
 	const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
@@ -48,11 +48,15 @@ export const ResponsiveHeader = () => {
 		setAnchorNavAccount(event.currentTarget);
 	};
 
-	const handleCloseNavMenuAccount = () => {
-		setAnchorNavAccount(null);
+	const handleOpenNavMenuAccountLogout = () => {
+		localStorage.clear();
+		document.location.reload();
 	};
 
 
+	const handleCloseNavMenuAccount = () => {
+		setAnchorNavAccount(null);
+	};
 	
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -159,38 +163,86 @@ export const ResponsiveHeader = () => {
 						</Box>
 
 						<Box sx={{ flexGrow: 0, mr: .5}}>
-							<Tooltip title="Usuário">
-								<>
-									<IconButton 
-										onClick={handleOpenNavMenuAccount}
-										color='primary'
-									>
-										<AccountCircleOutlinedIcon />
-									</IconButton>
-									<Menu
-										id="menu-appbar"
-										anchorEl={anchorNavAccount}
-										anchorOrigin={{
-											vertical: 'bottom',
-											horizontal: 'left',
-										}}
-										keepMounted
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}
-										open={Boolean(anchorNavAccount)}
-										onClose={handleCloseNavMenuAccount}
-										color='primary'
-										sx={{
-											display: 'block',
-										}}
-									>
-										{sections1.map((section) => (
+							{localStorage.getItem('id_user') === null?
+								<Tooltip title="Usuário">
+									<>
+										<IconButton 
+											onClick={handleOpenNavMenuAccount}
+											color='primary'
+										>
+											<AccountCircleOutlinedIcon />
+										</IconButton>
+										<Menu
+											id="menu-appbar"
+											anchorEl={anchorNavAccount}
+											anchorOrigin={{
+												vertical: 'bottom',
+												horizontal: 'left',
+											}}
+											keepMounted
+											transformOrigin={{
+												vertical: 'top',
+												horizontal: 'left',
+											}}
+											open={Boolean(anchorNavAccount)}
+											onClose={handleCloseNavMenuAccount}
+											color='primary'
+											sx={{
+												display: 'block',
+											}}
+										>
+											{sections1.map((section) => (
+												<Button 
+													key={section.title}
+													href={section.url}
+													onClick={handleCloseNavMenuAccount}
+													variant='outlined'
+													color='primary'
+													sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
+														backgroundColor: 'blue',
+														color: 'white'
+													}  }}
+												>
+													{section.title}
+												</Button>
+											))}
+										</Menu>
+									</>
+								</Tooltip>
+								:
+								<Tooltip title="Logout">
+									<>
+										<IconButton 
+											onClick={handleOpenNavMenuAccount}
+											color='primary'
+										>
+											
+											<Avatar alt="user" />
+											
+										</IconButton>
+										<Menu
+											id="menu-appbar"
+											anchorEl={anchorNavAccount}
+											anchorOrigin={{
+												vertical: 'bottom',
+												horizontal: 'left',
+											}}
+											keepMounted
+											transformOrigin={{
+												vertical: 'top',
+												horizontal: 'left',
+											}}
+											open={Boolean(anchorNavAccount)}
+											onClose={handleCloseNavMenuAccount}
+											color='primary'
+											sx={{
+												display: 'block',
+											}}
+										>
+											
 											<Button 
-												key={section.title}
-												href={section.url}
-												onClick={handleCloseNavMenuAccount}
+												href='/home'
+												onClick={handleOpenNavMenuAccountLogout}
 												variant='outlined'
 												color='primary'
 												sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
@@ -198,12 +250,25 @@ export const ResponsiveHeader = () => {
 													color: 'white'
 												}  }}
 											>
-												{section.title}
+												Logout
 											</Button>
-										))}
-									</Menu>
-								</>
-							</Tooltip>
+											<Button 
+												href='/accounts'
+												variant='outlined'
+												color='primary'
+												sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
+													backgroundColor: 'blue',
+													color: 'white'
+												}  }}
+											>
+													Area do usuario
+											</Button>
+											
+										</Menu>
+									</>
+								</Tooltip>
+								
+							}
 						</Box>   
             
 						<Box sx={{ flexGrow: 0,mr: .5 }}>

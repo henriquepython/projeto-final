@@ -15,7 +15,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { RolesGuard } from 'src/auth/roles.guard';
 import { JwtGuard } from 'src/auth/jwt.auth.guard';
 
 // @ApiBearerAuth()

@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useAppThemeContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
+import { Input } from '@mui/material';
 
 
 export const SignUp = () => {
@@ -22,13 +23,14 @@ export const SignUp = () => {
 		const email = input.get('email');
 		const password = input.get('password');
 		const phone = input.get('phone');
+
 		
 		try{
 			const { data } = await api.post('/user', {
 				name: name,
 				email: email,
 				password: password,
-				phoneNumber: phone,
+				phoneNumber: phone
 			});
 				
 			console.log(data);
@@ -69,33 +71,34 @@ export const SignUp = () => {
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<TextField
+								required={true}
 								autoComplete="given-name"
 								name="name"
-								required
-								fullWidth
+								type='text'								fullWidth
 								id="name"
-								placeholder="Nome"
+								label="Nome"
 								autoFocus
 								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								required
+								required={true}
 								fullWidth
 								id="email"
-								placeholder="Email Address"
+								label="Email Address"
 								name="email"
+								type='email'
 								autoComplete="email"
 								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								required
+								required={true}
 								fullWidth
 								name="password"
-								placeholder="Senha"
+								label="Senha"
 								type="password"
 								id="password"
 								autoComplete="new-password"
@@ -104,10 +107,11 @@ export const SignUp = () => {
 						</Grid>
 						<Grid item xs={12} sm={6}>
 							<TextField
-								required
+								required={true}
 								fullWidth
+								type='tel'
 								id="phone"
-								placeholder="Telefone"
+								label="Telefone"
 								name="phone"
 								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
 							/>

@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 import { Button } from '@mui/material';
+import { api } from '../services/api';
 
 
 
@@ -33,11 +34,19 @@ interface IProductCartProps {
 export const ProductItemCart = (props: IProductCartProps) => {
 	const { title, image, price, _id, quantity} = props;
   
+	const handleRemoveCart = async () => {
+		const idProduct = localStorage.getItem('id_product');
+		await api.delete(`cart/${idProduct}`);
+		alert('produto removido do carrinho');
+		document.location.reload();
+	};
 	
 
-	const getId = () => {
-		const get = 0;
+	const getId = async(id: string) => {
+		localStorage.setItem('id_product', `${id}`);
+		document.location.href= '/product';
 	};
+
 	return (
 		<Paper
 			sx={{
@@ -51,7 +60,7 @@ export const ProductItemCart = (props: IProductCartProps) => {
 		>
 			<Grid container spacing={1}>
 				<Grid item>
-					<ButtonBase href='/product' onClick={getId} sx={{ mb: 1 }}>
+					<ButtonBase href='/product' onClick={()=>getId(_id)} sx={{ mb: 1 }}>
 						<Img key={_id} alt="complex" src={image} sx={{borderRadius: 2, width: '100vw', height: 150}} />
 					</ButtonBase>
 				</Grid>
@@ -77,7 +86,7 @@ export const ProductItemCart = (props: IProductCartProps) => {
                   Quantity: {quantity}
 						</Typography>
 						<Button 
-							//onClick={'removecart'}
+							onClick={handleRemoveCart}
 							sx={{ 
 								cursor: 'pointer',
 								color: 'black',

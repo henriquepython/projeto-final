@@ -41,7 +41,7 @@ export class CartRepository {
   }
 
   async remove(id: string) {
-    return await this.cartModel.deleteOne({ _id: id }).exec();
+    return await this.cartModel.remove({ productId: { _id: id } }).exec();
   }
 
   async removeMany(userId: any) {
@@ -54,6 +54,10 @@ export class CartRepository {
 
   async findById(id: string): Promise<Cart> {
     return await this.cartModel.findById(id);
+  }
+
+  async findByIdProduct(id: any): Promise<Cart> {
+    return await this.cartModel.findOne({ productId: { _id: id } });
   }
 
   async findCartByUser(userId: any): Promise<Cart[]> {

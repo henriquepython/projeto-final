@@ -37,14 +37,14 @@ export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, _id } = props;
 
 	const handleAddCart = async(idProduct: string) => {
-		const userId = localStorage.getItem('user_id');
+		const userId = localStorage.getItem('id_user');
 		await api.post('/cart', {
 			title: title,
 			image: image,
-			price: Number(price),
+			price: price,
 			quantity: 2,
-			userId: {'_id': userId},
-  			productId: {'_id': idProduct}
+			userId: {_id: userId},
+			productId: {_id: idProduct}
 		})
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');

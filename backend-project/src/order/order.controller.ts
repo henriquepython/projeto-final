@@ -12,12 +12,10 @@ import {
 import { OrderService } from './order.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { RolesGuard } from 'src/auth/roles.guard';
 
 @ApiBearerAuth()
 @ApiTags('order')
 @Controller('order')
-@UseGuards(RolesGuard)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
   @HttpCode(201)

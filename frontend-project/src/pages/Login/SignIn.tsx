@@ -14,16 +14,7 @@ import { useState } from 'react';
 
 
 export const SignIn = () => {
-	const [ user, setUser] = useState({
-		_id:'',
-		name: '',
-		email: '',
-		roles: '',
-		phoneNumber: '',
-		password: ''
-	});
 	
-
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		try {
 
@@ -37,14 +28,13 @@ export const SignIn = () => {
 				email: email,
 				password: password,
 			})
-				.then((response)=>{
-					api.get(`user/${response.data.email}`)
+				.then(async()=>{
+					await api.get(`user/${email}`)
 						.then((response)=> {
-							setUser(response.data);
-							localStorage.setItem('id_user', `${user._id}`);
-							
+							localStorage.setItem('id_user', `${response.data._id}`);	
 						});
 				});
+
 			
 			alert('Usuário logado com sucesso!');
 			document.location.href = '/home';
