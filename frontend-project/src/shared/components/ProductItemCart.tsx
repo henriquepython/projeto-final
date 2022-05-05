@@ -27,7 +27,7 @@ interface IProductCartProps {
   title: string;
   image: string;
   price: number;
-  _id: any;
+  _id: string;
   quantity: number;
 }
 

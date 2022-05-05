@@ -64,7 +64,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.userId}</TableCell>
 							<TableCell>{row.status}</TableCell>
-							<TableCell>{row.totalPrice}</TableCell>
+							<TableCell>R$ {row.totalPrice}</TableCell>
 							<TableCell>  
 								<IconButton
 									onClick={()=> getCancelled(row._id, row.status)}

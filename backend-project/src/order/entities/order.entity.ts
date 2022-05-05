@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { Schema as MongooseSchema } from 'mongoose';
-import { CartOrderDto } from 'src/cart/dto/cart-order.dto';
+import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
 import { OrderStatus } from '../../shared/enum/OrderStatus.enum';
 
 export class Order {
@@ -11,7 +11,7 @@ export class Order {
   status: OrderStatus;
 
   @AutoMap()
-  products: CartOrderDto[];
+  products: CreateCartDto[];
 
   @AutoMap()
   totalPrice: number;

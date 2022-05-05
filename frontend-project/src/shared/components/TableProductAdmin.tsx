@@ -74,7 +74,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.image}</TableCell>
 							<TableCell>{row.title}</TableCell>
-							<TableCell>{row.price}</TableCell>
+							<TableCell>R$ {row.price}</TableCell>
 							<TableCell>{row.category}</TableCell>
 							<TableCell>{row.quantity}</TableCell>
 							<TableCell>  

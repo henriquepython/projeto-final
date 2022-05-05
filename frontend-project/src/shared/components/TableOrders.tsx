@@ -48,7 +48,7 @@ export const TableOrders = (props: OrderListProps) => {
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.userId._id}</TableCell>
 							<TableCell>{row.status}</TableCell>
-							<TableCell>{row.totalPrice}</TableCell>
+							<TableCell>R$ {row.totalPrice}</TableCell>
 							<TableCell>
 								<IconButton
 									key={index}

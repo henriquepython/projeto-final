@@ -5,9 +5,7 @@ import {
   Body,
   Param,
   Patch,
-  Delete,
   HttpCode,
-  UseGuards,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -47,11 +45,5 @@ export class OrderController {
   @Patch('/requestCancelled/:id')
   RequestCancelledOrder(@Param('id') id: string) {
     return this.orderService.RequestCancelledOrderByUser(id);
-  }
-
-  @HttpCode(204)
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderService.remove(id);
   }
 }

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
-import { CartOrderDto } from 'src/cart/dto/cart-order.dto';
+import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
 import { User } from 'src/user/entities/user.entity';
 import { OrderStatus } from '../enum/OrderStatus.enum';
 
@@ -15,7 +15,7 @@ export class OrderModel {
   status: OrderStatus;
 
   @Prop()
-  products: CartOrderDto[];
+  products: CreateCartDto[];
 
   @Prop()
   totalPrice: number;

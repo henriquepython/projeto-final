@@ -11,32 +11,38 @@ import Typography from '@mui/material/Typography';
 import { AddressForm } from '../shared/components/AddressForm';
 import { PaymentForm } from '../shared/components/PaymentForm';
 import { ReviewOrder } from '../shared/components/ReviewOrder';
-
-const products = [
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
-	{ title: 'Technology', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 5, productId: 'djfs', quantity: 1 },
-];
+import { api } from '../shared/services/api';
+import { useEffect, useState } from 'react';
 
 
 const steps = ['Endereço de entrega', 'Detalhes do pagamento', 'Revisão do pedido'];
 
-function getStepContent(step: number) {
-	switch (step) {
-	case 0:
-		return <AddressForm />;
-	case 1:
-		return <PaymentForm />;
-	case 2:
-		return <ReviewOrder products={products} />;
-	default:
-		throw new Error('Unknown step');
-	}
-}
 
 export const Checkout = () => {
+	const [checkout, setCheckout] = useState([]);
+	const idUser = localStorage.getItem('id_user');
+	useEffect(()=> {
+		console.log(idUser);
+		api.get(`cart/user/${idUser}`)
+			.then((response)=> {
+				setCheckout(response.data);
+				console.log(JSON.stringify(response.data));
+			});
+	}, [idUser]);
+
+	function getStepContent(step: number) {
+		switch (step) {
+		case 0:
+			return <AddressForm />;
+		case 1:
+			return <PaymentForm />;
+		case 2:
+			return <ReviewOrder productsByUser={checkout} />;
+		default:
+			throw new Error('Unknown step');
+		}
+	}
+
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
@@ -45,6 +51,21 @@ export const Checkout = () => {
 
 	const handleBack = () => {
 		setActiveStep(activeStep - 1);
+	};
+
+	const handleOrder = async () => {
+		const total = localStorage.getItem('total_order');
+		const userId = localStorage.getItem('id_user');
+		console.log(total);
+		await api.post('order/', {
+			totalPrice: Number(total),
+			products: [''],
+			status: '',
+			userId: {_id: userId}
+		}).then((response)=>{
+			console.log(response.data);
+			setActiveStep(activeStep + 1);
+		});
 	};
 
 	return (
@@ -92,15 +113,25 @@ export const Checkout = () => {
                       Back
 										</Button>
 									)}
-                  
-        
-									<Button
-										variant="contained"
-										onClick={handleNext}
-										sx={{ mt: 3, ml: 1 }}
-									>
-										{activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-									</Button>
+									{activeStep === steps.length - 1 ? 
+										<Button
+											variant="contained"
+											onClick={handleOrder}
+											sx={{ mt: 3, ml: 1 }}
+										>
+											Finalizar Compra
+										</Button>    
+										
+										: 
+										
+										<Button
+											variant="contained"
+											onClick={handleNext}
+											sx={{ mt: 3, ml: 1 }}
+										>
+											Next
+										</Button> }
+									
 								</Box>
 							</React.Fragment>
 						)}

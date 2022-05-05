@@ -7,7 +7,7 @@ export type CartDocument = CartModel & Document;
 
 @Schema()
 export class CartModel {
-  @Prop()
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: User.name })
   userId: MongooseSchema.Types.ObjectId;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: Product.name })
@@ -17,7 +17,13 @@ export class CartModel {
   quantity: number;
 
   @Prop()
+  title: string;
+
+  @Prop()
   price: number;
+
+  @Prop()
+  image: string;
 }
 
 export const CartSchema = SchemaFactory.createForClass(CartModel);

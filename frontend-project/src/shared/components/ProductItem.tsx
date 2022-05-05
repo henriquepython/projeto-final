@@ -7,7 +7,6 @@ import ButtonBase from '@mui/material/ButtonBase';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { Button, Input } from '@mui/material';
 import { api } from '../services/api';
-import { SettingsCellOutlined } from '@mui/icons-material';
 
 
 
@@ -29,7 +28,7 @@ interface IProductProps {
   title: string;
   image: string;
   price: number;
-  _id: any;
+  _id: string;
   quantity?: number;
 }
 
