@@ -17,7 +17,7 @@ interface ICartListProps {
 
 export const ReviewOrder = (props: ICartListProps) => {
 	const { productsByUser } = props;
-	const total = localStorage.getItem('total_order');
+	const total = sessionStorage.getItem('total_order');
 	return (
 		<React.Fragment>
 			<Typography color='primary' variant="h6" gutterBottom>

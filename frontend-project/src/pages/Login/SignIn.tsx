@@ -10,7 +10,6 @@ import {  useAppThemeContext } from '../../shared/contexts';
 
 import { Button, Link } from '@mui/material';
 import { api } from '../../shared/services/api';
-import { useState } from 'react';
 
 
 export const SignIn = () => {
@@ -31,7 +30,7 @@ export const SignIn = () => {
 				.then(async()=>{
 					await api.get(`user/${email}`)
 						.then((response)=> {
-							localStorage.setItem('id_user', `${response.data._id}`);	
+							sessionStorage.setItem('id_user', `${response.data._id}`);	
 						});
 				});
 

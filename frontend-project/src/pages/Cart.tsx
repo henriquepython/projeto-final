@@ -5,16 +5,18 @@ import { api } from '../shared/services/api';
 
 export const Cart = () => {
 	const [cart, setCart] = useState<any[]>([]);
-	const idUser = localStorage.getItem('id_user');
+	const idUser = sessionStorage.getItem('id_user');
 	let total = 0;
 
 	useEffect(()=> {
 		console.log(idUser);
-		api.get(`cart/user/${idUser}`)
-			.then((response)=> {
-				setCart(response.data);
-				console.log(JSON.stringify(response.data));
-			});
+		if (idUser) {
+			api.get(`cart/user/${idUser}`)
+				.then((response)=> {
+					setCart(response.data);
+					console.log(JSON.stringify(response.data));
+				});
+		}
 
 	}, [idUser]);
 
@@ -22,7 +24,7 @@ export const Cart = () => {
 		total += item.price;
 	});
 
-	localStorage.setItem('total_order', `${total}`);
+	sessionStorage.setItem('total_order', `${total}`);
 
 	return (
 		<>

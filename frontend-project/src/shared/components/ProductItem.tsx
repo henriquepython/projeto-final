@@ -17,11 +17,6 @@ const Img = styled('img')({
 	flexDirection: 'row',
 	maxWidth: '100%',
 	maxHeight: '100%',
-	transition: 'all linear 0.4s',
-	'&:hover': {
-		filter: 'grayscale(100%)',
-		transform: 'scale(1.1)'
-	}
 });
 
 interface IProductProps {
@@ -35,11 +30,13 @@ interface IProductProps {
 export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, _id } = props;
 
+
+
 	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const input = new FormData(event.currentTarget);
 		const quantity = Number(input.get('quantity'));
-		const userId = localStorage.getItem('id_user');
+		const userId = sessionStorage.getItem('id_user');
 		await api.post('/cart', {
 			title: title,
 			image: image,
@@ -54,8 +51,8 @@ export const ProductItem = (props: IProductProps) => {
 
 	};
 
-	const getId = async(id: string) => {
-		localStorage.setItem('id_product', `${id}`);
+	const getId = async() => {
+		sessionStorage.setItem('id_product', `${_id}`);
 		document.location.href= '/product';
 	};
 
@@ -66,14 +63,17 @@ export const ProductItem = (props: IProductProps) => {
 				margin: 'auto',
 				maxWidth: 500,
 				flexGrow: 1,
+				transition: 'all linear 0.4s',
 				backgroundColor: (theme) =>
 					theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+				'&:hover': {
+					transform: 'scale(1.1)'}
 			}}
 		>
 			<Grid container spacing={1}>
 				<Grid item>
-					<ButtonBase onClick={()=>getId(_id)} sx={{ mb: 1 }}>
-						<Img key={_id} alt="complex" src={image} sx={{borderRadius: 2, width: '100vw', height: 150}} />
+					<ButtonBase onClick={getId} sx={{ mb: 1 }}>
+						<Img key={_id} alt="complex" src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'} sx={{borderRadius: 2, width: '100vw', height: 150}} />
 					</ButtonBase>
 				</Grid>
 				<Grid item>
@@ -85,7 +85,7 @@ export const ProductItem = (props: IProductProps) => {
 					</Grid>
 
 					<Grid item>
-						<Typography variant="subtitle2" color="text.secondary">
+						<Typography variant='caption' color="text.secondary">
 							{_id}
 						</Typography>
 					</Grid>
@@ -95,7 +95,7 @@ export const ProductItem = (props: IProductProps) => {
               Preço: ${price}
 						</Typography>
 						<Box component="form" noValidate={false} onSubmit={handleAddCart}>
-							<Input required={true} placeholder='Qtd' id='quantity' name='quantity' type='number'/>
+							<Box component="input" min='1' required={true} placeholder='Qtd' id='quantity' name='quantity' type='number' sx={{width: '30%', height: '6vh', mr: 4}}/>
 							<Button 
 								type='submit'
 								sx={{ 

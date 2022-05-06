@@ -49,7 +49,7 @@ export const ResponsiveHeader = () => {
 	};
 
 	const handleOpenNavMenuAccountLogout = () => {
-		localStorage.clear();
+		sessionStorage.clear();
 		document.location.reload();
 	};
 
@@ -63,7 +63,7 @@ export const ResponsiveHeader = () => {
 		const input = new FormData(event.currentTarget);
 
 		const searchs = input.get('search');
-		localStorage.setItem('search',`${searchs}`);
+		sessionStorage.setItem('search',`${searchs}`);
 		document.location.href='/search';
 		//axios order update status for Request cancelled
 	};
@@ -163,7 +163,7 @@ export const ResponsiveHeader = () => {
 						</Box>
 
 						<Box sx={{ flexGrow: 0, mr: .5}}>
-							{localStorage.getItem('id_user') === null?
+							{sessionStorage.getItem('id_user') === null?
 								<Tooltip title="Usuário">
 									<>
 										<IconButton 
@@ -241,6 +241,17 @@ export const ResponsiveHeader = () => {
 										>
 											
 											<Button 
+												href='/accounts'
+												variant='outlined'
+												color='primary'
+												sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
+													backgroundColor: 'blue',
+													color: 'white'
+												}  }}
+											>
+													Area do usuario
+											</Button>
+											<Button 
 												href='/home'
 												onClick={handleOpenNavMenuAccountLogout}
 												variant='outlined'
@@ -251,17 +262,6 @@ export const ResponsiveHeader = () => {
 												}  }}
 											>
 												Logout
-											</Button>
-											<Button 
-												href='/accounts'
-												variant='outlined'
-												color='primary'
-												sx={{ display: { xs: 'flex'}, mx: 4, my: 2, '&:hover': {
-													backgroundColor: 'blue',
-													color: 'white'
-												}  }}
-											>
-													Area do usuario
 											</Button>
 											
 										</Menu>

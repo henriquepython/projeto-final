@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
 import { api } from '../shared/services/api';
 
 const categories = [
@@ -20,7 +20,7 @@ export const EditProduct = () => {
 			const quantity = Number(input.get('quantity'));
 			const price = Number(input.get('price'));
 			
-			const edit = localStorage.getItem('id_product');
+			const edit = sessionStorage.getItem('id_product');
 			const { data } = await api.patch(`product/${edit}`,{
 				title: title,
 				image: image,
@@ -46,7 +46,7 @@ export const EditProduct = () => {
 			<Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}>
 				<>
 					<Typography variant="h6" gutterBottom sx={{color: 'black'}}>
-						{localStorage.getItem('title')}
+						{sessionStorage.getItem('title')}
 					</Typography>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
@@ -84,7 +84,6 @@ export const EditProduct = () => {
 						</Grid>
 						<Grid item xs={12}>
 							<Autocomplete
-								defaultValue={categories[0]}
 								disablePortal
 								id="category"
 								fullWidth
@@ -98,26 +97,26 @@ export const EditProduct = () => {
 									/>}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={2}>
-							<TextField
+						<Grid item xs={12}>
+							<Box
+								component="input"
+								min='1'
+								type='number'
 								id="quantity"
 								name="quantity"
-								type='number'
-								label="Qtd"
-								fullWidth
-								autoComplete="quantity"
-								variant="standard"
+								placeholder="Quantidade"
+								sx={{height: '8vh'}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={4}>
-							<TextField
+						<Grid item xs={12}>
+							<Box
+								component="input"
+								min='1'
 								type='number'
 								id="price"
-								name="price"
-								label="preço"
-								fullWidth
-								autoComplete="price"
-								variant="standard"
+								name="price"	
+								placeholder="Preço"
+								sx={{height: '8vh'}}
 							/>
 						</Grid>
 					</Grid>

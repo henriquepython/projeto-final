@@ -6,6 +6,8 @@ import {
   Delete,
   Get,
   HttpCode,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CartService } from './cart.service';
@@ -13,6 +15,7 @@ import { CreateCartDto } from './dto/create-cart.dto';
 
 @ApiBearerAuth()
 @ApiTags('cart')
+@UsePipes(new ValidationPipe())
 @Controller('cart')
 export class CartController {
   constructor(private readonly cartService: CartService) {}

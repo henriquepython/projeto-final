@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
 import { api } from '../shared/services/api';
 
 const categories = [
@@ -98,28 +98,28 @@ export const CreateProduct = () => {
 									/>}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={2}>
-							<TextField
+						<Grid item xs={12}>
+							<Box
+								component="input"
+								min='1'
 								required={true}
+								type='number'
 								id="quantity"
 								name="quantity"
-								type='number'
-								label="Qtd"
-								fullWidth
-								autoComplete="quantity"
-								variant="standard"
+								placeholder="Quantidade"
+								sx={{height: '8vh'}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={4}>
-							<TextField
+						<Grid item xs={12}>
+							<Box
+								component="input"
+								min='1'
 								required={true}
 								type='number'
 								id="price"
-								name="price"
-								label="preço"
-								fullWidth
-								autoComplete="price"
-								variant="standard"
+								name="price"	
+								placeholder="Preço"
+								sx={{height: '8vh'}}
 							/>
 						</Grid>
 					</Grid>

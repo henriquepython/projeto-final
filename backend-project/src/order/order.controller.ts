@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   HttpCode,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';

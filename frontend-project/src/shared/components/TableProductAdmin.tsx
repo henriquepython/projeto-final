@@ -35,8 +35,8 @@ export const TableProductAdmin = (props: ProductListProps) => {
 	};
 
 	const getEdit = async (id: string, title:string) => {
-		localStorage.setItem('id_product',`${id}`);
-		localStorage.setItem('title',`${title}`);
+		sessionStorage.setItem('id_product',`${id}`);
+		sessionStorage.setItem('title',`${title}`);
 		document.location.href='/editproduct';
 		//axios order update status for cancelled 
 	};

@@ -20,7 +20,7 @@ const steps = ['Endereço de entrega', 'Detalhes do pagamento', 'Revisão do ped
 
 export const Checkout = () => {
 	const [checkout, setCheckout] = useState([]);
-	const idUser = localStorage.getItem('id_user');
+	const idUser = sessionStorage.getItem('id_user');
 	useEffect(()=> {
 		console.log(idUser);
 		api.get(`cart/user/${idUser}`)
@@ -54,10 +54,9 @@ export const Checkout = () => {
 	};
 
 	const handleOrder = async () => {
-		const userId = localStorage.getItem('id_user');
-		console.log(userId);
+		const userId = sessionStorage.getItem('id_user');
 		await api.post('order/', {
-			userId: {_id: userId}
+			userId: userId,
 		}).then((response)=>{
 			console.log(response.data);
 			setActiveStep(activeStep + 1);
@@ -83,10 +82,10 @@ export const Checkout = () => {
 						{activeStep === steps.length ? (
 							<React.Fragment>
 								<Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Obrigado por comprar na nossa loja.
 								</Typography>
 								<Typography variant="subtitle1">
-                  Assim que seu pedido for confirmado, continuaremos lhe atualizando.
+                  Seu pedido foi realizado, assim que enviarmos iremos lhe informar.
 								</Typography>
 							</React.Fragment>
 						) : (

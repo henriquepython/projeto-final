@@ -16,11 +16,6 @@ const Img = styled('img')({
 	flexDirection: 'row',
 	maxWidth: '100%',
 	maxHeight: '100%',
-	transition: 'all linear 0.4s',
-	'&:hover': {
-		filter: 'grayscale(100%)',
-		transform: 'scale(1.1)'
-	}
 });
 
 interface IProductCartProps {
@@ -35,15 +30,14 @@ export const ProductItemCart = (props: IProductCartProps) => {
 	const { title, image, price, _id, quantity} = props;
   
 	const handleRemoveCart = async () => {
-		const idProduct = localStorage.getItem('id_product');
-		await api.delete(`cart/${idProduct}`);
+		await api.delete(`cart/${_id}`);
 		alert('produto removido do carrinho');
 		document.location.reload();
 	};
 	
 
 	const getId = async(id: string) => {
-		localStorage.setItem('id_product', `${id}`);
+		sessionStorage.setItem('id_product', `${id}`);
 		document.location.href= '/product';
 	};
 
@@ -54,14 +48,18 @@ export const ProductItemCart = (props: IProductCartProps) => {
 				margin: 'auto',
 				maxWidth: 500,
 				flexGrow: 1,
+				transition: 'all linear 0.4s',
 				backgroundColor: (theme) =>
 					theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+				'&:hover': {
+					transform: 'scale(1.1)',
+				}
 			}}
 		>
 			<Grid container spacing={1}>
 				<Grid item>
 					<ButtonBase href='/product' onClick={()=>getId(_id)} sx={{ mb: 1 }}>
-						<Img key={_id} alt="complex" src={image} sx={{borderRadius: 2, width: '100vw', height: 150}} />
+						<Img key={_id} alt="complex" src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'} sx={{borderRadius: 2, width: '100vw', height: 150}} />
 					</ButtonBase>
 				</Grid>
 				<Grid item>
@@ -73,7 +71,7 @@ export const ProductItemCart = (props: IProductCartProps) => {
 					</Grid>
 
 					<Grid item>
-						<Typography variant="subtitle2" color="text.secondary">
+						<Typography variant="caption" color="text.secondary">
 							{_id}
 						</Typography>
 					</Grid>

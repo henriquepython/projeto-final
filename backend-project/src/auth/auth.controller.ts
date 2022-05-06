@@ -1,4 +1,9 @@
-import { BadRequestException, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Logger,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Controller, Post, Body, Scope } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ApiTags } from '@nestjs/swagger';
@@ -6,6 +11,7 @@ import { UserService } from 'src/user/user.service';
 import { LoginDto } from './dto/login.dto';
 
 @ApiTags('auth')
+@UsePipes(new ValidationPipe())
 @Controller({ path: 'auth', scope: Scope.REQUEST })
 export class AuthController {
   constructor(

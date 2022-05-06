@@ -25,7 +25,7 @@ export const Product = () => {
 		quantity:0,
 		price:0,
 	});
-	const code = localStorage.getItem('id_product');	
+	const code = sessionStorage.getItem('id_product');	
 	useEffect(()=> {
 		api.get(`product/${code}`)
 			.then((response)=>{

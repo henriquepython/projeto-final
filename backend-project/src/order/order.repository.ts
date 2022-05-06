@@ -8,11 +8,7 @@ export class OrderRepository {
   constructor(@InjectModel('Order') private orderModel: Model<Order>) {}
 
   async create(orderModel: Order) {
-    const createOrder = {
-      userId: orderModel.userId,
-      products: orderModel.products,
-    };
-    return await this.orderModel.create(createOrder);
+    return await this.orderModel.create(orderModel);
   }
 
   async findPopulateProducts(id: any) {

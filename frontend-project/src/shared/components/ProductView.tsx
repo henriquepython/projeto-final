@@ -3,8 +3,9 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { Box, Button, InputBase } from '@mui/material';
+import { Box, Button, Input, InputBase } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import { api } from '../services/api';
 
 
 
@@ -16,7 +17,6 @@ const Img = styled('img')({
 	flexDirection: 'row',
 	maxWidth: '100%',
 	maxHeight: '100%',
-	transition: 'all linear 0.4s',
 });
 
 interface ProductViewProps {
@@ -31,6 +31,25 @@ interface ProductViewProps {
 export const ProductView = (props: ProductViewProps) => {
 	const { title, image, price, _id, quantity, description } = props;
  
+	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const quantity = Number(input.get('quantity'));
+		const userId = sessionStorage.getItem('id_user');
+		await api.post('/cart', {
+			title: title,
+			image: image,
+			price: price,
+			quantity: quantity,
+			userId: {_id: userId},
+			productId: {_id: _id}
+		})
+			.then(()=>{
+				alert('produto adicionado ao carrinho!');
+			});
+
+	};
+
 	return (
 		<>
 			<Paper
@@ -70,33 +89,27 @@ export const ProductView = (props: ProductViewProps) => {
 						</Typography>
 					</Grid>
 				</Grid>
-				<InputBase 
-					type='number'
-					placeholder=' Qtd'
-					//onChange={}
-					sx={{
-						width: '12%',
-						border: 3,
-						mr: 16
-					}}
-				/>
+				<Box component="form" noValidate={false} onSubmit={handleAddCart}>
 
-				<Button 
-					//onClick={addCart}
-					sx={{ 
-						cursor: 'pointer',
-						color: 'black',
-						mt: 1,
-						border: 1,
-						transition: 'all linear 0.4s',
-						'&:hover': {
-							backgroundColor: 'blue',
-							color: 'white'
-						}
-					}}
-				>
-					<AddShoppingCartOutlinedIcon /> Add Carrinho
-				</Button>
+					<Box component="input" min='1' required={true} placeholder='Qtd' id='quantity' name='quantity' type='number' sx={{width: '20%', height: '6vh', mr: 4}}/>
+
+					<Button 
+						type='submit'
+						sx={{ 
+							cursor: 'pointer',
+							color: 'black',
+							mt: 1,
+							border: 1,
+							transition: 'all linear 0.4s',
+							'&:hover': {
+								backgroundColor: 'blue',
+								color: 'white'
+							}
+						}}
+					>
+						<AddShoppingCartOutlinedIcon /> Add Carrinho
+					</Button>
+				</Box>
         
 
 			</Paper>

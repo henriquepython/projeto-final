@@ -5,8 +5,6 @@ import { OrderStatus } from '../../shared/enum/OrderStatus.enum';
 
 export class StatusOrderDto {
   @AutoMap()
-  @IsNotEmpty()
-  @IsString()
   @ApiProperty()
   status: OrderStatus;
 }

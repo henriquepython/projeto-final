@@ -9,6 +9,8 @@ import {
   HttpCode,
   UseGuards,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -19,6 +21,7 @@ import { JwtGuard } from 'src/auth/jwt.auth.guard';
 
 // @ApiBearerAuth()
 @ApiTags('product')
+@UsePipes(new ValidationPipe())
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}

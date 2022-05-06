@@ -6,8 +6,6 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe({ errorHttpStatusCode: 422 }));
-
   //swagger config
   const documentBuilder = new DocumentBuilder()
     .setTitle('Mini-Loja')

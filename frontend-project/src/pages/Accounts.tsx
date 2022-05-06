@@ -7,7 +7,7 @@ import { api } from '../shared/services/api';
 
 export const Accounts = () => {
 	const [orderUser, setOrderUser] = useState([]);
-	const idUser = localStorage.getItem('id_user');
+	const idUser = sessionStorage.getItem('id_user');
 	useEffect(()=> {
 		api.get(`order/user/${idUser}`)
 			.then((response) => {
