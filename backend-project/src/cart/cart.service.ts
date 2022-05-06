@@ -12,16 +12,21 @@ export class CartService {
     @InjectMapper() private mapper: Mapper,
     private readonly logger: Logger,
     private readonly repository: CartRepository,
-    private readonly repositoryProduct: ProductRepository,
   ) {
     this.logger = new Logger(CartService.name);
   }
   async addCart(createCartDto: CreateCartDto): Promise<CreateCartDto> {
     const cartMapper = this.mapper.map(createCartDto, CreateCartDto, Cart);
 
-    this.logger.log(
-      `product with id: ${cartMapper.productId} has been added to cart`,
+    const cartProduct = await this.repository.findByIdProduct(
+      cartMapper.productId,
     );
+    if (cartProduct) {
+      cartMapper.quantity += (await cartProduct).quantity;
+      return await this.repository.update(cartMapper.productId, cartMapper);
+    }
+
+    this.logger.log('product added to cart');
     return await this.repository.create(cartMapper);
   }
 

@@ -21,7 +21,7 @@ export const Cart = () => {
 	}, [idUser]);
 
 	cart.map((item)=> {
-		total += item.price;
+		total += (item.price * item.quantity);
 	});
 
 	sessionStorage.setItem('total_order', `${total}`);

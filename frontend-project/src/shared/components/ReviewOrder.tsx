@@ -27,7 +27,8 @@ export const ReviewOrder = (props: ICartListProps) => {
 				{productsByUser.map((product, index) => (
 					<ListItem key={index} sx={{ py: 1, px: 0 }}>
 						<ListItemText primary={product.title} sx={{color: 'black'}} />
-						<Typography variant="body2">Qtd: {product.price}</Typography>
+						<ListItemText>Qtd: {product.quantity}</ListItemText>
+						<Typography variant="body2">R$ {product.price}</Typography>
 					</ListItem>
   
 				))}

@@ -57,10 +57,18 @@ export class CartRepository {
   }
 
   async findByIdProduct(id: any): Promise<Cart> {
-    return await this.cartModel.findOne({ productId: { _id: id } });
+    return await this.cartModel.findOne({ productId: id });
   }
 
   async findCartByUser(userId: any): Promise<Cart[]> {
     return await this.cartModel.find({ userId: userId });
+  }
+
+  async update(productId: any, Product: Cart): Promise<Cart> {
+    return this.cartModel.findOneAndUpdate(
+      { productId: productId },
+      { $set: Product },
+      { new: true },
+    );
   }
 }
