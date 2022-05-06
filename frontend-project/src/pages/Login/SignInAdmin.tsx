@@ -17,26 +17,27 @@ export const SignInAdmin = () => {
 	
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		
-		event.preventDefault();
-		const input = new FormData(event.currentTarget);
-		const email = `${input.get('email')}`;
-		const password = `${input.get('password')}`;
+		try {
+			event.preventDefault();
+			const input = new FormData(event.currentTarget);
+			const email = `${input.get('email')}`;
+			const password = `${input.get('password')}`;
 			
 			
-		await api.post('/auth/admin', {
-			email: email,
-			password: password,
-		})
-			.then(()=>{
-				alert('Adm logado com sucesso!');
-				document.location.href = '/admin';
-
+			await api.post('/auth/admin', {
+				email: email,
+				password: password,
 			})
-			.catch((err)=>{
-				console.log(err);
-				alert('Não foi possivel entrar, email ou senha invalido!');
-			});
+				.then(()=>{
+					alert('Adm logado com sucesso!');
+					document.location.href = '/admin';
+
+				});
 			
+		} catch (err) {
+			console.log(err);
+			alert('Não foi possivel entrar, email ou senha invalido!');
+		}
 		
 	};
   

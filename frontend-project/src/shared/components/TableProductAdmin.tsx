@@ -28,9 +28,11 @@ export const TableProductAdmin = (props: ProductListProps) => {
 	const { products } = props;
 	
 	const getDelete = async (index: string) => {
-		await api.delete(`product/${index}`);
-		alert('Produto removido com sucesso');
-		document.location.reload();
+		const result = confirm('Tem certeza que quer remover o produto?');
+		if(result) {
+			await api.delete(`product/${index}`);
+			document.location.reload();
+		}
 		//axios order update status for cancelled 
 	};
 

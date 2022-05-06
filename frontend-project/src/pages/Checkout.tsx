@@ -60,7 +60,11 @@ export const Checkout = () => {
 		}).then((response)=>{
 			console.log(response.data);
 			setActiveStep(activeStep + 1);
-		});
+		})
+			.catch((err)=>{
+				console.log(err);
+				alert('Usuário não cadastrado');
+			});
 	};
 
 	return (

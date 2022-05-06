@@ -4,7 +4,6 @@ import { CreateCartDto } from './dto/create-cart.dto';
 import { Cart } from './entities/cart.entity';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
-import { ProductRepository } from 'src/product/product.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class CartService {
@@ -22,11 +21,12 @@ export class CartService {
       cartMapper.productId,
     );
     if (cartProduct) {
+      this.logger.log('product added to cart');
       cartMapper.quantity += (await cartProduct).quantity;
       return await this.repository.update(cartMapper.productId, cartMapper);
     }
 
-    this.logger.log('product added to cart');
+    this.logger.log('new product added to cart');
     return await this.repository.create(cartMapper);
   }
 

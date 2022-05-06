@@ -11,21 +11,21 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useAppThemeContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
-import { Input } from '@mui/material';
 
 
 export const SignUp = () => {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		const input = new FormData(event.currentTarget);
-		const name = input.get('name');
-		const email = input.get('email');
-		const password = input.get('password');
-		const phone = input.get('phone');
-
 		
 		try{
+			event.preventDefault();
+			const input = new FormData(event.currentTarget);
+			const name = input.get('name');
+			const email = input.get('email');
+			const password = input.get('password');
+			const phone = input.get('phone');
+
+		
 			const { data } = await api.post('/user', {
 				name: name,
 				email: email,

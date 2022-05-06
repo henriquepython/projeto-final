@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, Fab, IconButton, Typography } from '@mui/material';
+import { Box, Fab, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { api } from '../services/api';
@@ -14,8 +14,8 @@ interface OrderProps {
     orders: ReadonlyArray<{
         totalPrice: number;
         status: string;
-        userId: any;
-		_id?: any; 
+        userId: string;
+		_id: string; 
     }>
 }
 
@@ -23,11 +23,15 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 	const { orders } = props;
 
 	const getCancelled = async (index: string, status: string) => {
-		if (status === ('Cancelamento Pendente' || 'Pendente')) {
-			const { data } = await api.patch(`order/cancelled/${index}`);
-			console.log(`${data}`);
-			alert('Pedido Cancelado com sucesso!');
-			document.location.reload();
+		if (status === 'Cancelamento Pendente' || status === 'Pendente') {
+			const result = confirm('Tem certeza que quer cancelar o pedido?');
+			if(result) {
+
+				const { data } = await api.patch(`order/cancelled/${index}`);
+				console.log(`${data}`);
+				alert('Pedido Cancelado com sucesso!');
+				document.location.reload();
+			}
 		}
 		//axios order update status for cancelled 
 	};

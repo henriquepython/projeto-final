@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { Box, Button, Input, InputBase } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { api } from '../services/api';
 
@@ -23,7 +23,7 @@ interface ProductViewProps {
   title: string;
   image: string;
   price: number;
-  _id: any;
+  _id: string;
   quantity?: number;
   description: string;
 }
@@ -46,6 +46,9 @@ export const ProductView = (props: ProductViewProps) => {
 		})
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
+			})
+			.catch((err)=> {
+				console.log(err);
 			});
 
 	};

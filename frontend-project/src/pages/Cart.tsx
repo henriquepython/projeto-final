@@ -3,8 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { CartList } from '../shared/components/CartList';
 import { api } from '../shared/services/api';
 
+interface ICart {
+	userId: string;
+	productId: string;
+	quantity: number;
+	price: number;
+	title: string;
+	image: string;
+}
+
 export const Cart = () => {
-	const [cart, setCart] = useState<any[]>([]);
+
+	const [cart, setCart] = useState<ICart[]>([]);
 	const idUser = sessionStorage.getItem('id_user');
 	let total = 0;
 

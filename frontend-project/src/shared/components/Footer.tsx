@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import { CssBaseline } from '@mui/material';
 import { useAppThemeContext } from '../contexts';
 import WhatsappOutlinedIcon from '@mui/icons-material/WhatsappOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
@@ -27,13 +26,12 @@ export const Footer = () => {
 	const { themeName } = useAppThemeContext();
 	return (
 		<>
-			<CssBaseline/>
 			<Box
 				component="footer"
 				display='flex'
 				sx={{ mt:2 ,background: 'none', borderTop: .5, borderColor: themeName === 'light' ? 'black' : 'white', color: 'primary'}}
 			>
-				<Container sx={{mt: 2,display: 'flex', flexDirection: 'column', ml:15, gap: 1}}>
+				<Container sx={{mt: 2,display: 'flex', flexDirection: 'column', gap: 1}}>
 					<Typography variant="h5" color='primary'>
                   JHBC Store
 					</Typography>

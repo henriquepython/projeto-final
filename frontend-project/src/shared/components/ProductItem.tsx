@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import { Box, Button, Input } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { api } from '../services/api';
 
 
@@ -30,7 +30,29 @@ interface IProductProps {
 export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, _id } = props;
 
+	const handleBuyCart = async() => {
+		const quantity = 1;
+		const userId = sessionStorage.getItem('id_user');
 
+		if (userId === null ){
+			document.location.href='/signup';
+		}
+		await api.post('/cart', {
+			title: title,
+			image: image,
+			price: price,
+			quantity: quantity,
+			userId: {_id: userId},
+			productId: {_id: _id}
+		})
+			.then(()=>{
+				document.location.href = '/cart';
+			})
+			.catch((err)=>{
+				console.log(err);
+			});
+
+	};
 
 	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -47,6 +69,9 @@ export const ProductItem = (props: IProductProps) => {
 		})
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
+			})
+			.catch((err)=>{
+				console.log(err);
 			});
 
 	};
@@ -103,6 +128,7 @@ export const ProductItem = (props: IProductProps) => {
 									color: 'black',
 									mt: 1,
 									border: 1,
+									ml:4,
 									transition: 'all linear 0.4s',
 									'&:hover': {
 										backgroundColor: 'blue',
@@ -110,7 +136,24 @@ export const ProductItem = (props: IProductProps) => {
 									}
 								}}
 							>
-								<AddShoppingCartOutlinedIcon /> Add Carrinho
+								<AddShoppingCartOutlinedIcon />
+							</Button>
+							<Button 
+								onClick={handleBuyCart}
+								fullWidth
+								sx={{ 
+									cursor: 'pointer',
+									color: 'black',
+									mt: 1,
+									border: 1,
+									transition: 'all linear 0.4s',
+									'&:hover': {
+										backgroundColor: 'blue',
+										color: 'white'
+									}
+								}}
+							>
+								Comprar
 							</Button>
 						</Box>
 					</Grid>
