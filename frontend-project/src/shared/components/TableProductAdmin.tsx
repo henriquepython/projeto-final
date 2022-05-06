@@ -4,9 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, Button, IconButton, Typography } from '@mui/material';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { Box, Button, Typography } from '@mui/material';
 import { api } from '../services/api';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveIcon from '@mui/icons-material/Cancel';
@@ -19,8 +17,8 @@ interface ProductListProps {
       image: string;
       price: number;
       quantity: number;
-      category?: string;
-      _id?: any;
+      category: string;
+      _id: string;
     }>;
   }
 
@@ -45,17 +43,18 @@ export const TableProductAdmin = (props: ProductListProps) => {
     
 	return (
 		<React.Fragment>
+			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+				Produtos
+			</Typography>
 			<Box sx={{background: 'white'}}>
-				<Typography variant='h5' align='center' sx={{my: 4, width: '100vw'}}>
-                Produtos
-				</Typography>
 				<Button
 					href='/createproduct'
-					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s', color: 'white', background: 'blue',
+					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s',backgroundColor: 'black', color: 'white',
 						'&:hover': {
 							backgroundColor: 'white',
 							color: 'black'
-						}}}
+						}
+					}}
 				>
                 Criar Produtos
 				</Button>
@@ -63,8 +62,8 @@ export const TableProductAdmin = (props: ProductListProps) => {
 			<Table size="small" sx={{ background: 'white'}}>
 				<TableHead>
 					<TableRow>
+						<TableCell>Nº</TableCell>
 						<TableCell>Id</TableCell>
-						<TableCell>imagem</TableCell>
 						<TableCell>Nome</TableCell>
 						<TableCell>preço</TableCell>
 						<TableCell>categoria</TableCell>
@@ -75,8 +74,8 @@ export const TableProductAdmin = (props: ProductListProps) => {
 				<TableBody>
 					{products.map((row, index) => (
 						<TableRow key={index}>
+							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>
-							<TableCell>{row.image}</TableCell>
 							<TableCell>{row.title}</TableCell>
 							<TableCell>R$ {row.price}</TableCell>
 							<TableCell>{row.category}</TableCell>

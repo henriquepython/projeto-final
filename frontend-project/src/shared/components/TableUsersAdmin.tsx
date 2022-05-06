@@ -4,10 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, IconButton, Typography } from '@mui/material';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { api } from '../services/api';
+import { Typography } from '@mui/material';
 
 
 interface UserProps {
@@ -15,7 +12,7 @@ interface UserProps {
         name: string;
         email: string;
         phoneNumber: string;
-		_id?: any; 
+		_id: string; 
     }>
 }
 
@@ -24,14 +21,13 @@ export const TableUsersAdmin = (props: UserProps) => {
 
 	return (
 		<React.Fragment>
-			<Box sx={{background: 'white'}}>
-				<Typography variant='h5' align='center' sx={{position: 'static',mt: 4, width: '100vw', color: 'black'}}>
-                Usuários
-				</Typography>
-			</Box>
+			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+				Usuários Cadastrados
+			</Typography>
 			<Table size="small" sx={{ background: 'white'}}>
 				<TableHead>
 					<TableRow>
+						<TableCell>Nº</TableCell>
 						<TableCell>Id User</TableCell>
 						<TableCell>name</TableCell>
 						<TableCell>email</TableCell>
@@ -41,6 +37,7 @@ export const TableUsersAdmin = (props: UserProps) => {
 				<TableBody>
 					{user.map((row, index) => (
 						<TableRow key={index}>
+							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.name}</TableCell>
 							<TableCell>{row.email}</TableCell>

@@ -14,38 +14,33 @@ import { api } from '../../shared/services/api';
 
 
 export const SignUp = () => {
+	const { themeName } = useAppThemeContext();
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		
-		try{
-			event.preventDefault();
-			const input = new FormData(event.currentTarget);
-			const name = input.get('name');
-			const email = input.get('email');
-			const password = input.get('password');
-			const phone = input.get('phone');
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const name = input.get('name');
+		const email = input.get('email');
+		const password = input.get('password');
+		const phone = input.get('phone');
+		const signUp = {
+			name: name,
+			email: email,
+			password: password,
+			phoneNumber: phone
+		};
 
-		
-			const { data } = await api.post('/user', {
-				name: name,
-				email: email,
-				password: password,
-				phoneNumber: phone
-			});
-				
-			console.log(data);
-			alert('Usuário cadastrado com sucesso');
-			document.location.href = '/home';
-				
-				
-		} catch (err) {
-			console.log(err);
-			alert('Não foi possivel criar produto');
-		}
-			
+		await api.post('/user', signUp)
+			.then((response) => {
+				console.log(response.data);
+				alert('Usuário cadastrado com sucesso');
+				document.location.href = '/home';
+			})
+			.catch ((err) => {
+				console.log(err);
+				alert('Não foi possivel cadastrar usuário, confira seus dados');
+			});	
 	};
-
-	const { themeName } = useAppThemeContext();
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -58,15 +53,12 @@ export const SignUp = () => {
 					alignItems: 'center',
 				}}
 			>
-
 				<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 					<LockOutlinedIcon />
 				</Avatar>
-
 				<Typography color='primary' component="h1" variant="h5">
           Cadastro
 				</Typography>
-        
 				<Box component="form" noValidate={false} onSubmit={handleSubmit} sx={{ mt: 3 }}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
@@ -74,13 +66,21 @@ export const SignUp = () => {
 								required={true}
 								autoComplete="given-name"
 								name="name"
-								type='text'								fullWidth
+								type='text'								
+								fullWidth
 								id="name"
 								label="Nome"
 								autoFocus
-								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+								sx={{
+									border: .1,
+									borderRadius: 1,
+									borderColor: themeName === 'light' ? 'black' : 'white',
+									color: themeName === 'light' ? 'black' : 'white',
+									background: themeName === 'light' ? 'primary' : 'white'
+								}}
 							/>
 						</Grid>
+
 						<Grid item xs={12}>
 							<TextField
 								required={true}
@@ -90,9 +90,16 @@ export const SignUp = () => {
 								name="email"
 								type='email'
 								autoComplete="email"
-								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+								sx={{
+									border: .1,
+									borderRadius: 1,
+									borderColor: themeName === 'light' ? 'black' : 'white',
+									color: themeName === 'light' ? 'black' : 'white',
+									background: themeName === 'light' ? 'primary' : 'white'
+								}}
 							/>
 						</Grid>
+
 						<Grid item xs={12}>
 							<TextField
 								required={true}
@@ -102,9 +109,16 @@ export const SignUp = () => {
 								type="password"
 								id="password"
 								autoComplete="new-password"
-								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+								sx={{
+									border: .1,
+									borderRadius: 1,
+									borderColor: themeName === 'light' ? 'black' : 'white',
+									color: themeName === 'light' ? 'black' : 'white',
+									background: themeName === 'light' ? 'primary' : 'white'
+								}}
 							/>
 						</Grid>
+
 						<Grid item xs={12} sm={6}>
 							<TextField
 								required={true}
@@ -113,7 +127,13 @@ export const SignUp = () => {
 								id="phone"
 								label="Telefone"
 								name="phone"
-								sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+								sx={{
+									border: .1,
+									borderRadius: 1,
+									borderColor: themeName === 'light' ? 'black' : 'white',
+									color: themeName === 'light' ? 'black' : 'white',
+									background: themeName === 'light' ? 'primary' : 'white'
+								}}
 							/>
 						</Grid>
 					</Grid>

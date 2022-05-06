@@ -16,28 +16,24 @@ export const SignInAdmin = () => {
 
 	
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		
-		try {
-			event.preventDefault();
-			const input = new FormData(event.currentTarget);
-			const email = `${input.get('email')}`;
-			const password = `${input.get('password')}`;
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const email = `${input.get('email')}`;
+		const password = `${input.get('password')}`;
+		const login = {
+			email: email,
+			password: password
+		};
 			
-			
-			await api.post('/auth/admin', {
-				email: email,
-				password: password,
+		await api.post('/auth/admin', login)
+			.then(()=>{
+				console.log('Adm logado com sucesso!');
+				document.location.href = '/admin';
 			})
-				.then(()=>{
-					alert('Adm logado com sucesso!');
-					document.location.href = '/admin';
-
-				});
-			
-		} catch (err) {
-			console.log(err);
-			alert('Não foi possivel entrar, email ou senha invalido!');
-		}
+			.catch ((err) => {
+				console.log(err);
+				alert('Não foi possivel entrar, email ou senha invalido!');
+			});
 		
 	};
   
@@ -61,15 +57,7 @@ export const SignInAdmin = () => {
 				}}
 			/>
 			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-				<Box
-					sx={{
-						my: 8,
-						mx: 4,
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
+				<Box sx={{ my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 						<LockOutlinedIcon />
 					</Avatar>
@@ -86,8 +74,15 @@ export const SignInAdmin = () => {
 							name="email"
 							autoComplete="email"
 							autoFocus
-							sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+							sx={{
+								border: .1, 
+								borderRadius: 1,
+								borderColor: themeName === 'light' ? 'black' : 'white',
+								color: themeName === 'light' ? 'black' : 'white',
+								background: themeName === 'light' ? 'primary' : 'white'
+							}}
 						/>
+
 						<TextField
 							margin="normal"
 							required
@@ -98,18 +93,20 @@ export const SignInAdmin = () => {
 							id="password"
 							autoComplete="current-password"
 							autoFocus
-							sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+							sx={{
+								border: .1,
+								borderRadius: 1,
+								borderColor: themeName === 'light' ? 'black' : 'white',
+								color: themeName === 'light' ? 'black' : 'white',
+								background: themeName === 'light' ? 'primary' : 'white'
+							}}
 						/>
+						
 						<Button
 							type="submit"
 							fullWidth
 							variant="contained"
-							sx={{ mt: 3, mb: 2,'&:hover': {
-								backgroundColor: 'blue',
-								color: 'white'
-							} 
-							}}
-						>
+							sx={{ mt: 3, mb: 2,'&:hover': { backgroundColor: 'blue', color: 'white' } }}>
          Entrar
 						</Button>
 					</Box>

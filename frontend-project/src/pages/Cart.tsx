@@ -13,7 +13,6 @@ interface ICart {
 }
 
 export const Cart = () => {
-
 	const [cart, setCart] = useState<ICart[]>([]);
 	const idUser = sessionStorage.getItem('id_user');
 	let total = 0;
@@ -25,15 +24,18 @@ export const Cart = () => {
 				.then((response)=> {
 					setCart(response.data);
 					console.log(JSON.stringify(response.data));
+				})
+				.catch((err) => {
+					console.log(err);
 				});
 		}
 
-	}, [idUser]);
+	}, []);
 
+	//calcula total do carrinho
 	cart.map((item)=> {
 		total += (item.price * item.quantity);
 	});
-
 	sessionStorage.setItem('total_order', `${total}`);
 
 	return (

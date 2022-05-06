@@ -1,56 +1,45 @@
 import * as React from 'react';
+import { api } from '../../shared/services/api';
 import Avatar from '@mui/material/Avatar';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import { Button, Link } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {  useAppThemeContext } from '../../shared/contexts';
 
-import { Button, Link } from '@mui/material';
-import { api } from '../../shared/services/api';
-
-
 export const SignIn = () => {
+	const { themeName } = useAppThemeContext();
 	
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		try {
-
-			event.preventDefault();
-			const input = new FormData(event.currentTarget);
-			const email = `${input.get('email')}`;
-			const password = `${input.get('password')}`;
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const email = `${input.get('email')}`;
+		const password = `${input.get('password')}`;
+		const login = {
+			email: email,
+			password: password
+		};
 			
-			
-			await api.post('/auth', {
-				email: email,
-				password: password,
+		await api.post('/auth', login)
+			.then(async()=> {
+				await api.get(`user/${email}`)
+					.then((response)=> {
+						sessionStorage.setItem('id_user', `${response.data._id}`);						
+						console.log('Usuário logado com sucesso!');
+						document.location.href = '/home';	
+					});
 			})
-				.then(async()=>{
-					await api.get(`user/${email}`)
-						.then((response)=> {
-							sessionStorage.setItem('id_user', `${response.data._id}`);	
-						});
-				});
-
-			
-			alert('Usuário logado com sucesso!');
-			document.location.href = '/home';
-			
-			
-		} catch (err) {
-			console.log(err);
-			alert('Não foi possivel entrar, email ou senha invalido!');
-		}
-		
+			.catch((err)=>{
+				console.log(err);
+				alert('Não foi possivel entrar, email ou senha invalido!');
+			});
 	};
-  
-
-	const { themeName } = useAppThemeContext();
+	
 	return (
 		<Grid container component="main" sx={{ height: '100vh'}}>
-      
 			<Grid
 				item
 				xs={false}
@@ -91,8 +80,15 @@ export const SignIn = () => {
 							name="email"
 							autoComplete="email"
 							autoFocus
-							sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+							sx={{ 
+								border: .1,
+								borderRadius: 1,
+								borderColor: themeName === 'light' ? 'black' : 'white', 
+								color: themeName === 'light' ? 'black' : 'white', 
+								background: themeName === 'light' ? 'primary' : 'white'
+							}}
 						/>
+
 						<TextField
 							margin="normal"
 							required
@@ -103,25 +99,35 @@ export const SignIn = () => {
 							id="password"
 							autoComplete="current-password"
 							autoFocus
-							sx={{border: .1, borderRadius: 1, borderColor: themeName === 'light' ? 'black' : 'white', color: themeName === 'light' ? 'black' : 'white', background: themeName === 'light' ? 'primary' : 'white'}}
+							sx={{
+								border: .1,
+								borderRadius: 1,
+								borderColor: themeName === 'light' ? 'black' : 'white',
+								color: themeName === 'light' ? 'black' : 'white',
+								background: themeName === 'light' ? 'primary' : 'white'
+							}}
 						/>
+
 						<Button
 							type="submit"
 							fullWidth
 							variant="contained"
-							sx={{ mt: 3, mb: 2,'&:hover': {
-								backgroundColor: 'blue',
-								color: 'white'
-							} 
+							sx={{ 
+								mt: 3,
+								mb: 2,
+								'&:hover': {
+									backgroundColor: 'blue',
+									color: 'white'
+								} 
 							}}
 						>
-         Entrar
+     Entrar
 						</Button>
         
 						<Grid container>
 							<Grid item>
 								<Link href="/signup" variant="body2">
-									{'Não tem uma conta? Cadastre-se'}
+									Não tem uma conta? Cadastre-se!
 								</Link>
 							</Grid>
 						</Grid>

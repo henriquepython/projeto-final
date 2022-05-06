@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, Fab, Typography } from '@mui/material';
+import { Fab, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { api } from '../services/api';
@@ -47,14 +47,13 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 	};
 	return (
 		<React.Fragment>
-			<Box sx={{background: 'white'}}>
-				<Typography variant='h5' align='center' sx={{position: 'static',mt: 4, width: '100vw', color: 'black'}}>
-                Pedidos
-				</Typography>
-			</Box>
+			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+				Pedidos
+			</Typography>
 			<Table size="small" sx={{ background: 'white'}}>
 				<TableHead>
 					<TableRow>
+						<TableCell>Nº</TableCell>
 						<TableCell>Id Order</TableCell>
 						<TableCell>Id User</TableCell>
 						<TableCell>Status</TableCell>
@@ -65,6 +64,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 				<TableBody>
 					{orders.map((row, index) => (
 						<TableRow key={index}>
+							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.userId}</TableCell>
 							<TableCell>{row.status}</TableCell>
