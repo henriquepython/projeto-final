@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,13 +12,13 @@ interface ICartListProps {
       quantity: number;
       productId: string;
     }>;
-  }
+}
 
 export const ReviewOrder = (props: ICartListProps) => {
 	const { productsByUser } = props;
 	const total = sessionStorage.getItem('total_order');
 	return (
-		<React.Fragment>
+		<>
 			<Typography color='primary' variant="h6" gutterBottom>
         Revisão de Pedido
 			</Typography>
@@ -27,15 +26,27 @@ export const ReviewOrder = (props: ICartListProps) => {
 				{productsByUser.map((product, index) => (
 					<ListItem key={index} sx={{ py: 1, px: 0 }}>
 						<ListItemText primary={product.title} sx={{color: 'black'}} />
-						<ListItemText>Qtd: {product.quantity}</ListItemText>
-						<Typography variant="body2">R$ {product.price}</Typography>
+						<ListItemText>
+							Qtd: {product.quantity}
+						</ListItemText>
+						<Typography variant="body2">
+							R$ {product.price}
+						</Typography>
 					</ListItem>
-  
 				))}
 			</List>
-			<Box sx={{fontSize: 30 ,display: 'flex', flexDirection: 'row', justifyContent: 'center', mt: 4, flexWrap: 'wrap'}}>	
+			<Box 
+				sx={{
+					fontSize: 30,
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'center',
+					mt: 4,
+					flexWrap: 'wrap'
+				}}
+			>	
 				Total: R$ {total}
 			</Box>
-		</React.Fragment>
+		</>
 	);
 };

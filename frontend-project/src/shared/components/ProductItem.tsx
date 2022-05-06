@@ -8,8 +8,6 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 import { Box, Button } from '@mui/material';
 import { api } from '../services/api';
 
-
-
 const Img = styled('img')({
 	margin: 'auto',
 	display: 'flex',
@@ -24,7 +22,6 @@ interface IProductProps {
   image: string;
   price: number;
   _id: string;
-  quantity?: number;
 }
 
 export const ProductItem = (props: IProductProps) => {
@@ -33,18 +30,20 @@ export const ProductItem = (props: IProductProps) => {
 	const handleBuyCart = async() => {
 		const quantity = 1;
 		const userId = sessionStorage.getItem('id_user');
-
-		if (userId === null ){
-			document.location.href='/signup';
-		}
-		await api.post('/cart', {
+		const buyProduct = {
 			title: title,
 			image: image,
 			price: price,
 			quantity: quantity,
 			userId: {_id: userId},
 			productId: {_id: _id}
-		})
+		};
+
+		if (userId === null ){
+			document.location.href='/signup';
+		}
+
+		await api.post('/cart', buyProduct)
 			.then(()=>{
 				document.location.href = '/cart';
 			})
@@ -59,21 +58,22 @@ export const ProductItem = (props: IProductProps) => {
 		const input = new FormData(event.currentTarget);
 		const quantity = Number(input.get('quantity'));
 		const userId = sessionStorage.getItem('id_user');
-		await api.post('/cart', {
+		const addCart = {
 			title: title,
 			image: image,
 			price: price,
 			quantity: quantity,
 			userId: {_id: userId},
 			productId: {_id: _id}
-		})
+		};
+
+		await api.post('/cart', addCart)
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
 			})
 			.catch((err)=>{
 				console.log(err);
 			});
-
 	};
 
 	const getId = async() => {
@@ -89,38 +89,49 @@ export const ProductItem = (props: IProductProps) => {
 				maxWidth: 500,
 				flexGrow: 1,
 				transition: 'all linear 0.4s',
-				backgroundColor: (theme) =>
-					theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+				backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 				'&:hover': {
-					transform: 'scale(1.1)'}
+					transform: 'scale(1.1)'
+				}
 			}}
 		>
 			<Grid container spacing={1}>
 				<Grid item>
 					<ButtonBase onClick={getId} sx={{ mb: 1 }}>
-						<Img key={_id} alt="complex" src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'} sx={{borderRadius: 2, width: '100vw', height: 150}} />
+						<Img 
+							key={_id}
+							alt="complex"
+							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+							sx={{borderRadius: 2, width: '100vw', height: 150}} 
+						/>
 					</ButtonBase>
 				</Grid>
 				<Grid item>
-          
 					<Grid item>
 						<Typography gutterBottom variant="subtitle1" component="div">
 							{title}
 						</Typography>
 					</Grid>
-
 					<Grid item>
 						<Typography variant='caption' color="text.secondary">
 							{_id}
 						</Typography>
 					</Grid>
-          
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
               Preço: ${price}
 						</Typography>
 						<Box component="form" noValidate={false} onSubmit={handleAddCart}>
-							<Box component="input" min='1' required={true} placeholder='Qtd' id='quantity' name='quantity' type='number' sx={{width: '30%', height: '6vh', mr: 4}}/>
+							<Box 
+								component="input"
+								min='1'
+								required={true}
+								placeholder='Qtd'
+								id='quantity'
+								name='quantity'
+								type='number'
+								sx={{width: '30%', height: '6vh', mr: 4}}
+							/>
 							<Button 
 								type='submit'
 								sx={{ 

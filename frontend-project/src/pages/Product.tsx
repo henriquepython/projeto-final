@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ProductView } from '../shared/components';
 import { api } from '../shared/services/api';
-//import { useAppStoreContext } from '../shared/contexts';
-//find by id =state code
-//const {code} = useAppStoreContext()
 
 interface IProduct {
 	_id: string;
@@ -13,7 +10,7 @@ interface IProduct {
 	category:string;
 	quantity: number;
 	price: number;
-  }
+}
 
 export const Product = () => {
 	const [ productById, setProductById] = useState<IProduct>({} as IProduct);

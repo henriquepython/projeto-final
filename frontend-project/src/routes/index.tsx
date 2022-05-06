@@ -1,7 +1,22 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Accounts, Admin, Cart, Checkout, CreateProduct, EditProduct, Home, Product, Search, SignIn, SignInAdmin, SignUp, StoreClothes, StoreEletronic, StoreSports } from '../pages';
-
+import { 
+	Accounts,
+	Admin,
+	Cart,
+	Checkout,
+	CreateProduct,
+	EditProduct,
+	Home,
+	Product,
+	Search,
+	SignIn,
+	SignInAdmin,
+	SignUp,
+	StoreClothes,
+	StoreEletronic,
+	StoreSports
+} from '../pages';
 
 export const AppRoutes = () => {
 	return (

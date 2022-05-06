@@ -6,7 +6,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Typography } from '@mui/material';
 
-
 interface UserProps {
     user: ReadonlyArray<{
         name: string;
@@ -20,8 +19,11 @@ export const TableUsersAdmin = (props: UserProps) => {
 	const { user } = props;
 
 	return (
-		<React.Fragment>
-			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+		<>
+			<Typography 
+				variant='h5'
+				sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}
+			>
 				Usuários Cadastrados
 			</Typography>
 			<Table size="small" sx={{ background: 'white'}}>
@@ -46,6 +48,6 @@ export const TableUsersAdmin = (props: UserProps) => {
 					))}
 				</TableBody>
 			</Table>
-		</React.Fragment>
+		</>
 	);
 };

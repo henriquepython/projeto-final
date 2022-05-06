@@ -2,7 +2,7 @@ import { Box, styled } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const products = [
+const promotion = [
 	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, productId: 'djfs'},
 	{ title: 'Sports', image: 'https://source.unsplash.com/mwa_nzFpnJw', price: 1, productId: 'djfs'},
 	{ title: 'Sports', image: 'https://source.unsplash.com/TS--uNw-JqE', price: 1, productId: 'djfs'},
@@ -14,7 +14,6 @@ const products = [
 	{ title: 'Sports', image: 'https://source.unsplash.com/TS--uNw-JqE', price: 1, productId: 'djfs'},
 ];
 
-//findll products
 const Img = styled('img')({
 	margin: 'auto',
 	display: 'block',
@@ -58,7 +57,7 @@ export const Carrousel = () => {
 					slidesToSlide={1}
 					responsive={responsive}
 				>
-					{products.map((item) => (
+					{promotion.map((item) => (
 						<Img key={item.productId} src={item.image} sx={{width: '100%', height: 500}} />
 					))}
 				</Carousel>

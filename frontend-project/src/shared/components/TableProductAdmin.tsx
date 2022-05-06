@@ -10,7 +10,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import Fab from '@mui/material/Fab';
 
-
 interface ProductListProps {
     products: ReadonlyArray<{
       title: string;
@@ -28,28 +27,47 @@ export const TableProductAdmin = (props: ProductListProps) => {
 	const getDelete = async (index: string) => {
 		const result = confirm('Tem certeza que quer remover o produto?');
 		if(result) {
-			await api.delete(`product/${index}`);
-			document.location.reload();
-		}
-		//axios order update status for cancelled 
+			await api.delete(`product/${index}`)
+				.then(() => {
+					alert('Produto removido com sucesso');
+					document.location.reload();
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} 
 	};
 
 	const getEdit = async (id: string, title:string) => {
 		sessionStorage.setItem('id_product',`${id}`);
 		sessionStorage.setItem('title',`${title}`);
 		document.location.href='/editproduct';
-		//axios order update status for cancelled 
 	};
     
 	return (
-		<React.Fragment>
-			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+		<>
+			<Typography 
+				variant='h5'
+				sx={{ 
+					mb: 2,
+					width: '100%',
+					display: 'flex',
+					justifyContent: 'center'
+				}}
+			>
 				Produtos
 			</Typography>
 			<Box sx={{background: 'white'}}>
 				<Button
 					href='/createproduct'
-					sx={{ border: 1, position: 'static', ml:4, mb: 4, transition: 'all linear 0.4s',backgroundColor: 'black', color: 'white',
+					sx={{ 
+						border: 1,
+						position: 'static',
+						ml:4,
+						mb: 4,
+						transition: 'all linear 0.4s',
+						backgroundColor: 'black',
+						color: 'white',
 						'&:hover': {
 							backgroundColor: 'white',
 							color: 'black'
@@ -104,6 +122,6 @@ export const TableProductAdmin = (props: ProductListProps) => {
 					))}
 				</TableBody>
 			</Table>
-		</React.Fragment>
+		</>
 	);
 };

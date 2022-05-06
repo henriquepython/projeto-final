@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,13 +7,12 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { api } from '../services/api';
 import { Fab } from '@mui/material';
 
-
 interface OrderListProps {
     orders: Array<{
         totalPrice: number;
         status: string;
         _id: string;
-		userId: any; 
+		userId: {_id: string}; 
     }>
 }
 
@@ -23,15 +21,20 @@ export const TableOrders = (props: OrderListProps) => {
 
 	const getRequestCancel = async (index: string, status: string) => {
 		if (status === 'Pendente') {
-			const { data } = await api.patch(`order/requestCancelled/${index}`);
-			console.log(`${data}`);
-			alert('Pedido de cancelamento realizado');
-			document.location.reload();
+			await api.patch(`order/requestCancelled/${index}`)
+				.then((response) => {
+					console.log(`${response.data}`);
+					alert('Pedido de cancelamento realizado');
+					document.location.reload();
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		}
-		//axios order update status for Request cancelled
 	};
+
 	return (
-		<React.Fragment>
+		<>
 			<Table size="small">
 				<TableHead>
 					<TableRow>
@@ -64,6 +67,6 @@ export const TableOrders = (props: OrderListProps) => {
 					))}
 				</TableBody>
 			</Table>
-		</React.Fragment>
+		</>
 	);
 };

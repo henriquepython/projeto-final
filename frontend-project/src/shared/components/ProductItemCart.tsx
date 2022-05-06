@@ -7,8 +7,6 @@ import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCa
 import { Button } from '@mui/material';
 import { api } from '../services/api';
 
-
-
 const Img = styled('img')({
 	margin: 'auto',
 	display: 'flex',
@@ -30,12 +28,16 @@ export const ProductItemCart = (props: IProductCartProps) => {
 	const { title, image, price, _id, quantity} = props;
   
 	const handleRemoveCart = async () => {
-		await api.delete(`cart/${_id}`);
-		alert('produto removido do carrinho');
-		document.location.reload();
+		await api.delete(`cart/${_id}`)
+			.then(()=>{
+				alert('produto removido do carrinho');
+				document.location.reload();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 	
-
 	const getId = async(id: string) => {
 		sessionStorage.setItem('id_product', `${id}`);
 		document.location.href= '/product';
@@ -59,23 +61,25 @@ export const ProductItemCart = (props: IProductCartProps) => {
 			<Grid container spacing={1}>
 				<Grid item>
 					<ButtonBase href='/product' onClick={()=>getId(_id)} sx={{ mb: 1 }}>
-						<Img key={_id} alt="complex" src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'} sx={{borderRadius: 2, width: '100vw', height: 150}} />
+						<Img
+							key={_id}
+							alt="complex"
+							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+							sx={{borderRadius: 2, width: '100vw', height: 150}}
+						/>
 					</ButtonBase>
 				</Grid>
 				<Grid item>
-          
 					<Grid item>
 						<Typography gutterBottom variant="subtitle1" component="div">
 							{title}
 						</Typography>
 					</Grid>
-
 					<Grid item>
 						<Typography variant="caption" color="text.secondary">
 							{_id}
 						</Typography>
 					</Grid>
-          
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
               Preço: ${price}

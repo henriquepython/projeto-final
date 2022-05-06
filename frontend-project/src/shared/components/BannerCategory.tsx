@@ -69,7 +69,6 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export const BannerCategory = () => {
-  
 	const { themeName } = useAppThemeContext();
 	return (
 		<>

@@ -9,7 +9,6 @@ import RemoveIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { api } from '../services/api';
 
-
 interface OrderProps {
     orders: ReadonlyArray<{
         totalPrice: number;
@@ -26,28 +25,38 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 		if (status === 'Cancelamento Pendente' || status === 'Pendente') {
 			const result = confirm('Tem certeza que quer cancelar o pedido?');
 			if(result) {
-
-				const { data } = await api.patch(`order/cancelled/${index}`);
-				console.log(`${data}`);
-				alert('Pedido Cancelado com sucesso!');
-				document.location.reload();
+				await api.patch(`order/cancelled/${index}`)
+					.then((response) => {
+						console.log(`${response.data}`);
+						alert('Pedido Cancelado com sucesso!');
+						document.location.reload();
+					})
+					.catch((err) => {
+						console.log(err);
+					});
 			}
 		}
-		//axios order update status for cancelled 
 	};
 
 	const getCompleted = async (index: string, status: string) => {
 		if (status === 'Pendente') {
-			const { data } = await api.patch(`order/completed/${index}`);
-			console.log(`${data}`);
-			alert('Pedido Finalizado');
-			document.location.reload();
+			await api.patch(`order/completed/${index}`)
+				.then((response) => {
+					console.log(`${response.data}`);
+					alert('Pedido Finalizado');
+					document.location.reload();
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		}
-		//axios order update status for cancelled 
 	};
 	return (
-		<React.Fragment>
-			<Typography variant='h5' sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}>
+		<>
+			<Typography 
+				variant='h5'
+				sx={{ mb: 2 ,width: '100%', display: 'flex', justifyContent: 'center'}}
+			>
 				Pedidos
 			</Typography>
 			<Table size="small" sx={{ background: 'white'}}>
@@ -92,6 +101,6 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 					))}
 				</TableBody>
 			</Table>
-		</React.Fragment>
+		</>
 	);
 };

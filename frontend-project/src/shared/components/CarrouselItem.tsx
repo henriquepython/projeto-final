@@ -4,17 +4,19 @@ import 'react-multi-carousel/lib/styles.css';
 import { ProductItem } from './ProductItem';
 import { useAppThemeContext } from '../contexts';
 
-     interface CarrouselProps {
-         category: string;
-         products: ReadonlyArray<{
-          title: string;
-          image: string;
-          price: number;
-          _id: string;
-        }>;
-     }
+interface CarrouselProps {
+	category: string;
+	products: ReadonlyArray<{
+		title: string;
+		image: string;
+		price: number;
+		_id: string;
+	}>;
+}
+
 export const CarrouselItem = (props: CarrouselProps) => {
 	const {category, products} = props;
+	const { themeName } = useAppThemeContext();
 	const responsive = {
 		superLargeDesktop: {
 			// the naming can be any, depends on you.
@@ -34,11 +36,18 @@ export const CarrouselItem = (props: CarrouselProps) => {
 			items: 1
 		}
 	};
-	const { themeName } = useAppThemeContext();
+	
 	return(
 		<Container sx={{ my: 5}}>
 			<Typography 
-				sx={{mb: 4, fontSize: 30,display: 'flex', justifyContent: 'center', width: '100%', color: themeName === 'light' ? 'black' : 'white'}}
+				sx={{
+					mb: 4,
+					fontSize: 30,
+					display: 'flex',
+					justifyContent: 'center',
+					width: '100%',
+					color: themeName === 'light' ? 'black' : 'white'
+				}}
 			>
 				{category}
 			</Typography>
@@ -50,7 +59,11 @@ export const CarrouselItem = (props: CarrouselProps) => {
 			>
 				{products.map((item, index) => (
 					<Box key={index} sx={{width: '90%'}}>
-						<ProductItem title={item.title} image={item.image} price={item.price} _id={item._id}/>
+						<ProductItem 
+							title={item.title}
+							image={item.image}
+							price={item.price}
+							_id={item._id}/>
 					</Box>
 				))}
 			</Carousel>

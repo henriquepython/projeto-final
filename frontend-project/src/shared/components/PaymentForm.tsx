@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 
 export const PaymentForm = () => {
 	return (
-		<React.Fragment>
+		<>
 			<Typography variant="h6" gutterBottom>
         Método de Pagamento
 			</Typography>
@@ -52,6 +52,6 @@ export const PaymentForm = () => {
 					/>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 };
