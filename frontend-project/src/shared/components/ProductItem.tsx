@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import { Button, Input } from '@mui/material';
+import { Box, Button, Input } from '@mui/material';
 import { api } from '../services/api';
 
 
@@ -35,15 +35,18 @@ interface IProductProps {
 export const ProductItem = (props: IProductProps) => {
 	const { title, image, price, _id } = props;
 
-	const handleAddCart = async(idProduct: string) => {
+	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const input = new FormData(event.currentTarget);
+		const quantity = Number(input.get('quantity'));
 		const userId = localStorage.getItem('id_user');
 		await api.post('/cart', {
 			title: title,
 			image: image,
 			price: price,
-			quantity: 2,
+			quantity: quantity,
 			userId: {_id: userId},
-			productId: {_id: idProduct}
+			productId: {_id: _id}
 		})
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
@@ -91,23 +94,25 @@ export const ProductItem = (props: IProductProps) => {
 						<Typography variant="subtitle1" component="div">
               Preço: ${price}
 						</Typography>
-						<Input placeholder='Qtd' id='quantity' type='number'/>
-						<Button 
-							onClick={()=>handleAddCart(_id)}
-							sx={{ 
-								cursor: 'pointer',
-								color: 'black',
-								mt: 1,
-								border: 1,
-								transition: 'all linear 0.4s',
-								'&:hover': {
-									backgroundColor: 'blue',
-									color: 'white'
-								}
-							}}
-						>
-							<AddShoppingCartOutlinedIcon /> Add Carrinho
-						</Button>
+						<Box component="form" noValidate={false} onSubmit={handleAddCart}>
+							<Input required={true} placeholder='Qtd' id='quantity' name='quantity' type='number'/>
+							<Button 
+								type='submit'
+								sx={{ 
+									cursor: 'pointer',
+									color: 'black',
+									mt: 1,
+									border: 1,
+									transition: 'all linear 0.4s',
+									'&:hover': {
+										backgroundColor: 'blue',
+										color: 'white'
+									}
+								}}
+							>
+								<AddShoppingCartOutlinedIcon /> Add Carrinho
+							</Button>
+						</Box>
 					</Grid>
 				</Grid>
 			</Grid>

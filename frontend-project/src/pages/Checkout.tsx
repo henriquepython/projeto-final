@@ -54,13 +54,9 @@ export const Checkout = () => {
 	};
 
 	const handleOrder = async () => {
-		const total = localStorage.getItem('total_order');
 		const userId = localStorage.getItem('id_user');
-		console.log(total);
+		console.log(userId);
 		await api.post('order/', {
-			totalPrice: Number(total),
-			products: [''],
-			status: '',
 			userId: {_id: userId}
 		}).then((response)=>{
 			console.log(response.data);

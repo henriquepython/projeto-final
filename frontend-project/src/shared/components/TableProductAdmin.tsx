@@ -8,7 +8,9 @@ import { Box, Button, IconButton, Typography } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { api } from '../services/api';
-import { useAppThemeContext } from '../contexts';
+import EditIcon from '@mui/icons-material/Edit';
+import RemoveIcon from '@mui/icons-material/Cancel';
+import Fab from '@mui/material/Fab';
 
 
 interface ProductListProps {
@@ -78,22 +80,24 @@ export const TableProductAdmin = (props: ProductListProps) => {
 							<TableCell>{row.category}</TableCell>
 							<TableCell>{row.quantity}</TableCell>
 							<TableCell>  
-								<IconButton
-									onClick={()=> getDelete(row._id)}
-									color='warning'
-									title='Remover Produto'
-									sx={{ fontSize: 15 }}
-								>
-									<CancelOutlinedIcon />
-								</IconButton>
-								<IconButton
+								<Fab 
 									color='info'
+									size='small'
 									title='Editar Produto'
 									onClick={()=>getEdit(row._id, row.title)}
-									sx={{ fontSize: 15 }}
+									aria-label="edit"
+									sx={{mr: 2}}
 								>
-									<EditOutlinedIcon />
-								</IconButton>
+									<EditIcon />
+								</Fab>
+								<Fab
+									onClick={()=> getDelete(row._id)}
+									size='small'
+									color='warning'
+									title='Remover Produto'
+								>
+									<RemoveIcon />
+								</Fab>
 							</TableCell>
 						</TableRow>
 					))}

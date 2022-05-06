@@ -4,9 +4,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, IconButton, Typography } from '@mui/material';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { Box, Fab, IconButton, Typography } from '@mui/material';
+import RemoveIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { api } from '../services/api';
 
 
@@ -65,23 +65,24 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 							<TableCell>{row.userId}</TableCell>
 							<TableCell>{row.status}</TableCell>
 							<TableCell>R$ {row.totalPrice}</TableCell>
-							<TableCell>  
-								<IconButton
-									onClick={()=> getCancelled(row._id, row.status)}
-									color='warning'
-									title='Cancelar Pedido'
-									sx={{ fontSize: 15 }}
-								>
-									<CancelOutlinedIcon />
-								</IconButton>
-								<IconButton
+							<TableCell> 
+								<Fab
 									onClick={()=> getCompleted(row._id, row.status)}
+									size='small'
 									color='success'
 									title='Finalizar Pedido'
-									sx={{ fontSize: 15 }}
+									sx={{ mr: 2 }}
 								>
-									<CheckCircleOutlineOutlinedIcon />
-								</IconButton>
+									<CheckCircleIcon />
+								</Fab>
+								<Fab
+									onClick={()=> getCancelled(row._id, row.status)}
+									size='small'
+									color='warning'
+									title='Cancelar Pedido'
+								>
+									<RemoveIcon />
+								</Fab>
 							</TableCell>
 						</TableRow>
 					))}

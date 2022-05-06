@@ -4,9 +4,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { IconButton } from '@mui/material';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { api } from '../services/api';
+import { Fab } from '@mui/material';
 
 
 interface OrderListProps {
@@ -50,15 +50,15 @@ export const TableOrders = (props: OrderListProps) => {
 							<TableCell>{row.status}</TableCell>
 							<TableCell>R$ {row.totalPrice}</TableCell>
 							<TableCell>
-								<IconButton
-									key={index}
+								<Fab
+									size='small'
 									color='warning'
 									title='Pedido de Cancelamento'
 									onClick={()=>getRequestCancel(row._id, row.status)}
 									sx={{ fontSize: 15 }}
 								>
-									<CancelOutlinedIcon />
-								</IconButton>
+									<CancelIcon />
+								</Fab>
 							</TableCell>
 						</TableRow>
 					))}
