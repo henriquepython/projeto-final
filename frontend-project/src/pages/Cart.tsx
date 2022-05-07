@@ -38,6 +38,11 @@ export const Cart = () => {
 	});
 	sessionStorage.setItem('total_order', `${total}`);
 
+	if (total == 0) {
+		sessionStorage.removeItem('item_cart');
+	}
+
+
 	return (
 		<>
 			<Box sx={{ width: '100vw'}}>

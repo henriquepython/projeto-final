@@ -70,6 +70,7 @@ export const ProductItem = (props: IProductProps) => {
 		await api.post('/cart', addCart)
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
+				sessionStorage.setItem('item_cart','true');
 			})
 			.catch((err)=>{
 				console.log(err);

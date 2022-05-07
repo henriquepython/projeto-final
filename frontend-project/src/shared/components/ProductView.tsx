@@ -49,6 +49,7 @@ export const ProductView = (props: ProductViewProps) => {
 		await api.post('/cart', productView)
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
+				sessionStorage.setItem('item_cart','true');
 			})
 			.catch((err)=> {
 				console.log(err);
@@ -109,7 +110,7 @@ export const ProductView = (props: ProductViewProps) => {
 							border: 1,
 							transition: 'all linear 0.4s',
 							'&:hover': {
-								backgroundColor: 'blue',
+								backgroundColor: 'black',
 								color: 'white'
 							}
 						}}

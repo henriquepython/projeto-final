@@ -14,6 +14,7 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { Typography, TextField, Box, Avatar } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import { useState } from 'react';
 
 const sectionsProduct = [ 
@@ -62,6 +63,7 @@ export const ResponsiveHeader = () => {
 		document.location.href='/search';
 	};
 
+	const cartIcon = sessionStorage.getItem('item_cart');
 	return (
 		<Box 
 			height='15%'
@@ -292,9 +294,19 @@ export const ResponsiveHeader = () => {
 					</Box>   
 					<Box sx={{ flexGrow: 0,mr: .5 }}>
 						<Tooltip title="Carrinho">
-							<IconButton href='/cart' color='primary'>
-								<ShoppingCartOutlinedIcon />
-							</IconButton>
+							<>
+								{ cartIcon != 'true' ? (
+									<IconButton href='/cart' color='primary'>
+										<ShoppingCartOutlinedIcon />
+									</IconButton>
+								)  : (  
+							  <IconButton href='/cart' sx={{
+								  color: 'red'
+							  }}>
+										<ProductionQuantityLimitsIcon />
+									</IconButton> 
+								)}
+							</>
 						</Tooltip>
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
