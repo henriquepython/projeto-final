@@ -26,13 +26,14 @@ export const SignInAdmin = () => {
 		};
 			
 		await api.post('/auth/admin', login)
-			.then(()=>{
+			.then((response)=>{
+				sessionStorage.setItem('token', response.data.accessToken);
 				console.log('Adm logado com sucesso!');
 				document.location.href = '/admin';
 			})
 			.catch ((err) => {
 				console.log(err);
-				alert('Não foi possivel entrar, email ou senha invalido!');
+				alert('Usuario não autorizado!');
 			});
 		
 	};
@@ -106,7 +107,7 @@ export const SignInAdmin = () => {
 							type="submit"
 							fullWidth
 							variant="contained"
-							sx={{ mt: 3, mb: 2,'&:hover': { backgroundColor: 'blue', color: 'white' } }}>
+							sx={{ mt: 3, mb: 2,'&:hover': { backgroundColor: 'black', color: 'white' } }}>
          Entrar
 						</Button>
 					</Box>

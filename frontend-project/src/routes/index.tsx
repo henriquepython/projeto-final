@@ -1,5 +1,5 @@
-
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { isLogged } from '../shared/utils/IsLogged';
 import { 
 	Accounts,
 	Admin,
@@ -19,6 +19,8 @@ import {
 } from '../pages';
 
 export const AppRoutes = () => {
+	
+	
 	return (
 		<Routes>
 			<Route path="/home" element={<Home />} />
@@ -33,9 +35,9 @@ export const AppRoutes = () => {
 			<Route path="/search" element={<Search />} />
 			<Route path="/product" element={<Product />} />
 			<Route path="/accounts" element={<Accounts />} />
-			<Route path="/admin" element={<Admin />} />
-			<Route path='/createproduct' element={<CreateProduct/>} />
-			<Route path='/editproduct' element={<EditProduct/>} />
+			{isLogged() ? <Route path="/admin" element={<Admin />} /> : <Route path="/admin" element={<SignInAdmin />} />}
+			{isLogged() ? <Route path="/createproduct" element={<CreateProduct/>} /> : <Route path="/createproduct" element={<Home />} />}
+			{isLogged() ? <Route path="/editproduct" element={<EditProduct/>} /> : <Route path="/editproduct" element={<Home />} />}
 
 			<Route path="*" element={<Navigate to='/home' />} />
 		</Routes>

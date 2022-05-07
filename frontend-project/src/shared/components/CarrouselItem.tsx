@@ -1,7 +1,6 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, ButtonBase, Container, Grid, Paper, styled, Typography } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { ProductItem } from './ProductItem';
 import { useAppThemeContext } from '../contexts';
 
 interface CarrouselProps {
@@ -13,6 +12,16 @@ interface CarrouselProps {
 		_id: string;
 	}>;
 }
+
+const Img = styled('img')({
+	margin: 'auto',
+	display: 'flex',
+	justifyContent: 'center',
+	flexDirection: 'row',
+	maxWidth: '100%',
+	maxHeight: '100%',
+});
+
 
 export const CarrouselItem = (props: CarrouselProps) => {
 	const {category, products} = props;
@@ -37,6 +46,11 @@ export const CarrouselItem = (props: CarrouselProps) => {
 		}
 	};
 	
+	const getId = async(_id: string) => {
+		sessionStorage.setItem('id_product', `${_id}`);
+		document.location.href= '/product';
+	};
+
 	return(
 		<Container sx={{ my: 5}}>
 			<Typography 
@@ -59,11 +73,56 @@ export const CarrouselItem = (props: CarrouselProps) => {
 			>
 				{products.map((item, index) => (
 					<Box key={index} sx={{width: '90%'}}>
-						<ProductItem 
-							title={item.title}
-							image={item.image}
-							price={item.price}
-							_id={item._id}/>
+						<ButtonBase 
+							onClick={()=>getId(item._id)}
+							sx={{ 
+								mb: 1,
+								transition: 'all linear 0.4s',
+								'&:hover': {
+									transform: 'scale(1.1)',						
+								}
+							}}
+						>
+							<Paper
+								sx={{
+									borderRadius: 2,
+									py:2,
+									px:2,
+									m: 2,
+									maxWidth: 250,
+									height: 200,
+
+									backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+				
+								}}
+							>
+								<Grid>
+									<Grid item>
+										<Img 
+											src={item.image ? item.image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+											sx={{
+												borderRadius: 4,
+												width: '100vw',
+												height: 100,	
+												mb: 1,
+											}} 
+										/>
+									</Grid>
+									<Grid item>
+										<Grid item>
+											<Typography gutterBottom variant="subtitle1" component="div">
+												{item.title}
+											</Typography>
+										</Grid>
+										<Grid item>
+											<Typography variant="subtitle1" component="div">
+            R$ {item.price}
+											</Typography>
+										</Grid>
+									</Grid>
+								</Grid>
+							</Paper>
+						</ButtonBase>
 					</Box>
 				))}
 			</Carousel>

@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
-import { api } from '../shared/services/api';
+import { apiAdmin } from '../shared/services/api';
 
 const categories = [
 	{ label: 'Eletronicos' },
@@ -26,15 +26,15 @@ export const CreateProduct = () => {
 			quantity: quantity
 		};
 			
-		await api.post('/product', createProduct)
+		await apiAdmin.post('/product', createProduct)
 			.then((response) => {
 				console.log(response.data);
 				alert('Produto criado com sucesso');
-				document.location.href = '/admin';
+				document.location.reload();
 			})
 			.catch ((err) => {
 				console.log(err);
-				alert('Não foi possivel criar produto');
+				alert('Não foi possivel criar produto!');
 			});	
 	};
 	return(
@@ -45,6 +45,12 @@ export const CreateProduct = () => {
 			maxWidth="sm"
 			sx={{ mb: 4 }}
 		>
+			<Button 
+				href='/admin'
+				variant="contained"
+				sx={{ mt: 3, ml: 1, width: 200,'&:hover': { backgroundColor: 'white', color: 'black'}  }}>
+                      Voltar
+			</Button>
 			<Paper 
 				variant="outlined"
 				sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}
@@ -69,7 +75,6 @@ export const CreateProduct = () => {
 						<TextField
 							id="image"
 							name="image"
-							type='url'
 							label="Imagem"
 							fullWidth
 							autoComplete="image"

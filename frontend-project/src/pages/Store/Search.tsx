@@ -39,7 +39,7 @@ export const Search = () => {
 			}}
 		>
 			{search.title != '' ? (
-				<Box sx={{width: 220, m: 2}}>
+				<Box>
 					<ProductItem
 						title={search.title}
 						image={search.image}

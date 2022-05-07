@@ -143,7 +143,7 @@ export const SignUp = () => {
 						variant="contained"
 						color='primary'
 						sx={{ mt: 3, mb: 2,'&:hover': {
-							backgroundColor: 'blue',
+							backgroundColor: 'black',
 							color: 'white'
 						} }}
 					>

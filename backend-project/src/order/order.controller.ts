@@ -6,12 +6,12 @@ import {
   Param,
   Patch,
   HttpCode,
-  UsePipes,
-  ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { JwtGuard } from 'src/auth/jwt.auth.guard';
 
 @ApiBearerAuth()
 @ApiTags('order')
@@ -34,11 +34,13 @@ export class OrderController {
     return this.orderService.listOrdersByUser(user);
   }
 
+  @UseGuards(JwtGuard)
   @Patch('/cancelled/:id')
   cancelledOrder(@Param('id') id: string) {
     return this.orderService.cancelledOrderByUser(id);
   }
 
+  @UseGuards(JwtGuard)
   @Patch('/completed/:id')
   completedOrder(@Param('id') id: string) {
     return this.orderService.completedOrderByUser(id);

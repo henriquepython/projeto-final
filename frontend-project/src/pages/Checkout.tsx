@@ -125,7 +125,7 @@ export const Checkout = () => {
 										href='/cart'
 										variant="contained"
 										sx={{ mt: 3, ml: 1 }}>
-                      Back
+                      Voltar
 									</Button>
 								)}
 

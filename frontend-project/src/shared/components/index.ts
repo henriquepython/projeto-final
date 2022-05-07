@@ -11,7 +11,7 @@ export * from  './Carrousel';
 export * from  './CarrouselItem';
 export * from  './BannerCategory';
 export * from  './ProductView';
-export * from  './TableOrders';
+export * from  './TableOrdersAccount';
 export * from  './TableOrdersAdmin';
 export * from  './TableProductAdmin';
 export * from  './TableUsersAdmin';

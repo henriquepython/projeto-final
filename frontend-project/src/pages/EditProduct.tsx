@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
-import { api } from '../shared/services/api';
+import { apiAdmin } from '../shared/services/api';
 
 const categories = [
 	{ label: 'Eletronicos' },
@@ -8,7 +8,8 @@ const categories = [
 ];
 
 export const EditProduct = () => {
-	const handleCreateProduct = async (event: React.FormEvent<HTMLFormElement>) => {
+
+	const handleEditProduct = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const input = new FormData(event.currentTarget);
 		const title = `${input.get('title')}`;
@@ -27,7 +28,7 @@ export const EditProduct = () => {
 			quantity: quantity
 		};
 			
-		await api.patch(`product/${edit}`, editProduct)
+		await apiAdmin.patch(`product/${edit}`, editProduct)
 			.then((response) => {
 				console.log(response.data);
 				alert('Produto Editado');
@@ -35,11 +36,11 @@ export const EditProduct = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-				alert('Não foi possivel editar produto');
+				alert('Usuario não autorizado!');
 			});
 	};
 	return(
-		<Container component="form"  onSubmit={handleCreateProduct} maxWidth="sm" sx={{ mb: 4 }}>
+		<Container component="form"  onSubmit={handleEditProduct} maxWidth="sm" sx={{ mb: 4 }}>
 			<Paper 
 				variant="outlined"
 				sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}
@@ -53,6 +54,7 @@ export const EditProduct = () => {
 							id="title"
 							name="title"
 							label="Nome"
+							required={true}
 							fullWidth
 							autoComplete="title"
 							variant="standard"
@@ -63,7 +65,7 @@ export const EditProduct = () => {
 						<TextField
 							id="image"
 							name="image"
-							type='url'
+							required={true}
 							label="Imagem"
 							fullWidth
 							autoComplete="image"
@@ -76,6 +78,7 @@ export const EditProduct = () => {
 							id="description"
 							name="description"
 							label="Descrição"
+							required={true}
 							fullWidth
 							autoComplete="description"
 							variant="standard"
@@ -93,6 +96,7 @@ export const EditProduct = () => {
 								<TextField 
 									name="category"
 									variant="standard"
+									required={true}
 									{...params} label="Categoria" 
 								/>}
 						/>
@@ -103,8 +107,9 @@ export const EditProduct = () => {
 							component="input"
 							min='1'
 							type='number'
-							id="quantity"
-							name="quantity"
+							id='quantity'
+							name='quantity'
+							required={true}
 							placeholder="Quantidade"
 							sx={{height: '8vh'}}
 						/>
@@ -114,6 +119,7 @@ export const EditProduct = () => {
 						<Box
 							component="input"
 							min='1'
+							required={true}
 							type='number'
 							id="price"
 							name="price"	

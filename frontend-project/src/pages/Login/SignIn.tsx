@@ -2,13 +2,14 @@ import * as React from 'react';
 import { api } from '../../shared/services/api';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import { Button, Link } from '@mui/material';
+import { Button, Link} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {  useAppThemeContext } from '../../shared/contexts';
+
 
 export const SignIn = () => {
 	const { themeName } = useAppThemeContext();
@@ -116,7 +117,7 @@ export const SignIn = () => {
 								mt: 3,
 								mb: 2,
 								'&:hover': {
-									backgroundColor: 'blue',
+									backgroundColor: 'black',
 									color: 'white'
 								} 
 							}}

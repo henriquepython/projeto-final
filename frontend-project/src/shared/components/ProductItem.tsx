@@ -40,7 +40,7 @@ export const ProductItem = (props: IProductProps) => {
 		};
 
 		if (userId === null ){
-			document.location.href='/signup';
+			document.location.href='/signin';
 		}
 
 		await api.post('/cart', buyProduct)
@@ -73,6 +73,7 @@ export const ProductItem = (props: IProductProps) => {
 			})
 			.catch((err)=>{
 				console.log(err);
+				document.location.href = '/signin';
 			});
 	};
 
@@ -84,25 +85,32 @@ export const ProductItem = (props: IProductProps) => {
 	return (
 		<Paper
 			sx={{
-				p: 2,
-				margin: 'auto',
-				maxWidth: 500,
-				flexGrow: 1,
-				transition: 'all linear 0.4s',
+				borderRadius: 2,
+				py:.8,
+				px:4,
+				m: 2,
+				maxWidth: 250,
+				height: 300,
+
 				backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-				'&:hover': {
-					transform: 'scale(1.1)'
-				}
+				
 			}}
 		>
-			<Grid container spacing={1}>
+			<Grid>
 				<Grid item>
 					<ButtonBase onClick={getId} sx={{ mb: 1 }}>
 						<Img 
 							key={_id}
-							alt="complex"
 							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
-							sx={{borderRadius: 2, width: '100vw', height: 150}} 
+							sx={{
+								borderRadius: 4,
+								width: '100vw',
+								height: 100,
+								transition: 'all linear 0.4s',
+								'&:hover': {
+									transform: 'scale(1.1)',						
+								}
+							}} 
 						/>
 					</ButtonBase>
 				</Grid>
@@ -119,7 +127,7 @@ export const ProductItem = (props: IProductProps) => {
 					</Grid>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-              Preço: ${price}
+            R$ {price}
 						</Typography>
 						<Box component="form" noValidate={false} onSubmit={handleAddCart}>
 							<Box 
@@ -142,7 +150,7 @@ export const ProductItem = (props: IProductProps) => {
 									ml:4,
 									transition: 'all linear 0.4s',
 									'&:hover': {
-										backgroundColor: 'blue',
+										backgroundColor: 'black',
 										color: 'white'
 									}
 								}}
@@ -159,7 +167,7 @@ export const ProductItem = (props: IProductProps) => {
 									border: 1,
 									transition: 'all linear 0.4s',
 									'&:hover': {
-										backgroundColor: 'blue',
+										backgroundColor: 'black',
 										color: 'white'
 									}
 								}}

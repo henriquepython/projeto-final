@@ -47,7 +47,7 @@ export const Carrousel = () => {
 	};
 	return(
 		<>
-			<Box sx={{ width: '100%'}}>
+			<Box sx={{ width: '100%', mb: 2}}>
 				<Carousel 
 					autoPlay= {true}
 					autoPlaySpeed= {1600}
@@ -55,6 +55,7 @@ export const Carrousel = () => {
 					arrows= {false}
 					infinite={true}
 					slidesToSlide={1}
+					pauseOnHover={false}
 					responsive={responsive}
 				>
 					{promotion.map((item) => (

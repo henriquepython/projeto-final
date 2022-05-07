@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { TableOrders } from '../shared/components';
+import { TableOrdersAccount } from '../shared/components';
 import { api } from '../shared/services/api';
 
 interface IOrderByUser {
 	totalPrice: number;
 	products: [];
 	status: string;
-	userId: string;
+	userId: {_id: string};
 	_id: string;
 }
 
@@ -27,7 +27,7 @@ export const Accounts = () => {
 	
 	return (
 		<>
-			<TableOrders orders={orderUser} />
+			<TableOrdersAccount orders={orderUser} />
 		</>
 	);
 };

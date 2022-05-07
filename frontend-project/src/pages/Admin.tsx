@@ -92,6 +92,11 @@ export const Admin = () => {
 		setOpen(!open);
 	};
 
+	const handleLogoutAdmin = () => {
+		sessionStorage.removeItem('token');
+		document.location.href = '/home';
+	};
+
 	const getStepContent = (step: number) => {
 		switch (step) {
 		case 0:
@@ -145,6 +150,13 @@ export const Admin = () => {
 						sx={{ '&:hover': { backgroundColor: 'white', color: 'black'} }}
 					>
 						Usuários
+					</Button>
+					<Button
+						variant="contained"
+						onClick={handleLogoutAdmin}
+						sx={{ '&:hover': { backgroundColor: 'white', color: 'black'} }}
+					>
+						Logout
 					</Button> 
 				</Box>
 			</Drawer>

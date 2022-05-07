@@ -16,7 +16,7 @@ interface OrderListProps {
     }>
 }
 
-export const TableOrders = (props: OrderListProps) => {
+export const TableOrdersAccount = (props: OrderListProps) => {
 	const { orders } = props;
 
 	const getRequestCancel = async (index: string, status: string) => {

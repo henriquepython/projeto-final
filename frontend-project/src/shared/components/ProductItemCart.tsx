@@ -46,16 +46,17 @@ export const ProductItemCart = (props: IProductCartProps) => {
 	return (
 		<Paper
 			sx={{
-				p: 2,
+				borderRadius: 2,
+				m: 6,
+				py:.8,
+				px:4,
 				margin: 'auto',
-				maxWidth: 500,
+				maxWidth: 250,
+				maxHeight: 300,
 				flexGrow: 1,
-				transition: 'all linear 0.4s',
-				backgroundColor: (theme) =>
-					theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-				'&:hover': {
-					transform: 'scale(1.1)',
-				}
+			
+				backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+			
 			}}
 		>
 			<Grid container spacing={1}>
@@ -65,7 +66,15 @@ export const ProductItemCart = (props: IProductCartProps) => {
 							key={_id}
 							alt="complex"
 							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
-							sx={{borderRadius: 2, width: '100vw', height: 150}}
+							sx={{
+								borderRadius: 4,
+								width: '100vw',
+								height: 100,
+								transition: 'all linear 0.4s',
+								'&:hover': {
+									transform: 'scale(1.1)'
+								}
+							}} 
 						/>
 					</ButtonBase>
 				</Grid>
@@ -82,13 +91,14 @@ export const ProductItemCart = (props: IProductCartProps) => {
 					</Grid>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-              Preço: ${price}
+              R$ {price}
 						</Typography>
 						<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
                   Quantity: {quantity}
 						</Typography>
 						<Button 
 							onClick={handleRemoveCart}
+							fullWidth
 							sx={{ 
 								cursor: 'pointer',
 								color: 'black',
@@ -100,7 +110,7 @@ export const ProductItemCart = (props: IProductCartProps) => {
 								}
 							}}
 						>
-							<RemoveShoppingCartOutlinedIcon /> Remover Carrinho
+							<RemoveShoppingCartOutlinedIcon />Remover
 						</Button>
 					</Grid>
 				</Grid>

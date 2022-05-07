@@ -17,7 +17,8 @@ export const ProductList = (props: IProductListProps) => {
 	return (
 		<Box 
 			sx={{ 
-				width: '100vw',
+				width: '100%',
+				m:2,
 				display: 'flex',
 				flexShrink: 1,
 				flexWrap: 'wrap',
@@ -26,7 +27,7 @@ export const ProductList = (props: IProductListProps) => {
 			}}
 		>
 			{products?.map((item, index) => (
-				<Box key={index} sx={{width: 220, m: 2}}>
+				<Box key={index}>
 					<ProductItem
 						title={item.title}
 						image={item.image}

@@ -33,14 +33,7 @@ export class AuthController {
     }
 
     this.logger.log('Login realizado com sucesso');
-    const payload = {
-      name: user.email,
-      sub: user.email,
-    };
-    return {
-      email: user.email,
-      accessToken: await this.jwtService.signAsync(payload),
-    };
+    return user.email;
   }
 
   @Post('/admin')

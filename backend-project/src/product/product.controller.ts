@@ -19,20 +19,20 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtGuard } from 'src/auth/jwt.auth.guard';
 
-// @ApiBearerAuth()
+@ApiBearerAuth()
 @ApiTags('product')
 @UsePipes(new ValidationPipe())
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
   @HttpCode(201)
+  @UseGuards(JwtGuard)
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
   }
 
   //@Roles(Role.ADMIN)
-  // @UseGuards(JwtGuard, RolesGuard)
   @Get()
   findAll() {
     return this.productService.findAll();
@@ -53,11 +53,13 @@ export class ProductController {
     return this.productService.findByCategory(category);
   }
 
+  @UseGuards(JwtGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productService.edit(id, updateProductDto);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(id);

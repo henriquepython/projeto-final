@@ -17,6 +17,7 @@ import { useAppThemeContext } from '../contexts/ThemeContext';
 import { useState } from 'react';
 
 const sectionsProduct = [ 
+	{title: 'Inicio', url:'/Inicio'},
 	{title: 'Roupas', url:'/storeclothes'},
 	{title: 'Esportes', url:'/storesports'},
 	{title: 'Eletronicos', url:'/storeeletronics'}
@@ -67,7 +68,7 @@ export const ResponsiveHeader = () => {
 			display='flex'
 			color='primary'
 			sx={{ 
-				my: 2 ,
+				py: 2,
 				background: 'none',
 				borderBottom: .5,
 				borderColor: themeName === 'light' ? 'black' : 'white'
@@ -131,8 +132,8 @@ export const ResponsiveHeader = () => {
 										mx: 4,
 										my: 2,
 										'&:hover': {
-											backgroundColor: 'blue',
-											color: 'white'
+											backgroundColor: themeName === 'light' ? 'black' : 'white',
+											color: themeName === 'light' ? 'white' : 'black'
 										}
 									}}
 								>
@@ -143,7 +144,7 @@ export const ResponsiveHeader = () => {
 						<IconButton
 							href='/home'
 							color='primary'
-							sx={{ ml: 2 }}
+							sx={{ ml: 2, display: { xs: 'none', md: 'flex' } }}
 						>
                 JHBC Store
 						</IconButton>
@@ -158,7 +159,7 @@ export const ResponsiveHeader = () => {
 							size='small'
 							type='search'
 							id="search"
-							placeholder=' Pesquise Produtos'
+							placeholder=' Pesquise Produtos pelo nome'
 							name="search"
 							autoFocus
 							sx={{

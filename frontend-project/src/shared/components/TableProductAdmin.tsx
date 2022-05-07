@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Box, Button, Typography } from '@mui/material';
-import { api } from '../services/api';
+import { apiAdmin } from '../services/api';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import Fab from '@mui/material/Fab';
@@ -27,12 +27,13 @@ export const TableProductAdmin = (props: ProductListProps) => {
 	const getDelete = async (index: string) => {
 		const result = confirm('Tem certeza que quer remover o produto?');
 		if(result) {
-			await api.delete(`product/${index}`)
+			await apiAdmin.delete(`product/${index}`)
 				.then(() => {
 					alert('Produto removido com sucesso');
 					document.location.reload();
 				})
 				.catch((err) => {
+					alert('Usuario não autorizado!');
 					console.log(err);
 				});
 		} 

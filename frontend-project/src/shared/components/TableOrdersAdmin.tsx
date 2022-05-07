@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { Fab, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { api } from '../services/api';
+import { apiAdmin } from '../services/api';
 
 interface OrderProps {
     orders: ReadonlyArray<{
@@ -25,13 +25,14 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 		if (status === 'Cancelamento Pendente' || status === 'Pendente') {
 			const result = confirm('Tem certeza que quer cancelar o pedido?');
 			if(result) {
-				await api.patch(`order/cancelled/${index}`)
+				await apiAdmin.patch(`order/cancelled/${index}`)
 					.then((response) => {
 						console.log(`${response.data}`);
 						alert('Pedido Cancelado com sucesso!');
 						document.location.reload();
 					})
 					.catch((err) => {
+						alert('Usuario não autorizado!');
 						console.log(err);
 					});
 			}
@@ -40,13 +41,14 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 
 	const getCompleted = async (index: string, status: string) => {
 		if (status === 'Pendente') {
-			await api.patch(`order/completed/${index}`)
+			await apiAdmin.patch(`order/completed/${index}`)
 				.then((response) => {
 					console.log(`${response.data}`);
 					alert('Pedido Finalizado');
 					document.location.reload();
 				})
 				.catch((err) => {
+					alert('Usuario não autorizado!');
 					console.log(err);
 				});
 		}

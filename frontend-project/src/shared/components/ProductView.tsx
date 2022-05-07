@@ -42,6 +42,10 @@ export const ProductView = (props: ProductViewProps) => {
 			productId: {_id: _id}
 		};
 
+		if (userId === null ){
+			document.location.href='/signin';
+		}
+
 		await api.post('/cart', productView)
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
@@ -81,7 +85,7 @@ export const ProductView = (props: ProductViewProps) => {
 					</Typography>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-              Price: ${price}
+              R$ {price}
 						</Typography>
 					</Grid>
 				</Grid>
@@ -115,10 +119,10 @@ export const ProductView = (props: ProductViewProps) => {
 				</Box>
 			</Paper>
 			<Box>
-				<Typography variant='h5' sx={{mt: 8, mb: 2}}>
+				<Typography variant='h5' sx={{mt: 8, mb: 2, ml:2}}>
         Descriptions:
 				</Typography>
-				<Typography variant='subtitle1'>
+				<Typography variant='subtitle1' sx={{ml:8}}>
 					{description}
 				</Typography>
 			</Box>
