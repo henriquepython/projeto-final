@@ -50,6 +50,7 @@ export const ProductView = (props: ProductViewProps) => {
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
 				sessionStorage.setItem('item_cart','true');
+				document.location.reload();
 			})
 			.catch((err)=> {
 				console.log(err);
