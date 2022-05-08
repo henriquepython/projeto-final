@@ -128,7 +128,7 @@ export const ProductView = (props: ProductViewProps) => {
 			</Paper>
 			<Box>
 				<Typography variant='h5' sx={{mt: 8, mb: 2, ml:2}}>
-        Descriptions:
+        Descrição:
 				</Typography>
 				<Typography variant='subtitle1' sx={{ml:8}}>
 					{description}

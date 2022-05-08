@@ -39,8 +39,8 @@ export const Home = () => {
 			<Carrousel />
 			<BannerCategory />
 			<CarrouselItem products={clothesCarrousel} category='Roupas'/>
-			<CarrouselItem products={sportsCarrousel} category='Eletronicos'/>
-			<CarrouselItem products={eletronicsCarrousel} category='Esportes'/>
+			<CarrouselItem products={eletronicsCarrousel} category='Eletronicos'/>
+			<CarrouselItem products={sportsCarrousel} category='Esportes'/>
 		</>
 	);
 };

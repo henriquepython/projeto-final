@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { isLogged } from '../shared/utils/IsLogged';
+import { isLogged, isLoggedUser } from '../shared/utils/IsLogged';
 import { 
 	Accounts,
 	Admin,
@@ -28,7 +28,7 @@ export const AppRoutes = () => {
 			<Route path="/signinadmin" element={<SignInAdmin />} />
 			<Route path="/signup" element={<SignUp />} />
 			<Route path="/cart" element={<Cart />} />
-			<Route path="/checkout" element={<Checkout />} />
+			{isLoggedUser() ? <Route path="/checkout" element={<Checkout />} /> : <Route path="/checkout" element={<Cart />} />}
 			<Route path="/storeclothes" element={<StoreClothes />} />
 			<Route path="/storesports" element={<StoreSports />} />
 			<Route path="/storeeletronics" element={<StoreEletronic />} />

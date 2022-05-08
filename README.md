@@ -9,26 +9,31 @@
    * [Tecnologias](#Tecnologias)
    * [Como usar](#Como-usar)
 <!--te-->
-
+#
 # Sobre
 
-Um cliente solicitou o desenvolvimento de uma mini loja virtual ficticia para poder impulsionar suas vendas, tornando possivel vender online, assim conforme combinado foi desenvolvido a JHBC Store, ela é uma loja que vende três principais categorias de produtos que são, roupas, materiais de esporte e eletronicos, 
+## História fictícia
 
+Um cliente solicitou o desenvolvimento de uma mini loja virtual para poder impulsionar suas vendas, tornando possivel vender online, assim conforme combinado foi desenvolvido a JHBC Store, ela é uma loja que vende três principais categorias de produtos que são, roupas, materiais de esporte e eletronicos, a mini loja onine possui area de usuario, area do administrador, paginas de produtos por categoria, carrinho, checkout e cadastro. Nela é possivel ao administrador criar, editar e remover produtos, alem de cancelar e finalizar pedidos. E ao usuário é permitido criar conta, buscar produtos tanto pela loja quanto pela barra de pesquisa pelo nome, visualizr detalhes dos produtos, adicionr e remover do carrinho, fechar pedidos, visualizar os pedidos e solicitar cancelamento de pedidos.
 
+<img src="./assets/fluxo do site.png"/>
 
+## Imagens
+
+#
 # Database
 
 ```
  O banco de dados foi feito com o Mongodb Atlas(cloud)
 ```
-
+#
 # Auth( login Admin)
 email: joao@gmail.com
 password: 123456
 
 
 
-
+#
 # Tecnologias
 
 
@@ -57,7 +62,7 @@ password: 123456
 - MongoDB Atlas(Cloud)
 
 
-
+#
 # Como usar
 
 ## 1 passo
@@ -104,3 +109,8 @@ yarn start
 # Acesso ao front end
 http://localhost:3000/
 ```
+
+#
+# Autor
+
+João Henrique Batista Cerqueira
