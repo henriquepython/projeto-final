@@ -36,7 +36,7 @@ password: 123456
   <a href="https://pt-br.reactjs.org/" target="blank"><img src="https://i2.wp.com/blog.hariken.co/wp-content/uploads/2019/03/react-logo.png?ssl=1" width="320"  alt="React Logo" /></a>
 </p>
 
-## Front end
+## Back end
 - Typescript 
 - Axios ^0.27.2
 - React ^18.0.0
@@ -84,7 +84,7 @@ http://localhost:4200/docs
 
 # 3 passo
 
-### Back end
+### Front end
 ```bash
 # entrar na pasta do projeto frontend dentro da pasta projeto-final
 cd frontend-project
