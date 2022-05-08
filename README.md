@@ -36,7 +36,7 @@ password: 123456
   <a href="https://pt-br.reactjs.org/" target="blank"><img src="https://i2.wp.com/blog.hariken.co/wp-content/uploads/2019/03/react-logo.png?ssl=1" width="320"  alt="React Logo" /></a>
 </p>
 
-## Back end
+## Front end
 - Typescript 
 - Axios ^0.27.2
 - React ^18.0.0
@@ -67,7 +67,9 @@ git clone https://github.com/henriquepython/projeto-final.git
 ```
 # 2 passo
 
-### Front end
+
+### Back end
+
 ```bash
 # entrar na pasta do projeto backend dentro da pasta projeto-final
 cd backend-project
@@ -85,6 +87,7 @@ http://localhost:4200/docs
 # 3 passo
 
 ### Front end
+
 ```bash
 # entrar na pasta do projeto frontend dentro da pasta projeto-final
 cd frontend-project
@@ -98,6 +101,6 @@ yarn install
 # executar o projeto
 yarn start
 
-# Acesso a documentação
+# Acesso ao front end
 http://localhost:3000/
 ```
