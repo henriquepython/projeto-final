@@ -116,7 +116,7 @@ export const Checkout = () => {
 										onClick={handleBack}
 										variant="contained"
 										sx={{ mt: 3, ml: 1 }}>
-                      Back
+                      Voltar
 									</Button>
 								)}
 

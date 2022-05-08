@@ -300,7 +300,10 @@ export const ResponsiveHeader = () => {
 										<ShoppingCartOutlinedIcon />
 									</IconButton>
 								)  : (  
-									<IconButton href='/cart' sx={{	color: 'red' }}>
+									<IconButton href='/cart' sx={{	background: 'red', color: 'white', '&:hover': {
+										backgroundColor: 'black',
+										color: 'red'
+									} }}>
 										<ProductionQuantityLimitsIcon />
 									</IconButton> 
 								)}
