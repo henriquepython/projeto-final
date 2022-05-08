@@ -1,3 +1,15 @@
+
+#Tabela de conteúdo
+=================
+<!--ts-->
+   * [Sobre](#Sobre)
+   * [Database](#Database)
+   * [Auth](#Auth)
+   * [Tabela de Conteúdo](#Tabela-de-conteúdo)
+   * [Tecnologias](#Tecnologias)
+   * [Como usar](#Como-usar)
+<!--te-->
+
 # Sobre
 
 Um cliente solicitou o desenvolvimento de uma mini loja virtual ficticia para poder impulsionar suas vendas, tornando possivel vender online, assim conforme combinado foi desenvolvido a JHBC Store, ela é uma loja que vende três principais categorias de produtos que são, roupas, materiais de esporte e eletronicos, 
@@ -15,17 +27,6 @@ email: joao@gmail.com
 password: 123456
 
 
-
-#Tabela de conteúdo
-=================
-<!--ts-->
-   * [Sobre](#Sobre)
-   * [Database](#Database)
-   * [Auth](#Auth)
-   * [Tabela de Conteúdo](#Tabela-de-conteúdo)
-   * [Tecnologias](#Tecnologias)
-   * [Como usar](#Como-usar)
-<!--te-->
 
 
 # Tecnologias
