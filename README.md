@@ -65,7 +65,7 @@ password: 123456
 ```bash
 git clone https://github.com/henriquepython/projeto-final.git
 ```
-# 2 passo
+## 2 passo
 
 
 ### Back end
@@ -84,7 +84,7 @@ nest start
 http://localhost:4200/docs
 ```
 
-# 3 passo
+## 3 passo
 
 ### Front end
 
