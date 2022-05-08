@@ -27,13 +27,14 @@ export class OrderService {
     orderMapper.products = await this.cartService.findCartByUser(
       orderMapper.userId,
     );
+
     const { _id } = await this.repository.create(orderMapper);
     let order = await this.repository.findPopulateProducts(_id);
 
     this.logger.log('calculating the order total');
     const totalPrice = order.products.reduce((acc, product) => {
-      const price = product.price * product.quantity;
-      return acc + price;
+      const total = product.price * product.quantity;
+      return acc + total;
     }, 0);
     await order.update({ totalPrice });
 
@@ -97,7 +98,7 @@ export class OrderService {
     return order.updateOne({ status: OrderStatus.Completed });
   }
 
-  async remove(orderId: string) {
+  async remove(orderId: string): Promise<void> {
     this.logger.log(`looking for order with id: ${orderId}`);
     const order = await this.repository.findById(orderId);
 
@@ -121,7 +122,6 @@ export class OrderService {
     }
 
     this.logger.log('orders found');
-
     return await this.repository.findAll();
   }
 }

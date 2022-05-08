@@ -22,22 +22,22 @@ export class CartController {
 
   @HttpCode(201)
   @Post()
-  addCart(@Body() createCartDto: CreateCartDto) {
+  addCart(@Body() createCartDto: CreateCartDto): Promise<CreateCartDto> {
     return this.cartService.addCart(createCartDto);
   }
 
   @Delete(':id')
-  removeCart(@Param('id') id: string) {
+  removeCart(@Param('id') id: string): Promise<string> {
     return this.cartService.removeCart(id);
   }
 
   @Delete('/user/:id')
-  removeAllByUser(@Param('id') id: string) {
+  removeAllByUser(@Param('id') id: string): Promise<string> {
     return this.cartService.removeAllCart(id);
   }
 
   @Get('/user/:id')
-  findByUser(@Param('id') id: string) {
+  findByUser(@Param('id') id: string): Promise<CreateCartDto[]> {
     return this.cartService.findCartByUser(id);
   }
 }

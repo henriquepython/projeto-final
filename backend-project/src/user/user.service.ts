@@ -4,7 +4,6 @@ import { UserRepository } from './user.repository';
 import { Mapper } from '@automapper/core';
 import { User } from './entities/user.entity';
 import { InjectMapper } from '@automapper/nestjs';
-import { Role } from 'src/shared/enum/role.enum';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
@@ -28,7 +27,7 @@ export class UserService {
     return await this.repository.create(userMapper);
   }
 
-  async findByEmail(userEmail: string): Promise<CreateUserDto> {
+  async findUserByEmail(userEmail: string): Promise<CreateUserDto> {
     this.logger.log(`looking for user with email: ${userEmail}`);
     const user = await this.repository.findByEmail(userEmail);
 

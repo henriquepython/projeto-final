@@ -14,12 +14,14 @@ export class CartService {
   ) {
     this.logger = new Logger(CartService.name);
   }
+
   async addCart(createCartDto: CreateCartDto): Promise<CreateCartDto> {
     const cartMapper = this.mapper.map(createCartDto, CreateCartDto, Cart);
 
     const cartProduct = await this.repository.findByIdProduct(
       cartMapper.productId,
     );
+
     if (cartProduct) {
       this.logger.log('product added to cart');
       cartMapper.quantity += (await cartProduct).quantity;
@@ -32,9 +34,9 @@ export class CartService {
 
   async removeCart(id: string): Promise<string> {
     this.logger.log(`looking for products with id: ${id}`);
-    const product = await this.repository.findByIdProduct(id);
+    const cartProduct = await this.repository.findByIdProduct(id);
 
-    if (!product) {
+    if (!cartProduct) {
       this.logger.error(`there is no product with the id: ${id}`);
       throw new BadRequestException('product not found');
     }
@@ -53,14 +55,14 @@ export class CartService {
   }
 
   async findCartByUser(userId: any): Promise<CreateCartDto[]> {
-    const cart = await this.repository.findCartByUser(userId);
+    const cartUser = await this.repository.findCartByUser(userId);
 
-    if (!cart) {
-      this.logger.error(`there is no caart with the userId: ${userId}`);
+    if (!cartUser) {
+      this.logger.error(`there is no cart with the userId: ${userId}`);
       throw new BadRequestException('product not found');
     }
 
     this.logger.log('cart found');
-    return cart;
+    return cartUser;
   }
 }

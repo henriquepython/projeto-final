@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Category } from '../enum/category.enum';
 
 export type ProductDocument = ProductModel & Document;
 
@@ -15,10 +14,10 @@ export class ProductModel {
   description: string;
 
   @Prop()
-  category: Category;
+  category: string;
 
   @Prop()
-  quantity: number;
+  stock: number;
 
   @Prop()
   price: number;

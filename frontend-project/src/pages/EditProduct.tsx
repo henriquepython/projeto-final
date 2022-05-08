@@ -41,6 +41,12 @@ export const EditProduct = () => {
 	};
 	return(
 		<Container component="form"  onSubmit={handleEditProduct} maxWidth="sm" sx={{ mb: 4 }}>
+			<Button 
+				href='/admin'
+				variant="contained"
+				sx={{ mt: 3, ml: 1, width: 200,'&:hover': { backgroundColor: 'white', color: 'black'}  }}>
+                      Voltar
+			</Button>
 			<Paper 
 				variant="outlined"
 				sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}

@@ -64,11 +64,10 @@ export const ProductItemCart = (props: IProductCartProps) => {
 					<ButtonBase href='/product' onClick={()=>getId(_id)} sx={{ mb: 1 }}>
 						<Img
 							key={_id}
-							alt="complex"
-							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+							src={image}
 							sx={{
 								borderRadius: 4,
-								width: '100vw',
+								width: '12vw',
 								height: 100,
 								transition: 'all linear 0.4s',
 								'&:hover': {

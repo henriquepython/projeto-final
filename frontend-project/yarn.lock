@@ -1861,13 +1861,6 @@
   "resolved" "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   "version" "1.2.3"
 
-"react-awesome-slider@^4.1.0":
-  "integrity" "sha512-cbPI1MTpVLKbEH6gf9bwtJb8Ja6R/YJonKbUQehfq2B2AAJkgDMeHntaa4SgGCRqWd55xKiT+CkjfKau1QRsKw=="
-  "resolved" "https://registry.npmjs.org/react-awesome-slider/-/react-awesome-slider-4.1.0.tgz"
-  "version" "4.1.0"
-  dependencies:
-    "web-animation-club" "^0.6.0"
-
 "react-dom@^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@>=16.6.0", "react-dom@>=16.8":
   "integrity" "sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.1.0.tgz"
@@ -2205,11 +2198,6 @@
     "rollup" "^2.59.0"
   optionalDependencies:
     "fsevents" "~2.3.2"
-
-"web-animation-club@^0.6.0":
-  "integrity" "sha512-9W+EQu1HiaPLe/7WZlhJ2ULqQ4VL80RPDYW+ZcjfTKp6ayOuT1k3SVO6+tu0VBRmOqueJ/mrG+rjjInIv8Aglg=="
-  "resolved" "https://registry.npmjs.org/web-animation-club/-/web-animation-club-0.6.0.tgz"
-  "version" "0.6.0"
 
 "which-boxed-primitive@^1.0.2":
   "integrity" "sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg=="

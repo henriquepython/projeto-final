@@ -19,17 +19,17 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @HttpCode(201)
   @Post()
-  createUser(@Body() createUserDto: CreateUserDto) {
+  createUser(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
     return this.userService.createUser(createUserDto);
   }
 
   @Get(':email')
-  findByEmail(@Param('email') email: string) {
-    return this.userService.findByEmail(email);
+  findByEmail(@Param('email') email: string): Promise<CreateUserDto> {
+    return this.userService.findUserByEmail(email);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<CreateUserDto[]> {
     return this.userService.findAll();
   }
 }

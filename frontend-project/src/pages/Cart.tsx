@@ -15,7 +15,19 @@ interface ICart {
 export const Cart = () => {
 	const [cart, setCart] = useState<ICart[]>([]);
 	const idUser = sessionStorage.getItem('id_user');
-	let total = 0;
+	
+	//calcula total do carrinho
+	let totalCart = 0;
+	cart.map((item)=> {
+		totalCart += (item.price * item.quantity);
+	});
+	sessionStorage.setItem('total_order', `${totalCart}`);
+	
+	//muda status do icone do carrinho, caso tenha itens ele tera uma cor alerta, caso não tera cor normal. 
+	const total = sessionStorage.getItem('total_order');
+	if (totalCart == 0) {
+		sessionStorage.removeItem('item_cart');
+	}
 
 	useEffect(()=> {
 		console.log(idUser);
@@ -31,18 +43,7 @@ export const Cart = () => {
 		}
 
 	}, []);
-
-	//calcula total do carrinho
-	cart.map((item)=> {
-		total += (item.price * item.quantity);
-	});
-	sessionStorage.setItem('total_order', `${total}`);
-
-	if (total == 0) {
-		sessionStorage.removeItem('item_cart');
-	}
-
-
+	
 	return (
 		<>
 			<Box sx={{ width: '100vw'}}>

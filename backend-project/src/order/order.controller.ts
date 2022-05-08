@@ -20,34 +20,34 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
   @HttpCode(201)
   @Post()
-  createOrder(@Body() order: CreateOrderDto) {
-    return this.orderService.createOrder(order);
+  createOrder(@Body() createOrderDto: CreateOrderDto) {
+    return this.orderService.createOrder(createOrderDto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<CreateOrderDto[]> {
     return this.orderService.findAll();
   }
 
-  @Get('/user/:user')
-  findByUser(@Param('user') user: string) {
-    return this.orderService.listOrdersByUser(user);
+  @Get('/user/:id')
+  findByUser(@Param('id') id: string) {
+    return this.orderService.listOrdersByUser(id);
   }
 
   @UseGuards(JwtGuard)
   @Patch('/cancelled/:id')
-  cancelledOrder(@Param('id') id: string) {
+  cancelledOrder(@Param('id') id: string): Promise<CreateOrderDto> {
     return this.orderService.cancelledOrderByUser(id);
   }
 
   @UseGuards(JwtGuard)
   @Patch('/completed/:id')
-  completedOrder(@Param('id') id: string) {
+  completedOrder(@Param('id') id: string): Promise<CreateOrderDto> {
     return this.orderService.completedOrderByUser(id);
   }
 
   @Patch('/requestCancelled/:id')
-  RequestCancelledOrder(@Param('id') id: string) {
+  RequestCancelledOrder(@Param('id') id: string): Promise<CreateOrderDto> {
     return this.orderService.RequestCancelledOrderByUser(id);
   }
 }

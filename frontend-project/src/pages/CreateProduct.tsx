@@ -40,7 +40,7 @@ export const CreateProduct = () => {
 	return(
 		<Container 
 			component="form"
-			noValidate={false}
+			
 			onSubmit={handleCreateProduct}
 			maxWidth="sm"
 			sx={{ mb: 4 }}
@@ -72,6 +72,7 @@ export const CreateProduct = () => {
 					</Grid>
                     
 					<Grid item xs={12}>
+						Imagem
 						<TextField
 							id="image"
 							name="image"
@@ -95,8 +96,6 @@ export const CreateProduct = () => {
 
 					<Grid item xs={12}>
 						<Autocomplete
-							defaultValue={categories[0]}
-							disablePortal
 							id="category"
 							fullWidth
 							options={categories}
@@ -104,6 +103,7 @@ export const CreateProduct = () => {
 							renderInput={(params) => 
 								<TextField 
 									name="category"
+									required={true}
 									variant="standard"
 									{...params} label="Categoria" 
 								/>}

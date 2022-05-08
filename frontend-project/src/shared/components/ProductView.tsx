@@ -12,8 +12,8 @@ const Img = styled('img')({
 	display: 'flex',
 	justifyContent: 'center',
 	flexDirection: 'row',
-	maxWidth: '100%',
-	maxHeight: '100%',
+	width: 300,
+	height: 300,
 });
 
 interface ProductViewProps {
@@ -31,13 +31,13 @@ export const ProductView = (props: ProductViewProps) => {
 	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const input = new FormData(event.currentTarget);
-		const quantity = Number(input.get('quantity'));
+		const quantities = Number(input.get('quantity'));
 		const userId = sessionStorage.getItem('id_user');
 		const productView = {
 			title: title,
 			image: image,
 			price: price,
-			quantity: quantity,
+			quantity: quantities,
 			userId: {_id: userId},
 			productId: {_id: _id}
 		};
@@ -45,7 +45,7 @@ export const ProductView = (props: ProductViewProps) => {
 		if (userId === null ){
 			document.location.href='/signin';
 		}
-
+		
 		await api.post('/cart', productView)
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
@@ -62,14 +62,15 @@ export const ProductView = (props: ProductViewProps) => {
 			<Paper
 				sx={{
 					p: 2,
-					margin: 'auto',
+					my: 2,
+					mx: 'auto',
 					maxWidth: 500,
 					flexGrow: 1,
 					backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 				}}
 			>
 				<Grid item>
-					<Img alt="complex" src={image} sx={{mb:4,borderRadius: 2}} />
+					<Img src={image} sx={{mb:4,borderRadius: 2}} />
 				</Grid>
 				<Grid item>
 					<Grid item>
@@ -88,6 +89,11 @@ export const ProductView = (props: ProductViewProps) => {
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
               R$ {price}
+						</Typography>
+					</Grid>
+					<Grid item>
+						<Typography variant="caption" align='left' component="div">
+			ou 6x de {`R$ ${(price/6).toFixed(2)}`}
 						</Typography>
 					</Grid>
 				</Grid>

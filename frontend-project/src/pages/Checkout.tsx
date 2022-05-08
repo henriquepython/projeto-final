@@ -76,6 +76,8 @@ export const Checkout = () => {
 				console.log(err);
 				alert('Usuário não cadastrado');
 			});
+
+		sessionStorage.removeItem('item_cart');
 	};
 
 	return (
@@ -129,7 +131,7 @@ export const Checkout = () => {
 									</Button>
 								)}
 
-								{activeStep === steps.length - 1 ? (
+								{activeStep === 2 ? (
 									<Button
 										variant="contained"
 										onClick={handleOrder}

@@ -8,7 +8,6 @@ import {
   Delete,
   HttpCode,
   UseGuards,
-  Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -29,39 +28,43 @@ export class ProductController {
   @UseGuards(JwtGuard)
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+    return this.productService.createProduct(createProductDto);
   }
 
-  //@Roles(Role.ADMIN)
   @Get()
-  findAll() {
+  findAll(): Promise<CreateProductDto[]> {
     return this.productService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findById(id);
+  findOne(@Param('id') id: string): Promise<CreateProductDto> {
+    return this.productService.findProductById(id);
   }
 
   @Get('/name/:name')
-  findByName(@Param('name') name: string) {
-    return this.productService.findByTitle(name);
+  findByName(@Param('name') name: string): Promise<CreateProductDto> {
+    return this.productService.findProductByTitle(name);
   }
 
   @Get('/category/:category')
-  findByCategory(@Param('category') category: string) {
-    return this.productService.findByCategory(category);
+  findByCategory(
+    @Param('category') category: string,
+  ): Promise<CreateProductDto[]> {
+    return this.productService.findProductByCategory(category);
   }
 
   @UseGuards(JwtGuard)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.edit(id, updateProductDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ): Promise<UpdateProductDto> {
+    return this.productService.editProduct(id, updateProductDto);
   }
 
   @UseGuards(JwtGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+  remove(@Param('id') id: string): Promise<string> {
+    return this.productService.removeProduct(id);
   }
 }

@@ -25,7 +25,7 @@ export class AuthController {
   @Post()
   async login(@Body() loginDto: LoginDto) {
     this.logger.log(`Buscando usuario por email: ${loginDto.email}`);
-    const user = await this.userService.findByEmail(loginDto.email);
+    const user = await this.userService.findUserByEmail(loginDto.email);
 
     if (!user || user.password != loginDto.password) {
       this.logger.error('unauthorized user');
@@ -38,18 +38,25 @@ export class AuthController {
 
   @Post('/admin')
   async loginAdmin(@Body() loginDto: LoginDto) {
-    this.logger.log(`Buscando usuario por email: ${loginDto.email}`);
-    const user = await this.userService.findByEmail(loginDto.email);
+    const admin = {
+      email: 'joao@gmail.com',
+      password: '123456',
+      roles: 'admin',
+    };
 
-    if (!user || user.password != loginDto.password || user.roles != 'admin') {
+    if (
+      admin.email != loginDto.email ||
+      admin.password != loginDto.password ||
+      admin.roles != 'admin'
+    ) {
       this.logger.error('unauthorized user');
       throw new BadRequestException('unauthorized user');
     }
 
-    this.logger.log('Login realizado com sucesso');
+    this.logger.log('Login successfully');
     const payload = {
-      name: user.email,
-      sub: user.email,
+      name: admin.email,
+      sub: admin.email,
     };
     return { accessToken: await this.jwtService.signAsync(payload) };
   }

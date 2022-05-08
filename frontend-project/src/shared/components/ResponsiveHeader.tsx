@@ -64,6 +64,8 @@ export const ResponsiveHeader = () => {
 	};
 
 	const cartIcon = sessionStorage.getItem('item_cart');
+	const adminIcon = sessionStorage.getItem('token');
+
 	return (
 		<Box 
 			height='15%'
@@ -312,7 +314,7 @@ export const ResponsiveHeader = () => {
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Area Admin">
-							<IconButton href='/signinadmin'	color='primary'>
+							<IconButton href={` ${!adminIcon ? '/signinadmin' : '/admin'}`}	color='primary'>
 								<SettingsOutlinedIcon />
 							</IconButton>
 						</Tooltip>

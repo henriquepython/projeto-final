@@ -11,7 +11,9 @@ import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/order'),
+    MongooseModule.forRoot(
+      'mongodb+srv://deploy:deploymongo@cluster0.2mt7u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    ),
     AutomapperModule.forRoot({
       strategyInitializer: classes(),
       namingConventions: new CamelCaseNamingConvention(),

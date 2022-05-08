@@ -1,10 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
+//Para habilitar monitoramento descomentar
+// import * as apllicationInsights from 'applicationinsights';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  //Para habilitar monitoramento descomentar e adicionar YOUR_KEY_INSTRUMENTTION azure
+  // apllicationInsights
+  //   .setup('YOUR_KEY_INSTRUMENTTION')
+  //   .setAutoCollectConsole(true)
+  //   .setInternalLogging(true, true)
+  //   .setSendLiveMetrics(true)
+  //   .setAutoCollectRequests(true)
+  //   .start();
 
   //swagger config
   const documentBuilder = new DocumentBuilder()

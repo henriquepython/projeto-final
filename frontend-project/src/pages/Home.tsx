@@ -2,28 +2,6 @@ import { useEffect, useState } from 'react';
 import { BannerCategory, Carrousel, CarrouselItem } from '../shared/components';
 import { api } from '../shared/services/api';
 
-const productsClothes = [
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Clothes', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'}
-];
-
-const productsSports = [
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Sports', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'}
-	
-];
-
-const productsEletronics = [
-	{ title: 'Eletronics', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Eletronics', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Eletronics', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'},
-	{ title: 'Eletronics', image: 'https://source.unsplash.com/ojZ4wJNUM5w', price: 1, _id: 'djfs',category: 'Roupas', quantity: 10,description: 'descrição dos produtos'}
-];
-
 interface IProductAll {
 	title: string;
 	image: string;
@@ -35,9 +13,9 @@ interface IProductAll {
 }
 
 export const Home = () => {
-	const [clothesCarrousel, setClothesCarrousel] = useState<IProductAll[]>([...productsClothes]);
-	const [sportsCarrousel, setSportsCarrousel] = useState<IProductAll[]>([...productsSports]);
-	const [eletronicsCarrousel, setEletronicsCarrousel] = useState<IProductAll[]>([...productsEletronics]);
+	const [clothesCarrousel, setClothesCarrousel] = useState<IProductAll[]>([]);
+	const [sportsCarrousel, setSportsCarrousel] = useState<IProductAll[]>([]);
+	const [eletronicsCarrousel, setEletronicsCarrousel] = useState<IProductAll[]>([]);
 
 	useEffect(()=> {
 		const clothes = api.get('product/category/Roupas');

@@ -22,6 +22,7 @@ export class CartRepository {
 
   async create(cart: Cart) {
     const product = await this.productRepository.findByCartId(cart.productId);
+
     const carts = await this.cartModel.create({
       userId: cart.userId,
       productId: cart.productId,
@@ -40,12 +41,12 @@ export class CartRepository {
     return carts;
   }
 
-  async remove(id: string) {
-    return await this.cartModel.remove({ productId: { _id: id } }).exec();
+  async remove(id: string): Promise<void> {
+    await this.cartModel.remove({ productId: { _id: id } }).exec();
   }
 
-  async removeMany(userId: any) {
-    return await this.cartModel.deleteMany({ userId: userId }).exec();
+  async removeMany(userId: any): Promise<void> {
+    await this.cartModel.deleteMany({ userId: userId }).exec();
   }
 
   async findAll(): Promise<Cart[]> {

@@ -1,5 +1,4 @@
 import { AutoMap } from '@automapper/classes';
-import { Category } from '../../shared/enum/category.enum';
 
 export class Product {
   @AutoMap()
@@ -12,10 +11,10 @@ export class Product {
   description: string;
 
   @AutoMap()
-  category: Category;
+  category: string;
 
   @AutoMap()
-  quantity: number;
+  stock: number;
 
   @AutoMap()
   price: number;

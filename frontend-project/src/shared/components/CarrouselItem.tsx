@@ -90,19 +90,19 @@ export const CarrouselItem = (props: CarrouselProps) => {
 									px:2,
 									m: 2,
 									maxWidth: 250,
-									height: 200,
+									height: 220,
 
 									backgroundColor: (theme) =>	theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 				
 								}}
 							>
 								<Grid>
-									<Grid item>
+									<Grid>
 										<Img 
-											src={item.image ? item.image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+											src={item.image}
 											sx={{
 												borderRadius: 4,
-												width: '100vw',
+												width: '16vw',
 												height: 100,	
 												mb: 1,
 											}} 
@@ -115,8 +115,13 @@ export const CarrouselItem = (props: CarrouselProps) => {
 											</Typography>
 										</Grid>
 										<Grid item>
-											<Typography variant="subtitle1" component="div">
+											<Typography variant="subtitle1" align='left' component="div">
             R$ {item.price}
+											</Typography>
+										</Grid>
+										<Grid item>
+											<Typography variant="caption" align='left' component="div">
+											ou 6x de {`R$ ${(item.price/6).toFixed(2)}`}
 											</Typography>
 										</Grid>
 									</Grid>

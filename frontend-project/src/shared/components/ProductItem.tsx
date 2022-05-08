@@ -71,6 +71,7 @@ export const ProductItem = (props: IProductProps) => {
 			.then(()=>{
 				alert('produto adicionado ao carrinho!');
 				sessionStorage.setItem('item_cart','true');
+				document.location.reload();
 			})
 			.catch((err)=>{
 				console.log(err);
@@ -102,12 +103,13 @@ export const ProductItem = (props: IProductProps) => {
 					<ButtonBase onClick={getId} sx={{ mb: 1 }}>
 						<Img 
 							key={_id}
-							src={image ? image : 'https://source.unsplash.com/R53t-Tg6J4c'}
+							src={image}
 							sx={{
 								borderRadius: 4,
-								width: '100vw',
+								width: '16vw',
 								height: 100,
 								transition: 'all linear 0.4s',
+
 								'&:hover': {
 									transform: 'scale(1.1)',						
 								}
