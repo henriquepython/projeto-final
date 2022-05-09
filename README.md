@@ -19,32 +19,6 @@ Um cliente solicitou o desenvolvimento de uma mini loja virtual para poder impul
 <img src="./assets/fluxo do site.png"/>
 
 #
-## Imagens
-
-<img width="400" src="./assets/home.png"/>
-<img width="400" src="./assets/home2.png"/>
-<img width="400" src="./assets/home3.png"/>
-<img width="400" src="./assets/store 1.png"/>
-<img width="400" src="./assets/store 2.png"/>
-<img width="400" src="./assets/product.png"/>
-<img width="400" src="./assets/login.png"/>
-<img width="400" src="./assets/cadastro.png"/>
-<img width="400" src="./assets/cart.png"/>
-<img width="400" src="./assets/checkout.png"/>
-<img width="400" src="./assets/checkout 2.png"/>
-<img width="400" src="./assets/checkout 3.png"/>
-<img width="400" src="./assets/checkout 4.png"/>
-<img width="400" src="./assets/admin 1.png"/>
-<img width="400" src="./assets/admin 2.png"/>
-<img width="400" src="./assets/admin 3.png"/>
-<img width="400" src="./assets/criar prod.png"/>
-<img width="400" src="./assets/edit prod.png"/>
-<img width="200" src="./assets/resp1.png"/>
-<img width="200" src="./assets/resp2.png"/>
-<img width="200" src="./assets/resp3.png"/>
-
-
-#
 # Database
 
 ```
@@ -133,6 +107,31 @@ yarn start
 # Acesso ao front end
 http://localhost:3000/
 ```
+
+#
+## Imagens
+
+<img width="400" src="./assets/home.png"/>
+<img width="400" src="./assets/home2.png"/>
+<img width="400" src="./assets/home3.png"/>
+<img width="400" src="./assets/store 1.png"/>
+<img width="400" src="./assets/store 2.png"/>
+<img width="400" src="./assets/product.png"/>
+<img width="400" src="./assets/login.png"/>
+<img width="400" src="./assets/cadastro.png"/>
+<img width="400" src="./assets/cart.png"/>
+<img width="400" src="./assets/checkout.png"/>
+<img width="400" src="./assets/checkout 2.png"/>
+<img width="400" src="./assets/checkout 3.png"/>
+<img width="400" src="./assets/checkout 4.png"/>
+<img width="400" src="./assets/admin 1.png"/>
+<img width="400" src="./assets/admin 2.png"/>
+<img width="400" src="./assets/admin 3.png"/>
+<img width="400" src="./assets/criar prod.png"/>
+<img width="400" src="./assets/edit prod.png"/>
+<img width="200" src="./assets/resp1.png"/>
+<img width="200" src="./assets/resp2.png"/>
+<img width="200" src="./assets/resp3.png"/>
 
 #
 # Autor
