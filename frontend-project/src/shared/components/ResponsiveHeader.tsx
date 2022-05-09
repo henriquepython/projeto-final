@@ -121,7 +121,7 @@ export const ResponsiveHeader = () => {
 									justifyContent: 'center'
 								}}  
 							>
-                  Categorias
+                                Categorias
 							</Typography>
 
 							{sectionsProduct.map((section) => (
@@ -150,7 +150,7 @@ export const ResponsiveHeader = () => {
 							color='primary'
 							sx={{ ml: 2, display: { xs: 'none', md: 'flex' } }}
 						>
-                JHBC Store
+                            JHBC Store
 						</IconButton>
 					</Box>
 					<Box 

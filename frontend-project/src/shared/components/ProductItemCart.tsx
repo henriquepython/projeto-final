@@ -90,10 +90,10 @@ export const ProductItemCart = (props: IProductCartProps) => {
 					</Grid>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-              R$ {price}
+                            R$ {price}
 						</Typography>
 						<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
-                  Quantity: {quantity}
+                            Quantity: {quantity}
 						</Typography>
 						<Button 
 							onClick={handleRemoveCart}

@@ -75,7 +75,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 						}
 					}}
 				>
-                Criar Produtos
+                    Criar Produtos
 				</Button>
 			</Box>
 			<Table size="small" sx={{ background: 'white'}}>

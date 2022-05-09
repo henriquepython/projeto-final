@@ -7,7 +7,7 @@ export const AddressForm = () => {
 	return (
 		<>
 			<Typography variant="h6" gutterBottom>
-        Shipping address
+                Shipping address
 			</Typography>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>

@@ -130,7 +130,7 @@ export const ProductItem = (props: IProductProps) => {
 					</Grid>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-            R$ {price}
+                            R$ {price}
 						</Typography>
 						<Box component="form" noValidate={false} onSubmit={handleAddCart}>
 							<Box 

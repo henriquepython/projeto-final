@@ -107,8 +107,9 @@ export const SignInAdmin = () => {
 							type="submit"
 							fullWidth
 							variant="contained"
-							sx={{ mt: 3, mb: 2,'&:hover': { backgroundColor: 'black', color: 'white' } }}>
-         Entrar
+							sx={{ mt: 3, mb: 2,'&:hover': { backgroundColor: 'black', color: 'white' } }}
+						>
+                            Entrar
 						</Button>
 					</Box>
 				</Box>

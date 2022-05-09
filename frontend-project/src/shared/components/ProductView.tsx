@@ -84,16 +84,16 @@ export const ProductView = (props: ProductViewProps) => {
 						</Typography>
 					</Grid>
 					<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
-            Stock: {quantity}
+                        Stock: {quantity}
 					</Typography>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-              R$ {price}
+                            R$ {price}
 						</Typography>
 					</Grid>
 					<Grid item>
 						<Typography variant="caption" align='left' component="div">
-			ou 6x de {`R$ ${(price/6).toFixed(2)}`}
+                            ou 6x de {`R$ ${(price/6).toFixed(2)}`}
 						</Typography>
 					</Grid>
 				</Grid>
@@ -128,7 +128,7 @@ export const ProductView = (props: ProductViewProps) => {
 			</Paper>
 			<Box>
 				<Typography variant='h5' sx={{mt: 8, mb: 2, ml:2}}>
-        Descrição:
+                    Descrição:
 				</Typography>
 				<Typography variant='subtitle1' sx={{ml:8}}>
 					{description}

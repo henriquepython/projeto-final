@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CartList } from '../shared/components/CartList';
 import { api } from '../shared/services/api';
 

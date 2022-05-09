@@ -116,12 +116,12 @@ export const CarrouselItem = (props: CarrouselProps) => {
 										</Grid>
 										<Grid item>
 											<Typography variant="subtitle1" align='left' component="div">
-            R$ {item.price}
+                                                R$ {item.price}
 											</Typography>
 										</Grid>
 										<Grid item>
 											<Typography variant="caption" align='left' component="div">
-											ou 6x de {`R$ ${(item.price/6).toFixed(2)}`}
+                                                ou 6x de {`R$ ${(item.price/6).toFixed(2)}`}
 											</Typography>
 										</Grid>
 									</Grid>

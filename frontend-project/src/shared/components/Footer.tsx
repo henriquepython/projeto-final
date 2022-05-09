@@ -13,7 +13,7 @@ const Copyright = () => {
 		<Typography variant="body2" color="primary">
 			{'Copyright © '}
 			<Link color="inherit" href="https://github.com/henriquepython/projeto-final">
-        Feito por João Henrique B. Cerqueira
+                Feito por João Henrique B. Cerqueira
 			</Link>{', '}
 			{new Date().getFullYear()}
 			{'.'}

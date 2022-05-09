@@ -86,7 +86,7 @@ export const Checkout = () => {
 				variant="outlined" 
 				sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, background: 'white' }}>
 				<Typography component="h1" variant="h4" align="center">
-            Checkout
+                    Checkout
 				</Typography>
 				<Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
 					{steps.map((label) => (
@@ -101,10 +101,10 @@ export const Checkout = () => {
 							
 						<>
 							<Typography variant="h5" gutterBottom>
-                  Obrigado por comprar na nossa loja.
+                                Obrigado por comprar na nossa loja.
 							</Typography>
 							<Typography variant="subtitle1">
-                  Seu pedido foi realizado, assim que enviarmos iremos lhe informar.
+                                Seu pedido foi realizado, assim que enviarmos iremos lhe informar.
 							</Typography>
 						</>
 							
@@ -117,8 +117,9 @@ export const Checkout = () => {
 									<Button 
 										onClick={handleBack}
 										variant="contained"
-										sx={{ mt: 3, ml: 1 }}>
-                      Voltar
+										sx={{ mt: 3, ml: 1 }}
+									>
+                                        Voltar
 									</Button>
 								)}
 
@@ -126,8 +127,9 @@ export const Checkout = () => {
 									<Button 
 										href='/cart'
 										variant="contained"
-										sx={{ mt: 3, ml: 1 }}>
-                      Voltar
+										sx={{ mt: 3, ml: 1 }}
+									>
+                                        Voltar
 									</Button>
 								)}
 
@@ -137,7 +139,7 @@ export const Checkout = () => {
 										onClick={handleOrder}
 										sx={{ mt: 3, ml: 1 }}
 									>
-											Finalizar Compra
+										Finalizar Compra
 									</Button>    
 										
 								):( 
@@ -147,7 +149,7 @@ export const Checkout = () => {
 										onClick={handleNext}
 										sx={{ mt: 3, ml: 1 }}
 									>
-											Next
+										Next
 									</Button> 
 								)}
 							</Box>

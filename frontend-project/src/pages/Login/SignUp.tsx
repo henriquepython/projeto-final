@@ -57,7 +57,7 @@ export const SignUp = () => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography color='primary' component="h1" variant="h5">
-          Cadastro
+                    Cadastro
 				</Typography>
 				<Box component="form" noValidate={false} onSubmit={handleSubmit} sx={{ mt: 3 }}>
 					<Grid container spacing={2}>
@@ -147,12 +147,12 @@ export const SignUp = () => {
 							color: 'white'
 						} }}
 					>
-            Cadastrar
+                        Cadastrar
 					</Button>
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Link color='primary' href="/signin" variant="body2">
-                Já tem uma conta? Entre
+                                Já tem uma conta? Entre
 							</Link>
 						</Grid>
 					</Grid>

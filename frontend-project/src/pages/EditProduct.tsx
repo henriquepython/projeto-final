@@ -44,8 +44,9 @@ export const EditProduct = () => {
 			<Button 
 				href='/admin'
 				variant="contained"
-				sx={{ mt: 3, ml: 1, width: 200,'&:hover': { backgroundColor: 'white', color: 'black'}  }}>
-                      Voltar
+				sx={{ mt: 3, ml: 1, width: 200,'&:hover': { backgroundColor: 'white', color: 'black'}  }}
+			>
+                Voltar
 			</Button>
 			<Paper 
 				variant="outlined"
