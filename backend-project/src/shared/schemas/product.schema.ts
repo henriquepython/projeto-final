@@ -17,7 +17,7 @@ export class ProductModel {
   category: string;
 
   @Prop()
-  stock: number;
+  quantity: number;
 
   @Prop()
   price: number;

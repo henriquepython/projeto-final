@@ -14,7 +14,7 @@ export class Product {
   category: string;
 
   @AutoMap()
-  stock: number;
+  quantity: number;
 
   @AutoMap()
   price: number;

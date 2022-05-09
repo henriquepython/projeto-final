@@ -36,5 +36,5 @@ export class CreateProductDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  stock: number;
+  quantity: number;
 }
