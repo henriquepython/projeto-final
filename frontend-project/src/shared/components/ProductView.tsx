@@ -106,7 +106,7 @@ export const ProductView = (props: ProductViewProps) => {
 						id='quantity'
 						name='quantity'
 						type='number'
-						sx={{width: '20%', height: '6vh', mr: 4}}
+						sx={{width: '20%', height: '6vh', mr: 3}}
 					/>
 					<Button 
 						type='submit'

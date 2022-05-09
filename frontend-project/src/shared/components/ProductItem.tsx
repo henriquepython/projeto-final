@@ -99,7 +99,7 @@ export const ProductItem = (props: IProductProps) => {
 			}}
 		>
 			<Grid>
-				<Grid item>
+				<Grid >
 					<ButtonBase onClick={getId} sx={{ mb: 1 }}>
 						<Img 
 							key={_id}

@@ -217,7 +217,7 @@ export const ResponsiveHeader = () => {
 													mx: 4,
 													my: 2,
 													'&:hover': {
-														backgroundColor: 'blue',
+														backgroundColor: 'black',
 														color: 'white'
 													}
 												}}
@@ -265,7 +265,7 @@ export const ResponsiveHeader = () => {
 												mx: 4,
 												my: 2,
 												'&:hover': {
-													backgroundColor: 'blue',
+													backgroundColor: 'black',
 													color: 'white'
 												}  
 											}}
@@ -282,7 +282,7 @@ export const ResponsiveHeader = () => {
 												mx: 4,
 												my: 2,
 												'&:hover': {
-													backgroundColor: 'blue',
+													backgroundColor: 'black',
 													color: 'white'
 												}  
 											}}

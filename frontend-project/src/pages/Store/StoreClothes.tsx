@@ -16,7 +16,7 @@ export const StoreClothes = () => {
 	}, []);
 
 	return (
-		<Box sx={{ width: '100vw'}}>
+		<Box sx={{ width: '100%'}}>
 			<ProductList products={clothes}  />
 		</Box>
 	);

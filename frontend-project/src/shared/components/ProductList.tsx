@@ -16,8 +16,7 @@ export const ProductList = (props: IProductListProps) => {
 
 	return (
 		<Box 
-			sx={{ 
-				width: '100%',
+			sx={{ 			
 				m:2,
 				display: 'flex',
 				flexShrink: 1,
