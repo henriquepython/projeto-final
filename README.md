@@ -8,6 +8,7 @@
    * [Tabela de Conteúdo](#Tabela-de-conteúdo)
    * [Tecnologias](#Tecnologias)
    * [Como usar](#Como-usar)
+   * [Imagens](#Imagens)
 <!--te-->
 #
 # Sobre
@@ -17,32 +18,6 @@
 Um cliente solicitou o desenvolvimento de uma mini loja virtual para poder impulsionar suas vendas, tornando possivel vender online, assim conforme combinado foi desenvolvido a JHBC Store, ela é uma loja que vende três principais categorias de produtos que são, roupas, materiais de esporte e eletronicos, a mini loja onine possui area de usuario, area do administrador, paginas de produtos por categoria, carrinho, checkout e cadastro. Nela é possivel ao administrador criar, editar e remover produtos, alem de cancelar e finalizar pedidos. E ao usuário é permitido criar conta, buscar produtos tanto pela loja quanto pela barra de pesquisa pelo nome, visualizr detalhes dos produtos, adicionr e remover do carrinho, fechar pedidos, visualizar os pedidos e solicitar cancelamento de pedidos.
 
 <img src="./assets/fluxo do site.png"/>
-
-#
-## Imagens
-
-<img width="400" src="./assets/home.png"/>
-<img width="400" src="./assets/home2.png"/>
-<img width="400" src="./assets/home3.png"/>
-<img width="400" src="./assets/store 1.png"/>
-<img width="400" src="./assets/store 2.png"/>
-<img width="400" src="./assets/product.png"/>
-<img width="400" src="./assets/login.png"/>
-<img width="400" src="./assets/cadastro.png"/>
-<img width="400" src="./assets/cart.png"/>
-<img width="400" src="./assets/checkout.png"/>
-<img width="400" src="./assets/checkout 2.png"/>
-<img width="400" src="./assets/checkout 3.png"/>
-<img width="400" src="./assets/checkout 4.png"/>
-<img width="400" src="./assets/admin 1.png"/>
-<img width="400" src="./assets/admin 2.png"/>
-<img width="400" src="./assets/admin 3.png"/>
-<img width="400" src="./assets/criar prod.png"/>
-<img width="400" src="./assets/edit prod.png"/>
-<img width="200" src="./assets/resp1.png"/>
-<img width="200" src="./assets/resp2.png"/>
-<img width="200" src="./assets/resp3.png"/>
-
 
 #
 # Database
@@ -133,6 +108,31 @@ yarn start
 # Acesso ao front end
 http://localhost:3000/
 ```
+
+#
+# Imagens
+
+<img width="400" src="./assets/home.png"/>
+<img width="400" src="./assets/home2.png"/>
+<img width="400" src="./assets/home3.png"/>
+<img width="400" src="./assets/store 1.png"/>
+<img width="400" src="./assets/store 2.png"/>
+<img width="400" src="./assets/product.png"/>
+<img width="400" src="./assets/login.png"/>
+<img width="400" src="./assets/cadastro.png"/>
+<img width="400" src="./assets/cart.png"/>
+<img width="400" src="./assets/checkout.png"/>
+<img width="400" src="./assets/checkout 2.png"/>
+<img width="400" src="./assets/checkout 3.png"/>
+<img width="400" src="./assets/checkout 4.png"/>
+<img width="400" src="./assets/admin 1.png"/>
+<img width="400" src="./assets/admin 2.png"/>
+<img width="400" src="./assets/admin 3.png"/>
+<img width="400" src="./assets/criar prod.png"/>
+<img width="400" src="./assets/edit prod.png"/>
+<img width="200" src="./assets/resp1.png"/>
+<img width="200" src="./assets/resp2.png"/>
+<img width="200" src="./assets/resp3.png"/>
 
 #
 # Autor
