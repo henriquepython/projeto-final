@@ -93,6 +93,8 @@ http://localhost:4200/docs
 ### Front end
 
 ```bash
+# abra outro terminal
+
 # entrar na pasta do projeto frontend dentro da pasta projeto-final
 cd frontend-project
 
@@ -103,7 +105,7 @@ npm install
 yarn install
 
 # executar o projeto
-yarn start
+yarn dev
 
 # Acesso ao front end
 http://localhost:3000/
