@@ -73,6 +73,7 @@ git clone https://github.com/henriquepython/projeto-final.git
 ```bash
 ## entrar pasta projeto-final
 cd projeto-final
+```
 
 
 ## 2 passo
