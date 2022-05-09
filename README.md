@@ -69,6 +69,11 @@ password: 123456
 ```bash
 git clone https://github.com/henriquepython/projeto-final.git
 ```
+### entrar pasta projeto-final
+```bash
+cd projeto-final
+
+
 ## 2 passo
 
 
