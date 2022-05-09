@@ -8,6 +8,7 @@
    * [Tabela de Conteúdo](#Tabela-de-conteúdo)
    * [Tecnologias](#Tecnologias)
    * [Como usar](#Como-usar)
+   * [Imagens](#Imagens)
 <!--te-->
 #
 # Sobre
@@ -109,7 +110,7 @@ http://localhost:3000/
 ```
 
 #
-## Imagens
+# Imagens
 
 <img width="400" src="./assets/home.png"/>
 <img width="400" src="./assets/home2.png"/>
