@@ -55,7 +55,7 @@ export const Admin = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	});
+	}, []);
 
 	const toggleDrawer = () => {
 		setOpen(!open);

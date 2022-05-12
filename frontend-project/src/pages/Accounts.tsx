@@ -16,7 +16,7 @@ export const Accounts = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	});
+	}, []);
 	
 	return (
 		<>

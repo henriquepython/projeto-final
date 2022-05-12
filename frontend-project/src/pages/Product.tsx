@@ -12,7 +12,7 @@ export const Product = () => {
 			.then((response)=>{
 				setProductById(response.data);
 			});
-	});
+	}, []);
 
 	return(
 		<ProductView />
