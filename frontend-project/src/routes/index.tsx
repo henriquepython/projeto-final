@@ -19,8 +19,6 @@ import {
 } from '../pages';
 
 export const AppRoutes = () => {
-	
-	
 	return (
 		<Routes>
 			<Route path="/home" element={<Home />} />

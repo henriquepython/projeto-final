@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ProductView } from '../shared/components';
+import { useAppContext } from '../shared/contexts';
 import { api } from '../shared/services/api';
 
-interface IProduct {
-	_id: string;
-	title: string;
-	image: string;
-	description: string;
-	category:string;
-	quantity: number;
-	price: number;
-}
-
 export const Product = () => {
-	const [ productById, setProductById] = useState<IProduct>({} as IProduct);
+	const { setProductById } = useAppContext();
 
 	const code = sessionStorage.getItem('id_product');	
 	useEffect(()=> {
@@ -21,16 +12,9 @@ export const Product = () => {
 			.then((response)=>{
 				setProductById(response.data);
 			});
-	}, []);
+	});
 
 	return(
-		<ProductView 
-			title={productById.title}
-			image={productById.image}
-			quantity={productById.quantity}
-			price={productById.price}
-			_id={productById._id}
-			description={productById.description}
-		/>
+		<ProductView />
 	);
 };

@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, Logger, Scope } from '@nestjs/common';
-import { CartRepository } from './cart.Repository';
+import { CartRepository } from './cart.repository';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { Cart } from './entities/cart.entity';
 import { Mapper } from '@automapper/core';

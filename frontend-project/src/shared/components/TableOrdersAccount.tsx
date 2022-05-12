@@ -6,18 +6,10 @@ import TableRow from '@mui/material/TableRow';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { api } from '../services/api';
 import { Fab } from '@mui/material';
+import { useAppContext } from '../contexts';
 
-interface OrderListProps {
-    orders: Array<{
-        totalPrice: number;
-        status: string;
-        _id: string;
-		userId: {_id: string}; 
-    }>
-}
-
-export const TableOrdersAccount = (props: OrderListProps) => {
-	const { orders } = props;
+export const TableOrdersAccount = () => {
+	const { orderUser } = useAppContext();
 
 	const getRequestCancel = async (index: string, status: string) => {
 		if (status === 'Pendente') {
@@ -46,7 +38,7 @@ export const TableOrdersAccount = (props: OrderListProps) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{orders.map((row, index) => (
+					{orderUser.map((row, index) => (
 						<TableRow key={index}>
 							<TableCell>{row._id}</TableCell>
 							<TableCell>{row.userId._id}</TableCell>

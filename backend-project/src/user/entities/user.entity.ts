@@ -1,5 +1,5 @@
 import { AutoMap } from '@automapper/classes';
-import { Role } from 'src/shared/enum/Role.enum';
+import { Role } from 'src/shared/enum/role.enum';
 
 export class User {
   @AutoMap()

@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { TableOrdersAccount } from '../shared/components';
+import { useAppContext } from '../shared/contexts';
 import { api } from '../shared/services/api';
 
-interface IOrderByUser {
-	totalPrice: number;
-	products: [];
-	status: string;
-	userId: {_id: string};
-	_id: string;
-}
-
 export const Accounts = () => {
-	const [orderUser, setOrderUser] = useState<IOrderByUser[]>([]);
+	const { setOrderUser } = useAppContext();
 	const idUser = sessionStorage.getItem('id_user');
 	
 	useEffect(()=> {
@@ -23,11 +16,11 @@ export const Accounts = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	});
 	
 	return (
 		<>
-			<TableOrdersAccount orders={orderUser} />
+			<TableOrdersAccount />
 		</>
 	);
 };

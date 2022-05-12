@@ -1,5 +1,6 @@
 import { Autocomplete, Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
-import { apiAdmin } from '../shared/services/api';
+import React, { useEffect, useState } from 'react';
+import { api, apiAdmin } from '../shared/services/api';
 
 const categories = [
 	{ label: 'Eletronicos' },
@@ -8,16 +9,27 @@ const categories = [
 ];
 
 export const EditProduct = () => {
+	const [title, setTitle] = useState('');
+	const [image, setImage] = useState('');
+	const [description, setDescription] = useState('');
+	const [category, setCategory] = useState('');
+	const [quantity, setQuantity] = useState<number>(0);
+	const [price, setPrice] = useState<number>(0);
+	useEffect(()=> {
+		const code = sessionStorage.getItem('id_product');
+		api.get(`product/${code}`)
+			.then((response)=>{
+				setTitle(response.data.title);
+				setImage(response.data.image);
+				setDescription(response.data.description);
+				setCategory(response.data.category);
+				setQuantity(response.data.quantity);
+				setPrice(response.data.price);
+			});
+	});
 
 	const handleEditProduct = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const input = new FormData(event.currentTarget);
-		const title = `${input.get('title')}`;
-		const image = `${input.get('image')}`;
-		const description = `${input.get('description')}`;
-		const category = `${input.get('category')}`;
-		const quantity = Number(input.get('quantity'));
-		const price = Number(input.get('price'));
 		const edit = sessionStorage.getItem('id_product');
 		const editProduct = {
 			title: title,
@@ -39,6 +51,7 @@ export const EditProduct = () => {
 				alert('Usuario não autorizado!');
 			});
 	};
+	
 	return(
 		<Container component="form"  onSubmit={handleEditProduct} maxWidth="sm" sx={{ mb: 4 }}>
 			<Button 

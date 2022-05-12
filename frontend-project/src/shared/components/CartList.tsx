@@ -1,18 +1,9 @@
 import { Box } from '@mui/material';
+import { useAppContext } from '../contexts';
 import { ProductItemCart } from './ProductItemCart';
 
-interface ICartListProps {
-	productsByUser: ReadonlyArray<{
-		title: string;
-		image: string;
-		price: number;
-		quantity: number;
-		productId: string;
-	}>;
-}
-
-export const CartList = (props: ICartListProps) => {
-	const { productsByUser } = props;
+export const CartList = () => {
+	const { cart } = useAppContext();
 	return (
 		<Box 
 			sx={{
@@ -24,7 +15,7 @@ export const CartList = (props: ICartListProps) => {
 				flexDirection: 'row'
 			}}
 		>
-			{productsByUser?.map((item, index) => (
+			{cart?.map((item, index) => (
 				<Box key={index} sx={{width: 220, m: 2}}>
 					<ProductItemCart 
 						title={item.title}

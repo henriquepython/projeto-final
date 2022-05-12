@@ -1,20 +1,11 @@
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ProductItem } from '../../shared/components';
+import { useAppContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
 
-interface ISearch {
-	_id: string;
-	title: string;
-	image: string;
-	description: string;
-	category: true;
-	quantity: number;
-	price: number;
-}
-
 export const Search = () => {
-	const [ search, setSearch] = useState<ISearch>({} as ISearch);
+	const { search, setSearch } = useAppContext();
 	useEffect(()=>{
 		const searchs = sessionStorage.getItem('search');
 		console.log(searchs);

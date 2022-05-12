@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import { useAppThemeContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
 
-
 export const SignUp = () => {
 	const { themeName } = useAppThemeContext();
 

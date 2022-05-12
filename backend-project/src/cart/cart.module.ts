@@ -2,7 +2,7 @@ import { Logger, Module } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { CartController } from './cart.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CartRepository } from './cart.Repository';
+import { CartRepository } from './cart.repository';
 import { CartProfile } from './mapper/cartProfile';
 import { ProductModule } from 'src/product/product.module';
 import { CartSchema } from 'src/shared/schemas/cart.schema';

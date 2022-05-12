@@ -1,10 +1,11 @@
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ProductList } from '../../shared/components';
+import { useAppContext } from '../../shared/contexts';
 import { api } from '../../shared/services/api';
 
 export const StoreEletronic = () => {
-	const [eletronics, setEletronics] = useState([]);
+	const { eletronics, setEletronics } = useAppContext();
 
 	useEffect(()=> {
 		api.get('product/category/Eletronicos')

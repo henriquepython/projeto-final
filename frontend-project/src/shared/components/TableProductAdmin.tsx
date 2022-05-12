@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,21 +8,10 @@ import { apiAdmin } from '../services/api';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import Fab from '@mui/material/Fab';
+import { useAppContext } from '../contexts';
 
-interface ProductListProps {
-    products: ReadonlyArray<{
-      title: string;
-      image: string;
-      price: number;
-      quantity: number;
-      category: string;
-      _id: string;
-    }>;
-  }
-
-export const TableProductAdmin = (props: ProductListProps) => {
-	const { products } = props;
-	
+export const TableProductAdmin = () => {
+	const { productAll } = useAppContext();
 	const getDelete = async (index: string) => {
 		const result = confirm('Tem certeza que quer remover o produto?');
 		if(result) {
@@ -91,7 +79,7 @@ export const TableProductAdmin = (props: ProductListProps) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{products.map((row, index) => (
+					{productAll.map((row, index) => (
 						<TableRow key={index}>
 							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,18 +7,11 @@ import { Fab, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { apiAdmin } from '../services/api';
+import { useAppContext } from '../contexts';
 
-interface OrderProps {
-    orders: ReadonlyArray<{
-        totalPrice: number;
-        status: string;
-        userId: string;
-		_id: string; 
-    }>
-}
-
-export const TableOrdersAdmin = (props: OrderProps) => {
-	const { orders } = props;
+export const TableOrdersAdmin = () => {
+	const { orderAll } = useAppContext();
+	
 
 	const getCancelled = async (index: string, status: string) => {
 		if (status === 'Cancelamento Pendente' || status === 'Pendente') {
@@ -73,7 +65,7 @@ export const TableOrdersAdmin = (props: OrderProps) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{orders.map((row, index) => (
+					{orderAll.map((row, index) => (
 						<TableRow key={index}>
 							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>

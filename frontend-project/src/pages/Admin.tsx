@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -9,8 +8,9 @@ import Paper from '@mui/material/Paper';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Button } from '@mui/material';
 import { TableOrdersAdmin, TableProductAdmin, TableUsersAdmin } from '../shared/components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { api } from '../shared/services/api';
+import { useAppContext } from '../shared/contexts';
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
 	({ theme, open }) => ({
@@ -38,39 +38,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	}),
 );
 
-interface IOrderAll {
-	totalPrice: number;
-	products: [];
-	status: string;
-	userId: string;
-	_id: string;
-}
-
-interface IProductAll {
-	title: string;
-	image: string;
-	description: string;
-	category: string;
-	price: number;
-	quantity: number;
-	_id: string;
-}
-
-interface IUserAll {
-	name: string;
-	email: string;
-	roles: string;
-	phoneNumber: string;
-	password: string;
-	_id:string;
-}
-
 export const Admin = () => {
-	const [open, setOpen] = React.useState(true);
-	const [orderAll, setOrderAll] = useState<IOrderAll[]>([]);
-	const [productAll, setProductAll] = useState<IProductAll[]>([]);
-	const [userAll, setUserAll] = useState<IUserAll[]>([]);
-	const [activeStep, setActiveStep] = React.useState(0);
+	const {open, setOpen, setOrderAll, setProductAll, setUserAll, activeStep, setActiveStep } = useAppContext();
 	
 	useEffect(()=> {
 		const orders = api.get('order/');
@@ -86,7 +55,7 @@ export const Admin = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	});
 
 	const toggleDrawer = () => {
 		setOpen(!open);
@@ -100,11 +69,11 @@ export const Admin = () => {
 	const getStepContent = (step: number) => {
 		switch (step) {
 		case 0:
-			return <TableOrdersAdmin orders={orderAll} />;
+			return <TableOrdersAdmin />;
 		case 1:
-			return  <TableProductAdmin products={productAll} />;
+			return  <TableProductAdmin />;
 		case 2:
-			return  <TableUsersAdmin user={userAll} />;
+			return  <TableUsersAdmin />;
 		default:
 			throw new Error('Unknown step');
 		}

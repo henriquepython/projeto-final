@@ -1,22 +1,13 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Typography } from '@mui/material';
+import { useAppContext } from '../contexts';
 
-interface UserProps {
-    user: ReadonlyArray<{
-        name: string;
-        email: string;
-        phoneNumber: string;
-		_id: string; 
-    }>
-}
-
-export const TableUsersAdmin = (props: UserProps) => {
-	const { user } = props;
+export const TableUsersAdmin = () => {
+	const { userAll } = useAppContext();
 
 	return (
 		<>
@@ -37,7 +28,7 @@ export const TableUsersAdmin = (props: UserProps) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{user.map((row, index) => (
+					{userAll.map((row, index) => (
 						<TableRow key={index}>
 							<TableCell>{index+1}</TableCell>
 							<TableCell>{row._id}</TableCell>

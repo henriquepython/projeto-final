@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BannerCategory, Carrousel, CarrouselItem } from '../shared/components';
+import { useAppContext } from '../shared/contexts';
 import { api } from '../shared/services/api';
 
-interface IProductAll {
-	title: string;
-	image: string;
-	description: string;
-	category: string;
-	price: number;
-	quantity: number;
-	_id: string;
-}
-
 export const Home = () => {
-	const [clothesCarrousel, setClothesCarrousel] = useState<IProductAll[]>([]);
-	const [sportsCarrousel, setSportsCarrousel] = useState<IProductAll[]>([]);
-	const [eletronicsCarrousel, setEletronicsCarrousel] = useState<IProductAll[]>([]);
+	const { clothes, setClothes, sports, setSports, eletronics, setEletronics } = useAppContext();
 
 	useEffect(()=> {
 		const clothes = api.get('product/category/Roupas');
@@ -24,23 +13,23 @@ export const Home = () => {
 			
 		Promise.all([clothes, sports, eletronics])
 			.then((response) => {
-				setClothesCarrousel(response[0].data);
-				setSportsCarrousel(response[1].data);
-				setEletronicsCarrousel(response[2].data);
+				setClothes(response[0].data);
+				setSports(response[1].data);
+				setEletronics(response[2].data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	});
 
 	
 	return (
 		<>
 			<Carrousel />
 			<BannerCategory />
-			<CarrouselItem products={clothesCarrousel} category='Roupas'/>
-			<CarrouselItem products={eletronicsCarrousel} category='Eletronicos'/>
-			<CarrouselItem products={sportsCarrousel} category='Esportes'/>
+			<CarrouselItem products={clothes} category='Roupas'/>
+			<CarrouselItem products={eletronics} category='Eletronicos'/>
+			<CarrouselItem products={sports} category='Esportes'/>
 		</>
 	);
 };

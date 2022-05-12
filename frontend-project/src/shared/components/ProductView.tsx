@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Button } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { api } from '../services/api';
+import { useAppContext } from '../contexts';
 
 const Img = styled('img')({
 	margin: 'auto',
@@ -16,17 +17,8 @@ const Img = styled('img')({
 	height: 300,
 });
 
-interface ProductViewProps {
-  title: string;
-  image: string;
-  price: number;
-  _id: string;
-  quantity: number;
-  description: string;
-}
-
-export const ProductView = (props: ProductViewProps) => {
-	const { title, image, price, _id, quantity, description } = props;
+export const ProductView = () => {
+	const { productById } = useAppContext();
  
 	const handleAddCart = async(event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -34,12 +26,12 @@ export const ProductView = (props: ProductViewProps) => {
 		const quantities = Number(input.get('quantity'));
 		const userId = sessionStorage.getItem('id_user');
 		const productView = {
-			title: title,
-			image: image,
-			price: price,
+			title: productById.title,
+			image: productById.image,
+			price: productById.price,
 			quantity: quantities,
 			userId: {_id: userId},
-			productId: {_id: _id}
+			productId: {_id: productById._id}
 		};
 
 		if (userId === null ){
@@ -70,30 +62,30 @@ export const ProductView = (props: ProductViewProps) => {
 				}}
 			>
 				<Grid item>
-					<Img src={image} sx={{mb:4,borderRadius: 2}} />
+					<Img src={productById.image} sx={{mb:4,borderRadius: 2}} />
 				</Grid>
 				<Grid item>
 					<Grid item>
 						<Typography gutterBottom variant="h6" component="div">
-							{title}
+							{productById.title}
 						</Typography>
 					</Grid>
 					<Grid item>
 						<Typography variant="subtitle2" color="text.secondary">
-							{_id}
+							{productById._id}
 						</Typography>
 					</Grid>
 					<Typography variant='subtitle2' component="div" sx={{mb: 2}}> 
-                        Stock: {quantity}
+                        Stock: {productById.quantity}
 					</Typography>
 					<Grid item>
 						<Typography variant="subtitle1" component="div">
-                            R$ {price}
+                            R$ {productById.price}
 						</Typography>
 					</Grid>
 					<Grid item>
 						<Typography variant="caption" align='left' component="div">
-                            ou 6x de {`R$ ${(price/6).toFixed(2)}`}
+                            ou 6x de {`R$ ${(productById.price/6).toFixed(2)}`}
 						</Typography>
 					</Grid>
 				</Grid>
@@ -131,7 +123,7 @@ export const ProductView = (props: ProductViewProps) => {
                     Descrição:
 				</Typography>
 				<Typography variant='subtitle1' sx={{ml:8}}>
-					{description}
+					{productById.description}
 				</Typography>
 			</Box>
 		</>

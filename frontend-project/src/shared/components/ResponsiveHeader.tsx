@@ -15,7 +15,7 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { Typography, TextField, Box, Avatar } from '@mui/material';
 import { useAppThemeContext } from '../contexts/ThemeContext';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import { useState } from 'react';
+import { useAppContext } from '../contexts';
 
 const sectionsProduct = [ 
 	{title: 'Inicio', url:'/Inicio'},
@@ -30,8 +30,7 @@ const sectionsUser = [
 ];
 
 export const ResponsiveHeader = () => {
-	const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
-	const [anchorNavAccount, setAnchorNavAccount] = useState<null | HTMLElement>(null);
+	const { anchorNav, setAnchorNav, anchorNavAccount, setAnchorNavAccount } = useAppContext();
 	const { toggleTheme, themeName } = useAppThemeContext();
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

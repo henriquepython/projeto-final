@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -11,23 +10,14 @@ import { AddressForm } from '../shared/components/AddressForm';
 import { PaymentForm } from '../shared/components/PaymentForm';
 import { ReviewOrder } from '../shared/components/ReviewOrder';
 import { api } from '../shared/services/api';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useAppContext } from '../shared/contexts';
 
 const steps = ['Endereço de entrega', 'Detalhes do pagamento', 'Revisão do pedido'];
 
-interface ICartCheckout {
-	userId: string;
-	productId: string;
-	quantity: number;
-	price: number;
-	title: string;
-	image: string;
-}
-
 export const Checkout = () => {
-	const [checkout, setCheckout] = useState<ICartCheckout[]>([]);
+	const { setCheckout, activeStep, setActiveStep } = useAppContext();
 	const idUser = sessionStorage.getItem('id_user');
-	const [activeStep, setActiveStep] = React.useState(0);
 
 	useEffect(()=> {
 		console.log(idUser);
@@ -48,7 +38,7 @@ export const Checkout = () => {
 		case 1:
 			return <PaymentForm />;
 		case 2:
-			return <ReviewOrder productsByUser={checkout} />;
+			return <ReviewOrder />;
 		default:
 			throw new Error('Unknown step');
 		}
